@@ -1,0 +1,101 @@
+html, body {
+	margin: 0;
+	padding: 0;
+
+	font-family: Calibri, Arial, sans-serif;
+	font-size: 110%;
+	color: #444;
+}
+
+article {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1em;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	min-height: 100%;
+	box-sizing: border-box;
+}
+
+header {
+
+}
+header h1 {
+	font-size: 2em;
+	margin: 0 0 1rem 0;
+	color: #1e78c2;
+	text-align: center;
+	position: relative;
+}
+header h1::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 0.5em;
+	z-index: -1;
+	border-top: 5px solid #3ab5e6;
+}
+header h1 span {
+	background: #fff;
+	padding: 0 1rem;
+	z-index: 1;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+header .image {
+	position: relative;
+	margin-bottom: 1rem;
+}
+header .image::before {
+	float: left;
+	padding-top: 36%;
+	content: '';
+}
+header .image::after {
+	display: block;
+	content: '';
+	clear: both;
+}
+header .image img {
+	position: absolute;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 5px;
+}
+header .stats {
+	display: flex;
+	font-size: 1.1em;
+	font-weight: bold;
+	flex-wrap: wrap;
+}
+header .stats .filler {
+	flex-grow: 1;
+}
+header .stats .words {
+	margin-right: 1rem;
+}
+header p {
+	border: 5px solid #88dff9;
+	border-width: 5px 0;
+	padding: 1rem 1rem;
+	font-style: italic;
+	color: #555;
+	margin: 1rem 0 0 0;
+	text-align: center;
+}
+
+section.text {
+	padding: 1rem 0;
+}
+section.text p {
+	margin: 1rem 0;
+}
+section.text p:first-child {
+	margin-top: 0;
+}
+section.text p:last-child {
+	margin-bottom: 0;
+}
