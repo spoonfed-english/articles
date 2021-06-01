@@ -92,6 +92,7 @@ section.text {
 }
 section.text p {
 	margin: 1rem 0;
+	text-align: justify;
 }
 section.text p:first-child {
 	margin-top: 0;
