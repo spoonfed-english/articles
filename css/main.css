@@ -88,7 +88,7 @@ header p {
 }
 
 section.text {
-	padding: 1rem 0;
+	padding: 1rem 0 0 0;
 }
 section.text p {
 	margin: 1rem 0;
