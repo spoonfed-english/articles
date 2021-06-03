@@ -1,5 +1,7 @@
 <html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
+	<meta charset="utf-8"/>
+	
 	<title>Cycling with a Stray Cat</title> <!-- ˜60 chars -->
 	<meta name="description" content="Dean Nicholson decided to cycle from Scotland to Thailand, he packed a tent, a sleeping bag, a stove, a hammock, and a sound system for his music."> <!-- ˜150 chars -->
 	<meta property="og:title" content="Cycling with a Stray Cat">
@@ -20,6 +22,71 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<link rel="stylesheet" href="css/main.css">
+	
+	<script type="text/javascript">
+		(function() {
+			if(!WeixinJSBridge)
+				return;
+			
+			var dataForWeixin={
+				appId:'',
+				MsgImg:'https://spoonfed-english.github.io/articles/img/cycling-with-a-stray-cat.jpg',
+				TLImg:'https://spoonfed-english.github.io/articles/img/cycling-with-a-stray-cat.jpg',
+				url:'http://spoonfedenglish-articles.rf.gd/02-03-june-2021-cycling-with-a-stray-cat.html',
+				title:'Cycling with a Stray Cat',
+				desc:'Dean Nicholson decided to cycle from Scotland to Thailand, he packed a tent, a sleeping bag, a stove, a hammock, and a sound system for his music.',
+				fakeid:'',
+				callback:function(){}
+			};
+			var onBridgeReady=function(){
+				WeixinJSBridge.on('menu:share:appmessage', function(argv){
+					WeixinJSBridge.invoke('sendAppMessage',{
+						'appid':dataForWeixin.appId,
+						'img_url':dataForWeixin.MsgImg,
+						'img_width':'1200',
+						'img_height':'1200',
+						'link':dataForWeixin.url,
+						'desc':dataForWeixin.desc,
+						'title':dataForWeixin.title
+					}, function(res){(dataForWeixin.callback)();});
+				});
+				WeixinJSBridge.on('menu:share:timeline', function(argv){
+					(dataForWeixin.callback)();
+					WeixinJSBridge.invoke('shareTimeline',{
+						'img_url':dataForWeixin.TLImg,
+						'img_width':'1200',
+						'img_height':'1200',
+						'link':dataForWeixin.url,
+						'desc':dataForWeixin.desc,
+						'title':dataForWeixin.title
+					}, function(res){});
+				});
+				WeixinJSBridge.on('menu:share:weibo', function(argv){
+					WeixinJSBridge.invoke('shareWeibo',{
+						'content':dataForWeixin.title,
+						'url':dataForWeixin.url
+					}, function(res){(dataForWeixin.callback)();});
+				});
+				WeixinJSBridge.on('menu:share:facebook', function(argv){
+					(dataForWeixin.callback)();
+					WeixinJSBridge.invoke('shareFB',{
+						'img_url':dataForWeixin.TLImg,
+						'img_width':'1200',
+						'img_height':'1200',
+						'link':dataForWeixin.url,
+						'desc':dataForWeixin.desc,
+						'title':dataForWeixin.title
+					}, function(res){});
+				});
+			};
+			if(document.addEventListener){
+				document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+			}else if(document.attachEvent){
+				document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+				document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+			}
+		})();
+	</script>
 </head>
 <body>
 <article>
@@ -38,7 +105,7 @@
 		<p>Dean Nicholson decided to cycle from Scotland to Thailand, he packed a tent, a sleeping bag, a stove, a hammock, and a sound system for his music.</p>
 	</header>
 	<section class="text">
-		<p>Dean Nicholson decided to cycle from Scotland to Thailand, he packed a tent, a sleeping bag, a stove, a hammock, and a sound system for his music. Dean is 32 years old and had worked as a welder in a fish factory.</p>
+		<p>Dean is 32 years old and had worked as a welder in a fish factory.</p>
 		<p>After a few months of cycling, he reached Bosnia. While cycling there he noticed a tiny grey and white kitten running after him. He got off his bicycle and fed her red pesto sauce from his food supplies.</p>
 		<p>He decided to take her to a vet in the nearest town. This was to find out whether anyone had lost their kitten. At the vet, nobody knew who the kitten belonged to.</p>
 		<p>Dean put her into the basket at the front of his bicycle and decided to take her with him on his cycling adventure. Now the kitten had to have a name, so he called her Nala. He then made space on his bicycle for toys, a harness, and a doll-sized umbrella for Nala.</p>
@@ -49,9 +116,6 @@
 		<p>During the corona virus pandemic, they stayed in Hungary for twelve weeks. During this time, Dean wrote his book about his and Nala's adventures. The book is called "Nala’s World: One Man, His Rescue Cat, and a Bike Ride Around the Globe."</p>
 		<p>They went to Austria where they are staying until travel restrictions are lifted. Dean wants to go to Russia and eventually Thailand. The reason Dean wants to go to Thailand is to drink from a coconut. Now he will have to order one for Nala as well. He said, “She might like coconut, but if she does not, then I will find her some cat milk."</p>
 	</section>
-	<div id="wx_pic" style="margin:0 auto;display:none;">
-		<img src="img/cycling-with-a-stray-cat.jpg">
-	</div>
 </article>
 </body>
 </html>
