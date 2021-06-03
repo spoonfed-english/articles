@@ -22,70 +22,9 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<link rel="stylesheet" href="css/main.css">
-	
-	<script type="text/javascript">
-		(function() {
-			var dataForWeixin={
-				appId:'',
-				MsgImg:'https://spoonfed-english.github.io/articles/img/cycling-with-a-stray-cat.jpg',
-				TLImg:'https://spoonfed-english.github.io/articles/img/cycling-with-a-stray-cat.jpg',
-				url:'http://spoonfedenglish-articles.rf.gd/02-03-june-2021-cycling-with-a-stray-cat.html',
-				title:'Cycling with a Stray Cat',
-				desc:'Dean Nicholson decided to cycle from Scotland to Thailand, he packed a tent, a sleeping bag, a stove, a hammock, and a sound system for his music.',
-				fakeid:'',
-				callback:function(){}
-			};
-			var onBridgeReady=function(){
-				WeixinJSBridge.on('menu:share:appmessage', function(argv){
-					WeixinJSBridge.invoke('sendAppMessage',{
-						'appid':dataForWeixin.appId,
-						'img_url':dataForWeixin.MsgImg,
-						'img_width':'1200',
-						'img_height':'1200',
-						'link':dataForWeixin.url,
-						'desc':dataForWeixin.desc,
-						'title':dataForWeixin.title
-					}, function(res){(dataForWeixin.callback)();});
-				});
-				WeixinJSBridge.on('menu:share:timeline', function(argv){
-					(dataForWeixin.callback)();
-					WeixinJSBridge.invoke('shareTimeline',{
-						'img_url':dataForWeixin.TLImg,
-						'img_width':'1200',
-						'img_height':'1200',
-						'link':dataForWeixin.url,
-						'desc':dataForWeixin.desc,
-						'title':dataForWeixin.title
-					}, function(res){});
-				});
-				WeixinJSBridge.on('menu:share:weibo', function(argv){
-					WeixinJSBridge.invoke('shareWeibo',{
-						'content':dataForWeixin.title,
-						'url':dataForWeixin.url
-					}, function(res){(dataForWeixin.callback)();});
-				});
-				WeixinJSBridge.on('menu:share:facebook', function(argv){
-					(dataForWeixin.callback)();
-					WeixinJSBridge.invoke('shareFB',{
-						'img_url':dataForWeixin.TLImg,
-						'img_width':'1200',
-						'img_height':'1200',
-						'link':dataForWeixin.url,
-						'desc':dataForWeixin.desc,
-						'title':dataForWeixin.title
-					}, function(res){});
-				});
-			};
-			if(document.addEventListener){
-				document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-			}else if(document.attachEvent){
-				document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
-				document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
-			}
-		})();
-	</script>
 </head>
 <body>
+<div style="display:none;"><img src="https://spoonfed-english.github.io/articles/img/cycling-with-a-stray-cat.jpg" alt=""></div>
 <article>
 	<header>
 		<h1>
