@@ -65,6 +65,9 @@ header .image img {
 	overflow: hidden;
 	border-radius: 5px;
 }
+header .image img.align-top {
+	object-position: center top;
+}
 header .stats {
 	display: flex;
 	font-size: 1.1em;
