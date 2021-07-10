@@ -8,12 +8,14 @@ Usage:
 
 Requirements:
 - pip install titlecase (https://pypi.org/project/titlecase/)
+- pip install Pillow (https://pypi.org/project/Pillow/)
 """
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
 
+from PIL import Image
 from titlecase import titlecase
 
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
@@ -134,6 +136,21 @@ def run():
 
         props['word_count'] = str(len(
             WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
+        
+        image_name = props['image']
+        image_path = Path(f'img/{image_name}.jpg')
+        if not image_path.exists():
+            print(f'Image does not exist: "{str(image_path)}"')
+            continue
+        try:
+            with Image.open(image_path) as img:
+                img_width, img_height = img.size
+        except Exception as e:
+            print(f'Unable to open image: "{str(image_path)}"')
+            img_width, img_height = 1200, 1200
+
+        props['img_width'] = str(img_width)
+        props['img_height'] = str(img_height)
         
         # Do substitutions
         output_html = tpl_data
