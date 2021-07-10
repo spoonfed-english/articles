@@ -8,12 +8,14 @@
 TITLE
 [description]
 # Used for open graph and the tag line under the image
+# DON'T Repeat in content
 DESCRIPTION
 [preview]
 # Optional - If set, "img/PREVIEW.jpg" will be used for the open graph thumbnail
 # instead of the corresponding image for this data file
 PREVIEW
 [difficulty]
+# Optional - set to Medium by default
 DIFFICULTY
 [content]
 # The content - each line is considered a paragraph.

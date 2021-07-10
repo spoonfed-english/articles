@@ -91,7 +91,7 @@ def run():
             description=None,
             image=None,
             preview=None,
-            difficulty=None,
+            difficulty=['Medium'],
             content=None,
         )
         with file.open('r', encoding='utf-8') as f:
