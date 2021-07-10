@@ -9,13 +9,18 @@ Usage:
 Requirements:
 - pip install titlecase (https://pypi.org/project/titlecase/)
 - pip install Pillow (https://pypi.org/project/Pillow/)
+- pip install nltk
+    - nltk.download('wordnet')
 """
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from pprint import pprint
 
+import nltk
 from PIL import Image
+from nltk import WordNetLemmatizer
 from titlecase import titlecase
 
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
@@ -68,6 +73,13 @@ def run():
     if not files:
         print(f'No .md or .html files found in "{str(path)}"')
         return
+
+    lemmatiser = WordNetLemmatizer()
+    word_list = dict()
+    for freq in ('low', 'med', 'high'):
+        with Path(f'data/_words-{freq}.txt').open('r', encoding='utf-8') as f:
+            for word in f.read().splitlines():
+                word_list[word] = freq
     
     for file in files:
         print(f'-- Generating {file.stem} --')
@@ -118,8 +130,6 @@ def run():
                 print(f'"{name}" property not found')
                 props[name] = ''
         
-        content_text = merge_lines(props['content'], '\n')
-        
         # Process properties
         if props['image'] is None:
             props['image'] = [base_name]
@@ -127,16 +137,58 @@ def run():
             props['preview'] = props['image']
         for name in ['title', 'image', 'preview', 'description', 'difficulty']:
             props[name] = merge_lines(props[name])
+
+        content_text = merge_lines(props['content'], '\n')
         
         props['title'] = titlecase(props['title'])
-        props['content'] = '<p>' + merge_lines(props['content'], f'</p>\n{content_indent}<p>') +\
-                           '</p>'
-        if props['content'][:len(content_indent)] == content_indent:
-            props['content'] = props['content'][len(content_indent):]
-
         props['word_count'] = str(len(
             WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
+
+        # Highlight IELTS words
+        parsed_text = ''
+        search_index = 0
+        tokens = nltk.word_tokenize(content_text)
+        for word in tokens:
+            next_index = content_text.find(word, search_index)
+    
+            # Should not get here
+            if next_index == -1:
+                print(f'Could not locate token "{word}" in content??')
+                parsed_text = content_text
+                search_index = len(content_text)
+                break
+    
+            parsed_text += content_text[search_index:next_index]
+    
+            if word in word_list:
+                word_freq = word_list[word]
+                lemma = None
+            else:
+                lemma = lemmatiser.lemmatize(word)
+                if lemma in word_list:
+                    word_freq = word_list[lemma]
+                else:
+                    word_freq = None
+            
+            if word_freq:
+                if lemma is not None:
+                    lemma = f' data-lemma="{lemma}"'
+                else:
+                    lemma = ''
+                parsed_text += f'<span class="word {word_freq}"{lemma}>{word}</span>'
+            else:
+                parsed_text += word
+    
+            search_index = next_index + len(word)
+            pass
+
+        if search_index < len(content_text):
+            parsed_text += content_text[search_index]
+        content_text = parsed_text
         
+        props['content'] = '<p>' +\
+                           content_text.replace('\n', f'</p>\n{content_indent}<p>') + '</p>'
+
         image_name = props['image']
         image_path = Path(f'img/{image_name}.jpg')
         if not image_path.exists():

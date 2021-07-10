@@ -92,6 +92,7 @@ header p {
 
 section.text {
 	padding: 1rem 0 0 0;
+	line-height: 1.4rem;
 }
 section.text p {
 	margin: 1rem 0;
@@ -103,3 +104,20 @@ section.text p:first-child {
 section.text p:last-child {
 	margin-bottom: 0;
 }
+section.text .word {
+	border-radius: 2px;
+	color: #eee;
+    cursor: pointer;
+    /*font-weight: bold;*/
+    padding: 0 2px;
+}
+section.text .word.low { color: #e28d50; }
+section.text .word.med { color: #50b3e2; }
+section.text .word.high { color: #e250ae; }
+section.text .word:hover {
+	background: #eee;
+	color: #fff;
+}
+section.text .word.low:hover { background: #e28d50; }
+section.text .word.med:hover { background: #50b3e2; }
+section.text .word.high:hover { background: #e250ae; }
