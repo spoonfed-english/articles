@@ -28,7 +28,7 @@ CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
 TPL_HTML_FILE = Path('_template.html')
-INDEX_FILE = Path('data/_index')
+INDEX_FILE = Path('data/index')
 
 
 def run():

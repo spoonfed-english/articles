@@ -172,6 +172,20 @@ div.tippy-box[data-theme~=definition-popup] {
 div.tippy-box[data-theme~=definition-popup] .tippy-arrow:after {
 	border-top-color: #e0e0e0 !important;
 }
-div.tippy-box[data-theme~=definition-popup] .tippy-content {
+div.tippy-box[data-theme~=definition-popup] .definitions {
 	font-size: 1.5em;
+	white-space: pre-wrap;
+}
+.definitions .pos {
+	font-style: italic;
+	color: #666;
+}
+.definitions .pos:after {
+	content: '•';
+	vertical-align: middle;
+	font-size: 0.8em;
+	padding: 0 0.25rem;
+}
+.definitions .text {
+
 }
