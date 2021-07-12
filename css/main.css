@@ -164,3 +164,14 @@ footer.border {
 .legend-item.med { color: #50b3e2; }
 .legend-item.high:before { background: #e250ae; }
 .legend-item.high { color: #e250ae; }
+
+div.tippy-box[data-theme~=definition-popup] {
+	box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.15);
+	border-color: #e0e0e0;
+}
+div.tippy-box[data-theme~=definition-popup] .tippy-arrow:after {
+	border-top-color: #e0e0e0 !important;
+}
+div.tippy-box[data-theme~=definition-popup] .tippy-content {
+	font-size: 1.5em;
+}
