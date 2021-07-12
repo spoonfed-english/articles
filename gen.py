@@ -235,7 +235,7 @@ def push_prop(prop_name, prop_data, props):
 
 
 def merge_lines(lines, delimiter=' ', ignore_empty=True):
-    return delimiter.join([line for line in lines if not ignore_empty or line.strip()])
+    return delimiter.join([line.strip() for line in lines if not ignore_empty or line.strip()])
 
 
 if __name__ == "__main__":
