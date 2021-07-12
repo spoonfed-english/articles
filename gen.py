@@ -150,6 +150,12 @@ def run():
         tokens = nltk.word_tokenize(content_text)
         for word in tokens:
             next_index = content_text.find(word, search_index)
+
+            # The tokeniser converts starting quotes to `` and end quotes to ''
+            if next_index == -1 and (word == '``' or word == "''"):
+                next_index = content_text.find('"', search_index)
+                if next_index != -1:
+                    word = '"'
     
             # Should not get here
             if next_index == -1:
