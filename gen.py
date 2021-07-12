@@ -87,7 +87,7 @@ def run():
         is_new = not html_file.exists()
         
         if is_new:
-            current_data = datetime.today().strftime('%d-%B-%y').lower()
+            current_data = datetime.today().strftime('%d-%B-%Y').lower()
             output_name = f'{index:02d}-{current_data}-{file.stem}'
             index += 1
         else:
