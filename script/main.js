@@ -30,7 +30,7 @@
 		target: 'span.word',
 		touch: true,
 		content: '...',
-		trigger: 'click focus',
+		trigger: 'focus',
 		interactive: true,
 		allowHTML: true,
 		theme: 'light-border definition-popup',

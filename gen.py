@@ -77,7 +77,7 @@ def run():
     lemmatiser = WordNetLemmatizer()
     word_list = dict()
     for freq in ('low', 'med', 'high'):
-        with Path(f'data/_words-{freq}.txt').open('r', encoding='utf-8') as f:
+        with Path(f'data/words-{freq}.txt').open('r', encoding='utf-8') as f:
             for word in f.read().splitlines():
                 word_list[word] = freq
     
@@ -181,7 +181,7 @@ def run():
                     lemma = f' data-lemma="{lemma}"'
                 else:
                     lemma = ''
-                parsed_text += f'<span class="word {word_freq}"{lemma}>{word}</span>'
+                parsed_text += f'<span class="word {word_freq}"{lemma} tabindex="-1">{word}</span>'
             else:
                 parsed_text += word
     

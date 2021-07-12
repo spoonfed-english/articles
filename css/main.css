@@ -114,13 +114,13 @@ section.text .word {
 section.text .word.low { color: #e28d50; }
 section.text .word.med { color: #50b3e2; }
 section.text .word.high { color: #e250ae; }
-section.text .word:hover {
+section.text .word:hover, section.text .word:focus {
 	background: #eee;
 	color: #fff;
 }
-section.text .word.low:hover { background: #e28d50; }
-section.text .word.med:hover { background: #50b3e2; }
-section.text .word.high:hover { background: #e250ae; }
+section.text .word.low:hover, section.text .word.low:focus { background: #e28d50; }
+section.text .word.med:hover, section.text .word.med:focus { background: #50b3e2; }
+section.text .word.high:hover, section.text .word.high:focus { background: #e250ae; }
 
 footer {
 	color: #666;
