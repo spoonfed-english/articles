@@ -83,6 +83,7 @@ acid	n.酸
 acknowledge	v.承认，鸣谢
 acknowledgment	n.承认，鸣谢，回执
 acquaint	n.使熟悉，相识
+acquainted	n.使熟悉，相识
 acquaintance	n.熟悉人，相识
 acquaintant	adj.熟悉的
 acquire	v.求得，获得
