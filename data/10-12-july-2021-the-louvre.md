@@ -8,4 +8,4 @@ This has now changed. If you have internet, and a smartphone or computer, you ca
 Items from the National Museums Recovery program are items that were looted by the Nazis and reclaimed by the French after World War II. The Louvre has been working at finding the real owners to return these items to them.
 The database, that will be updated on a regular basis, will allow people to see artworks in storage, on display, and on loan to other institutions.
 This will be the first time that anyone can access their entire collection. Even the less known pieces can be seen. The Louvre president-director, Jean-Luc Martinez said, "I am sure that this digital content is going to further inspire people to come to the Louvre to discover the collections in person."
-Due to Covid-19, the Louvre is still closed, so the only way to see the artworks is by viewing them on-line. 
+Due to Covid-19, the Louvre is still closed, so the only way to see the artworks is by viewing them online. 
