@@ -40,7 +40,7 @@ def run():
         return
     
     if len(sys.argv) == 1:
-        print('Nothing to do: Expected a single argument')
+        print('Nothing to do: Expected one or more argument')
         return
 
     with TPL_HTML_FILE.open('r', encoding='utf-8') as f:
@@ -58,22 +58,33 @@ def run():
             print(f'Unable to parse index from index file: "{value}"')
             return
         index = start_index
-    
-    path = Path(sys.argv[1])
-    path.iterdir()
-    files = [file for file in path.iterdir()
-             if file.is_file() and file.suffix == '.md' and
-             not file.name.startswith('_')] if path.is_dir()\
-        else [path] if path.is_file() else None
-    
-    if files is None:
-        print(f'"{str(path)}" does not exist')
-        return
+
+    files = []
+    for arg in sys.argv[1:]:
+        arg_path = Path(arg)
+        is_file = arg_path.is_file()
+        
+        if not is_file and not arg_path.is_dir():
+            print(f'Argument "{str(arg_path)}" is not a valid file or folder')
+            continue
+
+        if is_file and ():
+            continue
+        
+        arg_files = arg_path.iterdir() if not is_file else (arg_path, )
+        
+        for file in arg_files:
+            if not file.exists():
+                continue
+            if file.suffix != '.md' or file.name.startswith('_'):
+                continue
+            files.append(file)
+            pass
     
     if not files:
-        print(f'No .md or .html files found in "{str(path)}"')
+        print(f'No .md or .html files found in input')
         return
-
+    
     lemmatiser = WordNetLemmatizer()
     word_list = dict()
     for freq in ('low', 'med', 'high'):
@@ -84,6 +95,7 @@ def run():
     for file in files:
         print(f'-- Generating {file.stem} --')
         html_file = Path(f'{file.stem}.html')
+        data_file = Path(f'data-articles/{file.stem}.md')
         is_new = not html_file.exists()
         
         if is_new:
@@ -106,7 +118,7 @@ def run():
             difficulty=['Medium'],
             content=None,
         )
-        with file.open('r', encoding='utf-8') as f:
+        with data_file.open('r', encoding='utf-8') as f:
             for line in f.read().splitlines():
                 # Comment
                 if len(line) > 0 and line[0] == '#':
