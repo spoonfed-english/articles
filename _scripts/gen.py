@@ -20,10 +20,9 @@ from datetime import datetime
 from pathlib import Path
 from pprint import pprint
 
-import nltk
 from PIL import Image
-from nltk import WordNetLemmatizer
 from titlecase import titlecase
+import spacy
 
 from gen_docx import parse_doc
 
@@ -34,6 +33,7 @@ BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
+VOCAB_SIZE = 'md'
 
 
 def get_file_args():
@@ -97,7 +97,7 @@ def run():
             for word in f.read().splitlines():
                 word_list[word] = freq
     
-    lemmatiser = WordNetLemmatizer()
+    nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
     
     for file in files:
         print(f'-- Generating {file.stem} --')
@@ -155,45 +155,44 @@ def run():
         # Highlight IELTS words
         parsed_text = ''
         search_index = 0
-        tokens = nltk.word_tokenize(content_text)
-        for word in tokens:
-            next_index = content_text.find(word, search_index)
-
-            # The tokeniser converts starting quotes to `` and end quotes to ''
-            if next_index == -1 and (word == '``' or word == "''"):
-                next_index = content_text.find('"', search_index)
-                if next_index != -1:
-                    word = '"'
+        doc = nlp(content_text)
+        
+        for token in doc:
+            word_text: str = token.orth_
+            upos = token.pos_
+            lemma = str(token.lemma_).lower()
+            next_index = content_text.find(word_text, search_index)
+            # print(word_text, upos, lemma)
     
             # Should not get here
             if next_index == -1:
-                print(f'Could not locate token "{word}" in content??')
+                print(f'Could not locate token "{word_text}" in content??')
                 parsed_text = content_text
                 search_index = len(content_text)
                 break
     
             parsed_text += content_text[search_index:next_index]
     
-            if word in word_list:
-                word_freq = word_list[word]
+            if word_text in word_list:
+                word_freq = word_list[word_text]
                 lemma = None
+            elif lemma in word_list:
+                word_freq = word_list[lemma]
             else:
-                lemma = lemmatiser.lemmatize(word)
-                if lemma in word_list:
-                    word_freq = word_list[lemma]
-                else:
-                    word_freq = None
+                word_freq = None
+                lemma = None
             
             if word_freq:
                 if lemma is not None:
                     lemma = f' data-lemma="{lemma}"'
                 else:
                     lemma = ''
-                parsed_text += f'<span class="word {word_freq}"{lemma} tabindex="-1">{word}</span>'
+                parsed_text += f'<span class="word {word_freq}"{lemma} tabindex="-1">' \
+                               f'{word_text}</span>'
             else:
-                parsed_text += word
+                parsed_text += word_text
     
-            search_index = next_index + len(word)
+            search_index = next_index + len(word_text)
             pass
 
         if search_index < len(content_text):
