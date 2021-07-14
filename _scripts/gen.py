@@ -32,6 +32,32 @@ TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
 
 
+def get_file_args():
+    files = []
+    for arg in sys.argv[1:]:
+        arg_path = Path(arg)
+        is_file = arg_path.is_file()
+        
+        if not is_file and not arg_path.is_dir():
+            print(f'Argument "{str(arg_path)}" is not a valid file or folder')
+            continue
+        
+        if is_file and ():
+            continue
+        
+        arg_files = arg_path.iterdir() if not is_file else (arg_path,)
+        
+        for file in arg_files:
+            if not file.exists():
+                continue
+            if file.suffix != '.md' or file.name.startswith('_'):
+                continue
+            files.append(file)
+            pass
+    
+    return files
+
+
 def run():
     if not INDEX_FILE.exists():
         print(f'Cannot find index file: "{str(INDEX_FILE)}"')
@@ -40,10 +66,6 @@ def run():
         print(f'Cannot find template html file: "{str(TPL_HTML_FILE)}"')
         return
     
-    if len(sys.argv) == 1:
-        print('Nothing to do: Expected one or more argument')
-        return
-
     with TPL_HTML_FILE.open('r', encoding='utf-8') as f:
         tpl_data = f.read()
         # Find content indentation
@@ -60,39 +82,18 @@ def run():
             return
         index = start_index
 
-    files = []
-    for arg in sys.argv[1:]:
-        arg_path = Path(arg)
-        print(arg_path)
-        is_file = arg_path.is_file()
-        
-        if not is_file and not arg_path.is_dir():
-            print(f'Argument "{str(arg_path)}" is not a valid file or folder')
-            continue
-
-        if is_file and ():
-            continue
-        
-        arg_files = arg_path.iterdir() if not is_file else (arg_path, )
-        
-        for file in arg_files:
-            if not file.exists():
-                continue
-            if file.suffix != '.md' or file.name.startswith('_'):
-                continue
-            files.append(file)
-            pass
-    
+    files = get_file_args()
     if not files:
         print(f'No .md or .html files found in input')
         return
     
-    lemmatiser = WordNetLemmatizer()
     word_list = dict()
     for freq in ('low', 'med', 'high'):
         with Path(f'data/words-{freq}.txt').open('r', encoding='utf-8') as f:
             for word in f.read().splitlines():
                 word_list[word] = freq
+    
+    lemmatiser = WordNetLemmatizer()
     
     for file in files:
         print(f'-- Generating {file.stem} --')
