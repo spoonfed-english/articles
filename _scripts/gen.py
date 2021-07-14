@@ -222,19 +222,5 @@ def run():
     pass
 
 
-def push_prop(prop_name, prop_data, props):
-    if prop_name is None:
-        return
-    if prop_name not in props:
-        print(f'Unknown property "{prop_name}"')
-        return
-    props[prop_name] = prop_data
-    pass
-
-
-def merge_lines(lines, delimiter=' ', ignore_empty=True):
-    return delimiter.join([line.strip() for line in lines if not ignore_empty or line.strip()])
-
-
 if __name__ == "__main__":
     run()
