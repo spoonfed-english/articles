@@ -151,7 +151,7 @@ def parse_doc(path, export_images: Path = None):
                 content.append(text)
             pass
     
-    props['content'] = '\n'.join(content)
+    props['content'] = '\n\n'.join(content)
     
     # pprint(props)
     return props

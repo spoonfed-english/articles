@@ -195,9 +195,11 @@ def run():
         if search_index < len(content_text):
             parsed_text += content_text[search_index]
         content_text = parsed_text
-        
-        props['content'] = '<p>' +\
-                           content_text.replace('\n', f'</p>\n{content_indent}<p>') + '</p>'
+
+        content_text = content_text.replace('\n\n', f'</p>\r{content_indent}<p>')
+        content_text = content_text.replace('\n', f'\n{content_indent}\t<br>')
+        content_text = content_text.replace('\r', '\n')
+        props['content'] = '<p>' + content_text + '</p>'
 
         props['img_width'] = str(img_width)
         props['img_height'] = str(img_height)
