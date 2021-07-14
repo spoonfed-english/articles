@@ -23,6 +23,7 @@ from PIL import Image
 from nltk import WordNetLemmatizer
 from titlecase import titlecase
 
+from gen_docx import parse_doc
 
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
@@ -50,7 +51,7 @@ def get_file_args():
         for file in arg_files:
             if not file.exists():
                 continue
-            if file.suffix != '.md' or file.name.startswith('_'):
+            if file.suffix != '.docx' or file.name.startswith('_'):
                 continue
             files.append(file)
             pass
@@ -98,7 +99,7 @@ def run():
     for file in files:
         print(f'-- Generating {file.stem} --')
         html_file = Path(f'../{file.stem}.html')
-        data_file = Path(f'data-articles/{file.stem}.md')
+        data_file = Path(f'data-articles/{file.stem}.docx')
         is_new = not html_file.exists()
         
         if is_new:
@@ -109,56 +110,43 @@ def run():
             output_name = file.stem
         
         base_name = BASE_NAME_REGEX.sub('', output_name)
+
+        image_path = Path(f'../img/{base_name}.jpg')
+        if not image_path.exists():
+            output_images = Path(f'../src/{base_name}.jpg')
+            exported_images = parse_doc(data_file, output_images)
+            if not exported_images:
+                print(f'Could not find image "{image_path}" and no images to export from doc')
+            else:
+                extract_list = '", "'.join((f'{img.parent.name}/{img.name}'
+                                            for img in exported_images))
+                print(f'Images extracted for: "{extract_list}"')
+            continue
+        try:
+            with Image.open(image_path) as img:
+                img_width, img_height = img.size
+        except Exception as e:
+            print(f'Unable to open image: "{str(image_path)}"')
+            img_width, img_height = 1200, 1200
         
-        # Read properties
-        current_prop = None
-        current_data = []
-        props = dict(
-            title=None,
-            description=None,
-            image=None,
-            preview=None,
-            difficulty=['Medium'],
-            content=None,
-        )
-        with data_file.open('r', encoding='utf-8') as f:
-            for line in f.read().splitlines():
-                # Comment
-                if len(line) > 0 and line[0] == '#':
-                    continue
-                # Check for a new property and store the previous one
-                m = PROP_REGEX.match(line)
-                if m:
-                    push_prop(current_prop, current_data, props)
-                    current_prop = m.group(1).strip()
-                    current_data = []
-                    continue
-                
-                current_data.append(line)
-            # After processing all lines store any pending properties
-            push_prop(current_prop, current_data, props)
-            pass
+        # Read data
+        props = parse_doc(data_file)
         
         # Validate properties
         for name in ['title', 'description', 'difficulty', 'content']:
             if props[name] is None:
                 print(f'"{name}" property not found')
                 props[name] = ''
-        
-        # Process properties
-        if props['image'] is None:
-            props['image'] = [base_name]
-        if props['preview'] is None:
-            props['preview'] = props['image']
-        for name in ['title', 'image', 'preview', 'description', 'difficulty']:
-            props[name] = merge_lines(props[name])
 
-        content_text = merge_lines(props['content'], '\n')
+        content_text = props['content']
         
         props['title'] = titlecase(props['title'])
         props['description'] = props['description'].rstrip('.')
         props['word_count'] = str(len(
             WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
+
+        props['image'] = base_name
+        props['preview'] = props['preview'] if not props['image'] else f'{base_name}_preview'
 
         # Highlight IELTS words
         parsed_text = ''
@@ -211,18 +199,6 @@ def run():
         props['content'] = '<p>' +\
                            content_text.replace('\n', f'</p>\n{content_indent}<p>') + '</p>'
 
-        image_name = props['image']
-        image_path = Path(f'../img/{image_name}.jpg')
-        if not image_path.exists():
-            print(f'Image does not exist: "{str(image_path)}"')
-            continue
-        try:
-            with Image.open(image_path) as img:
-                img_width, img_height = img.size
-        except Exception as e:
-            print(f'Unable to open image: "{str(image_path)}"')
-            img_width, img_height = 1200, 1200
-
         props['img_width'] = str(img_width)
         props['img_height'] = str(img_height)
         
@@ -237,7 +213,7 @@ def run():
             f.write(output_html)
 
         if is_new:
-            file.rename(file.with_name(f'{output_name}.md'))
+            file.rename(file.with_name(f'{output_name}.docx'))
         
         # Update index
         if index != start_index:
