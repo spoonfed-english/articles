@@ -14,6 +14,7 @@ Requirements:
 """
 import re
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 from pprint import pprint
@@ -225,4 +226,11 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    try:
+        run()
+    except Exception as e:
+        traceback.print_exc()
+    
+    if 'PYCHARM_HOSTED' not in os.environ:
+        print('Press any key to exit.')
+        input()
