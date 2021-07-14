@@ -33,7 +33,7 @@ class ParseMode(Enum):
 
 def parse_doc(path, export_images: Path = None):
     zip_file = ZipFile(path)
-    pprint(zip_file.namelist())
+    # pprint(zip_file.namelist())
     
     rels_text = zip_file.read('word/_rels/document.xml.rels').decode('utf-8')
     rels = BeautifulSoup(rels_text, 'xml')
@@ -52,6 +52,12 @@ def parse_doc(path, export_images: Path = None):
             continue
         
         r_id, r_path = rel['Id'], rel['Target']
+
+        if r_path[0] == '/':
+            r_path = r_path.lstrip('/')
+        else:
+            r_path = f'word/{r_path}'
+        
         image_paths[r_id] = r_path
         
         if export_images is not None:
@@ -59,6 +65,7 @@ def parse_doc(path, export_images: Path = None):
             if is_first_image:
                 output_file = export_images.with_name(
                     f'{export_images.stem}{rel_file.suffix}')
+                is_first_image = False
             else:
                 output_file = export_images.with_name(
                     f'{export_images.stem}__{r_id}{rel_file.suffix}')
@@ -70,7 +77,7 @@ def parse_doc(path, export_images: Path = None):
             
             exported_images.append(output_file)
             with output_file.open('wb') as f:
-                f.write(zip_file.read(r_path.lstrip('/')))
+                f.write(zip_file.read(r_path))
                 pass
             pass
         pass
