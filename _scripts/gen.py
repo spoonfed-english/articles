@@ -12,6 +12,7 @@ Requirements:
 - pip install nltk
     - nltk.download('wordnet')
 """
+import os
 import re
 import sys
 import traceback
@@ -26,6 +27,7 @@ from titlecase import titlecase
 
 from gen_docx import parse_doc
 
+SLUG_REGEX = re.compile(r'\W+')
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
@@ -105,7 +107,8 @@ def run():
         
         if is_new:
             current_data = datetime.today().strftime('%d-%B-%Y').lower()
-            output_name = f'{index:02d}-{current_data}-{file.stem}'
+            slugged_name = SLUG_REGEX.sub('-', file.stem.strip().lower()).strip('-')
+            output_name = f'{index:02d}-{current_data}-{slugged_name}'
             index += 1
         else:
             output_name = file.stem
