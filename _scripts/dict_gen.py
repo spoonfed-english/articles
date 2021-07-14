@@ -94,7 +94,7 @@ def run():
     
     # pprint(output_dict)
     
-    with Path(f'script/dict.js').open('w', encoding='utf-8') as f:
+    with Path(f'../script/dict.js').open('w', encoding='utf-8') as f:
         contents = json.dumps(output_dict, ensure_ascii=False)
         contents = contents\
             .replace('", "', '","')\

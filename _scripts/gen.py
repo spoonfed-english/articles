@@ -23,11 +23,12 @@ from PIL import Image
 from nltk import WordNetLemmatizer
 from titlecase import titlecase
 
+
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
-TPL_HTML_FILE = Path('_template.html')
+TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
 
 
@@ -62,6 +63,7 @@ def run():
     files = []
     for arg in sys.argv[1:]:
         arg_path = Path(arg)
+        print(arg_path)
         is_file = arg_path.is_file()
         
         if not is_file and not arg_path.is_dir():
@@ -94,7 +96,7 @@ def run():
     
     for file in files:
         print(f'-- Generating {file.stem} --')
-        html_file = Path(f'{file.stem}.html')
+        html_file = Path(f'../{file.stem}.html')
         data_file = Path(f'data-articles/{file.stem}.md')
         is_new = not html_file.exists()
         
@@ -153,6 +155,7 @@ def run():
         content_text = merge_lines(props['content'], '\n')
         
         props['title'] = titlecase(props['title'])
+        props['description'] = props['description'].rstrip('.')
         props['word_count'] = str(len(
             WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
 
@@ -208,7 +211,7 @@ def run():
                            content_text.replace('\n', f'</p>\n{content_indent}<p>') + '</p>'
 
         image_name = props['image']
-        image_path = Path(f'img/{image_name}.jpg')
+        image_path = Path(f'../img/{image_name}.jpg')
         if not image_path.exists():
             print(f'Image does not exist: "{str(image_path)}"')
             continue
@@ -229,7 +232,7 @@ def run():
             output_html = output_html.replace(key, value)
         
         # Output
-        with Path(f'{output_name}.html').open('w', encoding='utf-8') as f:
+        with Path(f'../{output_name}.html').open('w', encoding='utf-8') as f:
             f.write(output_html)
 
         if is_new:
