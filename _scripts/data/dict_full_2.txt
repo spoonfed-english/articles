@@ -4438,7 +4438,7 @@ federalism	n. 联邦主义
 federation	n. 结成同盟，同盟
 fee	n. 采邑，费
 feeble	adj. 弱的，无效的
-feed	n. 饲料，喂食\nv. 维持，喂\nbe fed up with厌烦
+feed	n. 饲料，喂食\nv. 维持，喂
 feedback	n. 反馈，噪声
 feel	n. 触，触觉\nv. 触，发觉
 feign	v. 假装，捏造
