@@ -32,9 +32,14 @@ CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
+SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
+ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
+
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
+ARTICLE_INDEX_FILE = Path('../articles.html')
+
 VOCAB_SIZE = 'sm'
 
 token_properties = dict()
@@ -248,11 +253,36 @@ def run():
 
         if is_new:
             file.rename(file.with_name(f'{output_name}.docx'))
+            add_to_index(output_name, base_name)
         
         # Update index
         if index != start_index:
             with INDEX_FILE.open('w', encoding='utf-8') as f:
                 f.write(str(index))
+    pass
+
+
+def add_to_index(output_name, base_name):
+    if not ARTICLE_INDEX_FILE.exists():
+        print(f'Article index file not found "{ARTICLE_INDEX_FILE.name}"')
+        return
+    
+    with ARTICLE_INDEX_FILE.open('r', encoding='utf-8') as f:
+        text = f.read()
+    
+    m = ARTICLE_INDEX_LIST_END_REGEX.search(text)
+    if not m:
+        print('Cannot find list end in article index')
+        return
+    
+    indent = m.group(1)
+    base_name = SLUG_TO_TITLE_REGEX.sub(' ', base_name)
+    new_item = f'{indent}<li><a href="{output_name}.html">{titlecase(base_name)}</a></li>'
+    start, end = m.start(), m.end()
+    text = text[:start] + f'{new_item}\n{indent}{m.group(2)}' + text[end:]
+    
+    with ARTICLE_INDEX_FILE.open('w', encoding='utf-8') as f:
+        f.write(text)
     pass
 
 
