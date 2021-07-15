@@ -30,7 +30,14 @@ SLUG_REGEX = re.compile(r'\W+')
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
-WORDS_REGEX = re.compile(r'[-\w\'.]+')
+WORDS_CLEAN_REGEX = (
+    # Remove floating punctuation
+    (re.compile(r'(^|\s+)([ -/]|[:-@]|[\[-`]|[{-~])+(\s+|$)'), ' '),
+    # Consecutive puntionation, which may cause issues, e.g. ". (quote followed by period) will
+    # count the period as a word
+    (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~])+'), ' ')
+)
+WORDS_REGEX = re.compile(r'[-\w.\']+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
@@ -170,8 +177,11 @@ def run():
         
         props['title'] = titlecase(props['title'])
         props['description'] = props['description'].rstrip('.')
-        props['word_count'] = str(len(
-            WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
+        
+        words_text = props['description'] + '\n' + content_text
+        for regex, sub in WORDS_CLEAN_REGEX:
+            words_text = regex.sub(sub, words_text)
+        props['word_count'] = str(len(WORDS_REGEX.findall(words_text)))
 
         props['image'] = base_name
         props['preview'] = props['image'] if not props['preview'] else f'{base_name}-preview'
@@ -253,6 +263,7 @@ def run():
 
         if is_new:
             file.rename(file.with_name(f'{output_name}.docx'))
+        if is_new or True:
             add_to_index(output_name, base_name)
         
         # Update index
