@@ -62,8 +62,12 @@ def parse_token_properties(m):
     return m.group(2)
 
 
-def get_file_args():
+def get_file_args(last_file):
+    if len(sys.argv) == 1:
+        return [Path(last_file)] if last_file else []
+
     files = []
+    
     for arg in sys.argv[1:]:
         arg_path = Path(arg)
         is_file = arg_path.is_file()
@@ -106,15 +110,16 @@ def run():
 
     with INDEX_FILE.open('r', encoding='utf-8') as f:
         try:
-            value = f.read().strip()
-            start_index = int(value)
-        except ValueError as e:
-            value = re.sub(r'\s+', ' ', value)
+            value = f.read().strip().split('\n')
+            start_index, last_file = int(value[0]), value[1].strip() if len(value) > 1 else ''
+            start_last_file = last_file
+        except ValueError:
+            value = re.sub(r'\s+', ' ', value[0])
             print(f'Unable to parse index from index file: "{value}"')
             return
         index = start_index
-
-    files = get_file_args()
+        
+    files = get_file_args(last_file)
     if not files:
         print(f'No .md or .html files found in input')
         return
@@ -131,6 +136,7 @@ def run():
         print(f'-- Generating {file.stem} --')
         html_file = Path(f'../{file.stem}.html')
         data_file = Path(f'data-articles/{file.stem}.docx')
+        last_file = str(data_file)
         is_new = not html_file.exists()
         
         if is_new:
@@ -157,7 +163,7 @@ def run():
         try:
             with Image.open(image_path) as img:
                 img_width, img_height = img.size
-        except Exception as e:
+        except Exception:
             print(f'Unable to open image: "{str(image_path)}"')
             img_width, img_height = 1200, 1200
         
@@ -269,9 +275,9 @@ def run():
             add_to_index(output_name, base_name)
         
         # Update index
-        if index != start_index:
+        if index != start_index or last_file != start_last_file:
             with INDEX_FILE.open('w', encoding='utf-8') as f:
-                f.write(str(index))
+                f.write('\n'.join([str(index), last_file]))
     pass
 
 
