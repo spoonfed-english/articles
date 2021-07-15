@@ -35,7 +35,7 @@ WORDS_CLEAN_REGEX = (
     (re.compile(r'(^|\s+)([ -/]|[:-@]|[\[-`]|[{-~])+(\s+|$)'), ' '),
     # Consecutive puntionation, which may cause issues, e.g. ". (quote followed by period) will
     # count the period as a word
-    (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~])+'), ' ')
+    (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~]){2,}'), r'\1'),
 )
 WORDS_REGEX = re.compile(r'[-\w.\']+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
@@ -181,7 +181,9 @@ def run():
         words_text = props['description'] + '\n' + content_text
         for regex, sub in WORDS_CLEAN_REGEX:
             words_text = regex.sub(sub, words_text)
-        props['word_count'] = str(len(WORDS_REGEX.findall(words_text)))
+        split_words = WORDS_REGEX.findall(words_text)
+        props['word_count'] = str(len(split_words))
+        # pprint(split_words)
 
         props['image'] = base_name
         props['preview'] = props['image'] if not props['preview'] else f'{base_name}-preview'
