@@ -37,7 +37,7 @@ WORDS_CLEAN_REGEX = (
     # count the period as a word
     (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~]){2,}'), r'\1'),
 )
-WORDS_REGEX = re.compile(r'[-\w.\']+')
+WORDS_REGEX = re.compile(r'[-\w.\'’]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
