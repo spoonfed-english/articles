@@ -140,3 +140,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 _scripts/data/index
+src/
+!src/_tpl.jpg
+!src/icon.ai
+!src/icon.png
