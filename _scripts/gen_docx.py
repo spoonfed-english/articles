@@ -121,12 +121,9 @@ def parse_doc(path, export_images: Path = None):
                 
                 if key is not None:
                     key = key.lower()
-                    if key in props:
-                        if key in PROP_CONVERSIONS:
-                            value = PROP_CONVERSIONS[key](value)
-                        props[key] = value
-                    else:
-                        print(f'Unknown property "{key}"')
+                    if key in PROP_CONVERSIONS:
+                        value = PROP_CONVERSIONS[key](value)
+                    props[key] = value
                 else:
                     pass
             else:

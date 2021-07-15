@@ -32,6 +32,7 @@ CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
+IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
 VOCAB_SIZE = 'sm'
@@ -175,6 +176,9 @@ def run():
         search_index = 0
         doc = nlp(content_text)
         
+        ignore_words = IGNORE_LIST_SPLIT_REGEX.split(props['ignore']) if 'ignore' in props else []
+        ignore_words = set([word.lower() for word in ignore_words])
+        
         for token in doc:
             word_text: str = token.orth_
             # upos = token.pos_
@@ -195,7 +199,7 @@ def run():
             word_freq = None
             data_lemma = None
             
-            if 'ignore' not in token_props:
+            if word_text.lower() not in ignore_words and 'ignore' not in token_props:
                 if word_text in word_list:
                     word_freq = word_list[word_text]
                 elif lemma in word_list:
@@ -226,6 +230,11 @@ def run():
 
         props['img_width'] = str(img_width)
         props['img_height'] = str(img_height)
+        
+        # These properties should not substituted in the template
+        for key in ('ignore', ):
+            if key in props:
+                del props[key]
         
         # Do substitutions
         output_html = tpl_data
