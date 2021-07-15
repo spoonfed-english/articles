@@ -31,9 +31,22 @@ PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 WORDS_REGEX = re.compile(r'[-\w\'.]+')
+TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
-VOCAB_SIZE = 'md'
+VOCAB_SIZE = 'sm'
+
+token_properties = dict()
+token_offset = 0
+
+
+def parse_token_properties(m):
+    global token_properties, token_offset
+    token_index = m.start() + token_offset
+    token_properties[token_index] = m.group(1).strip(',').split(',') if m.group(1) else ['ignore']
+
+    token_offset -= len(m.group(0)) - len(m.group(2))
+    return m.group(2)
 
 
 def get_file_args():
@@ -63,6 +76,8 @@ def get_file_args():
 
 
 def run():
+    global token_properties, token_offset
+    
     if not INDEX_FILE.exists():
         print(f'Cannot find index file: "{str(INDEX_FILE)}"')
         return
@@ -143,6 +158,9 @@ def run():
                 props[name] = ''
 
         content_text = props['content']
+        token_properties.clear()
+        token_offset = 0
+        content_text = TOKEN_PROPERTY_REGEX.sub(parse_token_properties, content_text)
         
         props['title'] = titlecase(props['title'])
         props['description'] = props['description'].rstrip('.')
@@ -159,9 +177,10 @@ def run():
         
         for token in doc:
             word_text: str = token.orth_
-            upos = token.pos_
+            # upos = token.pos_
             lemma = str(token.lemma_).lower()
             next_index = content_text.find(word_text, search_index)
+            token_props = token_properties[next_index] if next_index in token_properties else []
             # print(word_text, upos, lemma)
     
             # Should not get here
@@ -172,22 +191,23 @@ def run():
                 break
     
             parsed_text += content_text[search_index:next_index]
-    
-            if word_text in word_list:
-                word_freq = word_list[word_text]
-                lemma = None
-            elif lemma in word_list:
-                word_freq = word_list[lemma]
-            else:
-                word_freq = None
-                lemma = None
+
+            word_freq = None
+            data_lemma = None
+            
+            if 'ignore' not in token_props:
+                if word_text in word_list:
+                    word_freq = word_list[word_text]
+                elif lemma in word_list:
+                    word_freq = word_list[lemma]
+                    data_lemma = lemma
             
             if word_freq:
-                if lemma is not None:
-                    lemma = f' data-lemma="{lemma}"'
+                if data_lemma is not None:
+                    data_lemma = f' data-lemma="{data_lemma}"'
                 else:
-                    lemma = ''
-                parsed_text += f'<span class="word {word_freq}"{lemma} tabindex="-1">' \
+                    data_lemma = ''
+                parsed_text += f'<span class="word {word_freq}"{data_lemma} tabindex="-1">' \
                                f'{word_text}</span>'
             else:
                 parsed_text += word_text
