@@ -169,7 +169,7 @@ def run():
             WORDS_REGEX.findall(props['description'] + '\n' + content_text)))
 
         props['image'] = base_name
-        props['preview'] = props['image'] if not props['preview'] else f'{base_name}_preview'
+        props['preview'] = props['image'] if not props['preview'] else f'{base_name}-preview'
 
         # Highlight IELTS words
         parsed_text = ''
