@@ -30,6 +30,9 @@ SLUG_REGEX = re.compile(r'\W+')
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
+CONTENT_CLEAN_REGEX = (
+    (re.compile(r'’'), '\''),
+)
 WORDS_CLEAN_REGEX = (
     # Remove floating punctuation
     (re.compile(r'(^|\s+)([ -/]|[:-@]|[\[-`]|[{-~])+(\s+|$)'), ' '),
@@ -177,6 +180,8 @@ def run():
                 props[name] = ''
 
         content_text = props['content']
+        for regex, sub in CONTENT_CLEAN_REGEX:
+            content_text = regex.sub(sub, content_text)
         token_properties.clear()
         token_offset = 0
         content_text = TOKEN_PROPERTY_REGEX.sub(parse_token_properties, content_text)
