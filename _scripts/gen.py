@@ -276,7 +276,6 @@ def run():
 
         if is_new:
             file.rename(file.with_name(f'{output_name}.docx'))
-        if is_new or True:
             add_to_index(output_name, base_name)
         
         # Update index
