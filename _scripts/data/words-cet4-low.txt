@@ -3,25 +3,23 @@ highjack
 deafen
 old-fashioned
 presumable
-industrialize
 flat-footed
 destine
 civilize
 upside down
 father-in-law
 so-called
-well known
+well-known
 accustom
 waken
 civilise
 displease
 o'clock
-grownup
+grown-up
 footstep
 waggon
 ice-cold
 centimetre
-reflexion
 dishonour
 millimetre
 gramme
@@ -49,7 +47,7 @@ smuggle
 centigrade
 shriek
 whitewash
-icecream
+ice-cream
 unkind
 condense
 preposition
@@ -68,7 +66,7 @@ vex
 insistent
 characterise
 indignant
-livingroom
+living-room
 inhabitant
 skilful
 shopkeeper
@@ -306,7 +304,6 @@ weaken
 remnant
 gasp
 stale
-outskirt
 outskirts
 ache
 hind
@@ -2412,3 +2409,4 @@ cherry
 grass
 devil
 quarterly
+slip

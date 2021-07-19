@@ -1926,7 +1926,7 @@ gross	[grəus]	adj. before any deductions: gross income
 ground	[graund]	v. fix firmly and stably
 group	[gru:p]	n. any number of entities (members) considered as a unit
 grow	[grəu]	v. become larger, greater, or bigger; expand or gain
-grownup 	n. a fully developed person from maturity onward
+grown-up 	n. a fully developed person from maturity onward
 growth	[grəuθ]	n. a progression from simpler to more complex forms: the growth of culture
 guarantee	[.gærənˈti:]	v. give surety or assume responsibility
 guard	[gɑ:d]	n. a person who keeps watch over something or someone
@@ -2109,7 +2109,7 @@ hydrogen	[ˈhaidridʒən]	n. a nonmetallic univalent element that is normally a 
 I	[ai]	n. the smallest whole number or a numeral representing this number
 ice	[ais]	n. water frozen in the solid state: Americans like ice in their drinks
 ice-cold	[ˈaisˈkəʊld]	adj. as cold as ice
-icecream 	n. frozen dessert containing cream and sugar and flavoring
+ice-cream 	n. frozen dessert containing cream and sugar and flavoring
 ice-free 	adj. free of ice and open to travel: an ice-free channel in the river
 idea	[aiˈdiə]	n. the content of cognition; the main thing you are thinking about: it was not a good idea
 ideal	[aiˈdiəl]	adj. constituting or existing only in the form of an idea or mental image or conception: a poem or essay may be typical of its period in idea or ideal content
@@ -2180,8 +2180,7 @@ indispensable	[.indisˈpensəbl]	adj. not to be dispensed with; essential: foods
 individual	[.indiˈvidjuəl]	adj. being or characteristic of a single thing or person: individual drops of rain
 indoors	[ˈinˈdɔ:z]	adv. within a building
 industrial	[inˈdʌstriəl]	adj. having highly developed industries: the industrial revolution
-industrialise 	v. develop industry; become industrial
-industrialize	[inˈdʌstriəlaiz]	v. develop industry; become industrial: The nations of South East Asia will quickly industrialize and catch up with the West
+industrialise	[inˈdʌstriəlaiz]	v. develop industry; become industrial: The nations of South East Asia will quickly industrialize and catch up with the West
 industry	[ˈindəstri]	n. the people or companies engaged in a particular kind of commercial enterprise: each industry has its own trade publications
 inefficient	[.iniˈfiʃənt]	adj. not producing desired results; wasteful: an inefficient campaign against drugs
 inevitable	[inˈevitəbl]	adj. incapable of being avoided or prevented: the inevitable result
@@ -2487,7 +2486,7 @@ live	[laiv,liv]	adj. actually being performed at the time of hearing or viewing:
 lively	[ˈlaivli]	adj. full of life and energy: a lively discussion
 liver	[ˈlivə]	n. a person who has a special life style: a high liver
 living	[ˈliviŋ]	adj. true to life; lifelike: the living image of her mother
-livingroom	[ˈliviŋˈru:m]	n. a room in a private house or establishment where people can sit and talk and relax
+living-room	[ˈliviŋˈru:m]	n. a room in a private house or establishment where people can sit and talk and relax
 load	[ləud]	n. weight to be borne or conveyed
 loaf	[ləuf]	n. a shaped mass of baked bread that is usually sliced before eating
 loan	[ləun]	n. the temporary provision of money (usually at interest)
@@ -2962,7 +2961,6 @@ outlook	[ˈautluk]	n. a habitual or characteristic mental attitude that determin
 output	[ˈautput]	n. final product; the things produced
 outset	[ˈautset]	n. the time at which something is supposed to begin
 outside	[ˈautˈsaid]	adj. relating to or being on or near the outer side or limit: an outside margin
-outskirt	[ˈautskə:t]	n. a part of the city far removed from the center: they built a factory on the outskirts of the city
 outskirts	[ˈaut.skə:ts]	n. outlying areas (as of a city or town): they lived on the outskirts of Houston
 outstanding	[autˈstændiŋ]	adj. distinguished from others in excellence: did outstanding work in human relations
 outward	[ˈautwəd]	adj. relating to physical reality rather than with thoughts or the mind: a concern with outward beauty rather than with inward reflections
@@ -3493,8 +3491,7 @@ refer	[riˈfə:]	v. be relevant to: There were lots of questions referring to he
 reference	[ˈrefrəns]	n. a remark that calls attention to something or someone: the speaker made several references to his wife
 refine	[riˈfain]	v. improve or perfect by pruning or polishing: refine one’s style of writing
 reflect	[riˈflekt]	v. manifest or bring back: This action reflects his true beliefs
-reflection	[riˈflekʃən]	n. a calm, lengthy, intent consideration
-reflexion 	n. the phenomenon of a propagating wave (light or sound) being thrown back from a surface
+reflection	[riˈflekʃən]	n. a calm, lengthy, intent consideration n. the phenomenon of a propagating wave (light or sound) being thrown back from a surface
 reform	[riˈfɔ:rm]	v. make changes for improvement in order to remove abuse and injustices: reform a political system
 refresh	[riˈfreʃ]	v. make (to feel) fresh: The cool water refreshed us
 refreshment	[riˈfreʃmənt]	n. snacks and drinks served as a light meal
@@ -4779,7 +4776,7 @@ welcome	[ˈwelkəm]	v. accept gladly: I welcome your proposals
 weld	[weld]	n. European mignonette cultivated as a source of yellow dye; naturalized in North America
 welfare	[ˈwelfɛə]	n. governmental provision of economic assistance to persons in need: she lives on welfare
 well	[wel]	adv. thoroughly or completely; fully; often used as a combining form: The problem is well understood
-well known	[.welˈnəun]	adj. widely or fully known: a well-known politician
+well-known	[.welˈnəun]	adj. widely or fully known: a well-known politician
 west	[west]	n. the countries of (originally) Europe and (now including) North America and South America
 western	[ˈwestən]	adj. of or characteristic of regions of the United States west of the Mississippi River
 westward	[ˈwestwəd]	n. the cardinal compass point that is a 270 degrees
