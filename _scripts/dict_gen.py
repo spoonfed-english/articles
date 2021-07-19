@@ -63,7 +63,7 @@ def run():
     
     filtered_dict = dict()
     for freq in ('low', 'med', 'high'):
-        with Path(f'data/words-{freq}.txt').open('r', encoding='utf-8') as f:
+        with Path(f'data/words-ielts-{freq}.txt').open('r', encoding='utf-8') as f:
             for word in f.read().splitlines():
                 if word not in dictionary:
                     print(f'"{word}" not found in dictionary')
