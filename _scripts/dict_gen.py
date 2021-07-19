@@ -26,33 +26,36 @@ def run():
             definitions = definitions.replace('\\n', '\n')
             definitions = definitions.split('\n')
             
-            for word in words:
-                if word not in dictionary:
-                    output = dict()
-                    dictionary[word] = output
+            base_word = words[0]
+            output = dict()
+            dictionary[base_word] = output
+
+            for definition in definitions:
+                definition = definition.strip()
+                match = DEFINITION_REGEX.match(definition)
+                if not match:
+                    pos = '-'
                 else:
-                    output = dictionary[word]
-
-                for definition in definitions:
-                    definition = definition.strip()
-                    match = DEFINITION_REGEX.match(definition)
-                    if not match:
-                        pos = '-'
-                    else:
-                        pos = match.group(1).replace('.', '')
-                        definition = match.group(2)
-
-                    types.add(pos)
-                    
-                    definition = definition.split('，')
-                    
-                    if pos not in output:
-                        output[pos] = definition
-                    else:
-                        for single_def in definition:
-                            if single_def not in output[pos]:
-                                output[pos].append(single_def)
-                        pass
+                    pos = match.group(1).replace('.', '')
+                    definition = match.group(2)
+    
+                types.add(pos)
+    
+                definition = definition.split('，')
+    
+                if pos not in output:
+                    output[pos] = definition
+                else:
+                    for single_def in definition:
+                        if single_def not in output[pos]:
+                            output[pos].append(single_def)
+                    pass
+            
+            for word in words[1:]:
+                if word in dictionary:
+                    print(f'Word variant "{word}" already exists in dictionary')
+                    continue
+                dictionary[word] = f'>{base_word}'
     
     # print(types)
     
@@ -64,8 +67,9 @@ def run():
                     if word not in dictionary:
                         print(f'{word}')
                         # print(f'"{word}" not found in dictionary')
-                    else:
-                        filtered_dict[word] = dictionary[word]
+                        continue
+
+                    filtered_dict[word] = dictionary[word]
         pass
 
     # pprint(filtered_dict)
@@ -73,6 +77,10 @@ def run():
     output_dict = dict()
     max_index = len(DEFINITION_TYPE_ORDER)
     for word, definition_types in filtered_dict.items():
+        if isinstance(definition_types, str) and definition_types[0] == '>':
+            output_dict[word] = definition_types
+            continue
+        
         items = []
         for def_type, value in definition_types.items():
             if def_type == '-':
@@ -98,14 +106,6 @@ def run():
             .replace('": "', '":"')
         contents = re.sub(r'"([a-z0-9_]+)":', r'\1:', contents)
         f.write(f'const DICT = {contents};')
-
-
-def sort_by_type(x):
-    def_type = x[0]
-    if def_type == '-':
-        return 99999
-    
-    return def_type
 
 
 if __name__ == '__main__':

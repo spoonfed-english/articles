@@ -1824,7 +1824,7 @@ latitude	[ˈlætitju:d]	n. the angular distance between an imaginary line around
 lattice	[ˈlætis]	n. an arrangement of points or particles or objects in a regular periodic pattern in 2 or 3 dimensions
 laundry	[ˈlɔ:ndri]	n. workplace where clothes are washed and ironed
 layman	[ˈleimən]	n. someone who is not a clergyman or a professional person
-layoff	[ˈleiɔ:f]	n. the act of laying off an employee or a work force
+lay-off	[ˈleiɔ:f]	n. the act of laying off an employee or a work force
 leaflet	[ˈli:flit]	n. a thin triangular flap of a heart valve
 leakage	[ˈli:kidʒ]	n. the discharge of a fluid from some container
 lease	[li:s]	v. let for money
