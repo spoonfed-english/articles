@@ -13,52 +13,46 @@ def run():
     dictionary = dict()
     types = set()
     
-    index = 1
-    while True:
-        path = Path(f'data/dict_full_{index}.txt')
-        index += 1
-        
-        if not path.exists():
-            break
-        
-        i = 0
-        with path.open('r', encoding='utf-8') as f:
-            for line in f.read().splitlines():
-                # i += 1
-                # if i > 125:
-                #     break
-                words, definitions = line.split('\t')
-                words = words.lower().strip().strip('|').split('|')
-                definitions = definitions.replace('\\n', '\n')
-                definitions = definitions.split('\n')
-                
-                for word in words:
-                    if word not in dictionary:
-                        output = dict()
-                        dictionary[word] = output
+    path = Path(f'data/dict_full.txt')
+    
+    if not path.exists():
+        print('Cannot find dictionary fil')
+        return
+    
+    with path.open('r', encoding='utf-8') as f:
+        for line in f.read().splitlines():
+            words, definitions = line.split('\t')
+            words = words.lower().strip().strip('|').split('|')
+            definitions = definitions.replace('\\n', '\n')
+            definitions = definitions.split('\n')
+            
+            for word in words:
+                if word not in dictionary:
+                    output = dict()
+                    dictionary[word] = output
+                else:
+                    output = dictionary[word]
+
+                for definition in definitions:
+                    definition = definition.strip()
+                    match = DEFINITION_REGEX.match(definition)
+                    if not match:
+                        pos = '-'
                     else:
-                        output = dictionary[word]
-    
-                    for definition in definitions:
-                        definition = definition.strip()
-                        match = DEFINITION_REGEX.match(definition)
-                        if not match:
-                            pos = '-'
-                        else:
-                            pos = match.group(1).replace('.', '')
-                            definition = match.group(2)
-    
-                        types.add(pos)
-                        
-                        definition = definition.split('，')
-                        
-                        if pos not in output:
-                            output[pos] = definition
-                        else:
-                            for single_def in definition:
-                                if single_def not in output[pos]:
-                                    output[pos].append(single_def)
-                            pass
+                        pos = match.group(1).replace('.', '')
+                        definition = match.group(2)
+
+                    types.add(pos)
+                    
+                    definition = definition.split('，')
+                    
+                    if pos not in output:
+                        output[pos] = definition
+                    else:
+                        for single_def in definition:
+                            if single_def not in output[pos]:
+                                output[pos].append(single_def)
+                        pass
     
     # print(types)
     
