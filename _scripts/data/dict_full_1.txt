@@ -1116,7 +1116,7 @@ chapter	n. 章，节
 character	n. 性格，角色，特牲
 characteristic	n. 特征，特性
 characteristical	adj. ...特征的
-characterize	v. 具有...特征
+characterize|characterise	v. 具有...特征
 charcoal	n. 木炭
 charge	v. 收费，冲向，控告
 charity	n. 施舍，仁慈
@@ -1192,8 +1192,8 @@ citizen	n. 公民，市民
 citizenship	n. 公民权
 city	n. 城市
 civil	adj. 民用的，民事的
-civilization	n. 文明，民族文化
-civilize	v. 使...文明，开化
+civilization|civilisation	n. 文明，民族文化
+civilize|civilise	v. 使...文明，开化
 claim	v. 要求，索赔，声称
 clamp	n. 夹子\nv.夹紧
 clap	v. 排手，鼓掌
@@ -2076,8 +2076,8 @@ disguise	n.伪装，掩饰
 disgust	n. 厌恶\nv.使讨厌
 disgustful	adj. 令人生厌的
 dish	n. 盘子，碟子
-dishonorable	adj. 不名誉的
-dishonor	n. 耻辱\nv.凌辱
+dishonorable|dishonourable	adj. 不名誉的
+dishonor|dishonour	n. 耻辱\nv.凌辱
 disillusion	v. 使觉醒，幻灭
 disinclined	adj. 不愿意的
 disinfectant	n. 消毒剂
@@ -2734,10 +2734,10 @@ fatigue	v.(使)疲劳
 fault	n. 缺点，过失，断层
 faultless	adj. 完美的
 faulty	adj. 有缺点的
-favor	n. 帮助，偏爱\nv.宠爱
-favorable	adj. 赞成的，有利的
-favorably	adv. 有利地，顺利地
-favorite	adj.最喜爱的人或物
+favor|favour	n. 帮助，偏爱\nv.宠爱
+favorable|favourable	adj. 赞成的，有利的
+favorably|favourably	adv. 有利地，顺利地
+favorite|favourite	adj.最喜爱的人或物
 fbi	國際刑警
 fear	v.害怕，担忧
 fearful	adj. 可怕的，吓人的
@@ -2849,7 +2849,7 @@ flask	n. 瓶，烧瓶
 flat	adj. 平的，平淡的
 flatten	v. 弄平，变平
 flatter	v. 奉承，谄媚
-flavor	n. 滋味，风趣
+flavor|flavour	n. 滋味，风趣
 flaw	n. 裂缝，瑕疵，缺点
 flee	v. 逃走，消散
 fleece	n. 羊毛
@@ -3450,7 +3450,7 @@ honesty	n. 诚实，正直
 honey	n. 蜂蜜
 honeymoon	n. 蜜月
 honor	n. 荣誉，名誉\nv.尊敬
-honorable	adj. 可尊敬的，体面的
+honorable|honourable	adj. 可尊敬的，体面的
 hook	n. 钩\nv.钩住
 hop	v. 跳跃
 hope	n.希望，愿望
@@ -3692,9 +3692,9 @@ inducement	n. 诱导，动机
 induction	n. 感应，归纳
 indulge	v. 放纵，放任，纵容
 industrial	adj. 工业的
-industrialize	v. 使工业化
-industrialization	n. 工业化
-industrialized	adj. 工业化的
+industrialize|industrialise	v. 使工业化
+industrialization|industrialisation	n. 工业化
+industrialized|industrialised	adj. 工业化的
 industrious	adj. 勤劳的，勤奋的
 industry	n. 工业，产业，勤奋
 ineffective	adj. 效率低的
@@ -4009,9 +4009,9 @@ knowledgeable	adj. 博学的
 lab	n. (缩)实验室
 label	n. 标签\nv.标明
 laboratory	n. 实验室
-labor	n. 劳动，劳动力
-laborer	n. 劳工，劳动者
-labor-intensive	adj. 劳动密集型的
+labor|labour	n. 劳动，劳动力
+laborer|labourer	n. 劳工，劳动者
+labor-intensive|labour-intensive	adj. 劳动密集型的
 lace	n. 花边，鞋带
 lack	n.缺少
 lad	n. 少年，小伙子
@@ -4179,7 +4179,7 @@ literally	adv. 简直，字面上
 literary	adj. 文学的
 literate	n. 有文化的
 literature	n. 文学，文献
-litre	n. 公升
+litre|liter	n. 公升
 litter	v. 乱丢废物\nn.废物
 little	adj. 小的，一点，少的
 live	v. 居住,生存\nadj.活的
@@ -4343,7 +4343,7 @@ marsh	n. 沼泽
 marshal	n. 元帅
 martyr	n. 烈士，殉道者
 marvel	n. 奇迹\nv.惊奇
-marvellous	adj. 奇异的，绝妙的
+marvellous|marvelous	adj. 奇异的，绝妙的
 marxism	n. 马克思主义
 marxist	n. 马克思主义者
 masculine	adj. 男性的，阳性的
@@ -4478,7 +4478,7 @@ milkman	n. 送奶人
 milky	adj. 加奶的，乳白色的
 mill	n. 磨坊，工厂\nv.滚乱
 miller	n. 磨坊主
-millimetre	n. 毫米
+millimetre|millimeter	n. 毫米
 million	n. 百万
 millionaire	n. 百万富翁
 mince	v. 切碎，绞碎
@@ -4609,7 +4609,7 @@ motorcycle	n. 摩托车
 motorist	n. 摩托车手
 motorway	n. 汽车道，高速公路
 motto	n. 座右铭
-mould	n. 模子，型，霉菌
+mould|mold	n. 模子，型，霉菌
 mount	n. 山，岳\nv.登上
 mountain	n. 山
 mountainous	adj. 多山的，山一般的
@@ -4720,9 +4720,9 @@ negotiable	adj. 可谈判的
 negotiate	v. 谈判，交涉
 negotiation	n. 谈判
 negro	n. 黑人(贬义)
-neighbor	n. 邻居，邻国
-neighborhood	n. 邻里，街坊
-neighboring	adj. 邻近的，相邻的
+neighbor|neighbour	n. 邻居，邻国
+neighborhood|neighbourhood	n. 邻里，街坊
+neighboring|neighbouring	adj. 邻近的，相邻的
 neither	conj. 既不...又不...
 nephew	n. 侄子，外甥
 nerve	n. 神经，胆量
@@ -4860,7 +4860,7 @@ oceanography	n. 海洋学
 o'clock	adv. 点钟
 october	n. 十月
 odd	adj. 古怪的，奇数的
-odour	n. 气味
+odour|odor	n. 气味
 of	prep. .的(表示领属等)
 off	adv. ...去\nprep.离开
 off-duty	adj. 不当班的
@@ -5772,7 +5772,7 @@ realist	adj.现实主义者(的)
 realistic	adj. 现实的，实在的
 reality	n. 现实，真实性
 realization	n. 实现
-realize	v. 认识到，实现，执行
+realize|realise	v. 认识到，实现，执行
 really	adv. 真正地，果然
 realm	n. 王国，领域
 reap	v. 收割，收获
@@ -6682,8 +6682,8 @@ speaker	n. 说话者，发言人
 spear	n. 矛，枪
 special	adj. 特别的，专门的
 specialist	n. 专家
-specialize	v. 专攻，专门研究
-specialized	adj. 专业的，专门的
+specialize|specialise	v. 专攻，专门研究
+specialized|specialised	adj. 专业的，专门的
 specially	adv. 特地，专门地
 specialty	n. 专业，专长
 species	n. 物种，种类
@@ -7572,7 +7572,7 @@ upright	adj. 直立的，正直的
 uproar	n. 喧闹，轰鸣
 upset	v. 倾覆，打乱，使心烦
 upside	n. 上面，上部
-upside-down	adj. 颠倒的，倒置的
+upside down	adj. 颠倒的，倒置的
 upstairs	adv. 在楼上，往楼上
 up-to-date	adj. 时新的，最近的
 upward	adj.向上(的)
@@ -7592,8 +7592,8 @@ usual	adj. 通常的，习惯性的
 usually	adv. 通常，平常
 utensil	n. 用具，器皿
 utility	n. 效用，公用事业
-utilization	n. 利用
-utilize	v. 利用
+utilization|utilisation	n. 利用
+utilize|utilise	v. 利用
 utmost	adj. 最大的，最高的
 utter	v. 说,发声\nadj.完全的
 utterance	n. 说话

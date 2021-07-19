@@ -2173,7 +2173,7 @@ civic	adj. 城市的，公民的
 civil	adj. 公民的，国内的
 civilian	n. 民法专家，平民
 civility	n. 礼貌，礼仪
-civilize	v. 教化，使文明
+civilize|civilise	v. 教化，使文明
 clack	n. 喋喋不休的说话声\nv. 咯咯地叫，喋喋不休
 claim	n. 权利，要求\nv. 要求，主张
 clam	n. 蛤，抓斗\nv. 挖蛤
@@ -4418,9 +4418,9 @@ fault	n. 错误，缺点\nv. 产生断层，犯错误
 faultless	adj. 无错误的
 faulty	adj. 有错误的
 fauna	n. 动物群，动物志
-favor	n. 得宠，恩惠\nv. 赐与，喜爱
-favorable	adj. 称赞的，有利的
-favorite	adj. 特别受喜爱的\nn. 受宠的人
+favor|favour	n. 得宠，恩惠\nv. 赐与，喜爱
+favorable|favourable	adj. 称赞的，有利的
+favorite|favourite	adj. 特别受喜爱的\nn. 受宠的人
 fawn	adj. 鹿毛色的\nn. 阿谀，幼鹿\nv. 奉承，生
 fax	n. 传真机，事实\nv. 传真传输
 fear	n. 害怕，可能性\nv. 害怕，恐怕
@@ -4599,7 +4599,7 @@ flatly	adv. 断然地，乏味地
 flatten	v. 击倒，变平
 flatter	v. 胜过，谄媚\nflat的比较级
 flaunt	n. 夸耀，藐视\nv. 夸耀，藐视
-flavor	n. 特点，味\nv. 给...调味
+flavor|flavour	n. 特点，味\nv. 给...调味
 flaw	n. 裂隙，缺点\nv. 使破裂，裂开
 flax	n. 亚麻，亚麻纤维
 flay	v. 剥...的皮，掠夺
@@ -5630,7 +5630,7 @@ highness	n. 殿下，高
 highroad	n. 大路
 highway	n. 公路，捷径
 highwayman	n. 拦路抢劫的强盗
-hijack	n. 劫持，勒索\nv. 劫持，拦路抢劫
+hijack|highjack	n. 劫持，勒索\nv. 劫持，拦路抢劫
 hike	n. 长途步行，提高\nv. 拉，提高
 hilarious	adj. 引人发笑的
 hill	n. 小山，斜坡
@@ -5718,7 +5718,7 @@ honey	adj. 蜂蜜的，心爱的\nn. 蜂蜜，花蜜\nv. 说亲切话
 honeycomb	n. 蜂巢胃，蜜蜂巢\nv. 变成蜂巢状
 honeymoon	n. 蜜月假期，新婚之月\nv. 度蜜月
 honor	n. 名誉，荣誉\nv. 使增光，尊敬
-honorable	adj. 诚实的，荣誉的
+honorable|honourable	adj. 诚实的，荣誉的
 honorarium	n. 酬金
 honorary	adj. 道义上的，无报酬的\nn. 名誉团体，名誉学位
 hood	n. 风帽，暴徒\nv. 加罩于
@@ -6672,8 +6672,8 @@ kw	n. 千瓦
 lab	n. 实验室
 label	n. 标签，称号\nv. 把...称为，使示踪
 labial	adj. 吹奏的，唇的\nn. 唇管，唇音
-labor	n. 工作，劳动\nv. 劳动，努力
-laborer	n. 辅助工
+labor|labour	n. 工作，劳动\nv. 劳动，努力
+laborer|labourer	n. 辅助工
 laborious	adj. 吃力的，辛勤的
 labyrinth	n. 错综复杂，迷宫
 lace	n. 滚带，鞋带\nv. 穿带子于，系带子
@@ -6965,7 +6965,7 @@ lithograph	n. 平版印刷品\nv. 用平版印刷术印刷
 litigant	adj. 想打官司的\nn. 诉讼当事人
 litigate	v. 就...争讼，诉讼
 litigious	adj. 好讼的，诉讼的
-litre	n. 升
+litre|liter	n. 升
 litter	n. 废弃物，一窝\nv. 乱扔，下仔
 little	adj. 小的，幼小的\nadv. 毫不，难得
 littoral	adj. 海岸的\nn. 沿海地区
@@ -7239,7 +7239,7 @@ manner	n. 方式，态度
 mannered	adj. 矫饰的，态度...的
 mannerism	n. 风格主义，习性
 mannish	adj. 像男人的
-manoeuvre	n. 调动，演习\nv. 操纵，调动
+maneuver|manoeuvre	n. 调动，演习\nv. 操纵，调动
 mansion	n. 大厦，领主宅第
 mantis	n. 螳螂
 mantle	n. 披风，衣钵\nv. 覆盖，掩藏
@@ -7282,7 +7282,7 @@ martial	adj. 好战的，军事的
 martyr	n. 烈士，殉教者\nv. 处死，折磨
 martyrdom	n. 殉难，折磨
 marvel	n. 惊异\nv. 感到惊讶
-marvellous	adj. 绝妙的，奇迹般的
+marvellous|marvelous	adj. 绝妙的，奇迹般的
 mascot	n. 吉祥物
 masculine	adj. 男性的\nn. 男性，阳性
 mash	n. 糊状物，迷恋\nv. 压碎，挑逗
@@ -7501,8 +7501,8 @@ milky	adj. 乳白色的，乳的
 mill	n. 磨，磨坊\nv. 磨，碾碎
 millibar	n. 毫巴
 milligram	n. 毫克
-millilitre	n. 毫升
-millimetre	n. 毫米
+millilitre|milliliter	n. 毫升
+millimetre|millimeter	n. 毫米
 milliner	n. 女帽设计者，妇女头饰
 millinery	n. 女帽
 million	n. 百万，许多
@@ -7750,9 +7750,9 @@ motorman	n. 电车司机
 motormouth	n. 说话快且健谈
 motorway	n. 高速公路
 motto	n. 甜格言，警句
-mould	n. 框架，霉\nv. 塑造，发霉
+mould|mold	n. 框架，霉\nv. 塑造，发霉
 moulder	n. 电铸板，形成者\nv. 衰退，碎裂
-mouldy	adj. 陈腐的，发霉的
+mouldy|moldy	adj. 陈腐的，发霉的
 moult	n. 蜕遗，脱毛\nv. 去除，脱毛
 mound	n. 坟堆，高地\nv. 把...拢成堆，成堆
 mount	n. 登，山\nv. 登上，登
@@ -8183,7 +8183,7 @@ odds	n. 机会，投注赔率
 ode	n. 抒情诗
 odious	adj. 可憎的
 odium	n. 不名誉，憎恨
-odour	n. 名声，气味
+odour|odor	n. 名声，气味
 of	prep. ...的，含有...的
 off	prep. 离...，偏离...
 offal	n. 垃圾，下水
@@ -9687,7 +9687,7 @@ real	adj. 逼真的，真的
 realism	n. 现实，真实性
 realistic	adj. 逼真的，现实的
 reality	n. 实在，现实
-realize	v. 实现，领悟
+realize|realise	v. 实现，领悟
 really	adv. 很，说真的
 realm	n. 界，王国
 realty	n. 忠诚
@@ -11118,7 +11118,7 @@ spearhead	n. 矛头，先锋\nv. 当...的先锋
 special	adj. 特殊的，异常的\nn. 特刊，专列
 specialist	n. 专家，专科医生
 speciality	n. 特点，特殊性
-specialize	v. 使专化，专门
+specialize|specialise	v. 使专化，专门
 specially	adv. 特地，尤其
 specialty	n. 精制品，专门
 specie	n. 硬币

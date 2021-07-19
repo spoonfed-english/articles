@@ -27,48 +27,51 @@ def run():
                 # i += 1
                 # if i > 125:
                 #     break
-                word, definitions = line.split('\t')
-                word = word.lower()
+                words, definitions = line.split('\t')
+                words = words.lower().strip().strip('|').split('|')
                 definitions = definitions.replace('\\n', '\n')
                 definitions = definitions.split('\n')
-
-                if word not in dictionary:
-                    output = dict()
-                    dictionary[word] = output
-                else:
-                    output = dictionary[word]
-
-                for definition in definitions:
-                    definition = definition.strip()
-                    match = DEFINITION_REGEX.match(definition)
-                    if not match:
-                        pos = '-'
+                
+                for word in words:
+                    if word not in dictionary:
+                        output = dict()
+                        dictionary[word] = output
                     else:
-                        pos = match.group(1).replace('.', '')
-                        definition = match.group(2)
-
-                    types.add(pos)
-                    
-                    definition = definition.split('，')
-                    
-                    if pos not in output:
-                        output[pos] = definition
-                    else:
-                        for single_def in definition:
-                            if single_def not in output[pos]:
-                                output[pos].append(single_def)
-                        pass
+                        output = dictionary[word]
+    
+                    for definition in definitions:
+                        definition = definition.strip()
+                        match = DEFINITION_REGEX.match(definition)
+                        if not match:
+                            pos = '-'
+                        else:
+                            pos = match.group(1).replace('.', '')
+                            definition = match.group(2)
+    
+                        types.add(pos)
+                        
+                        definition = definition.split('，')
+                        
+                        if pos not in output:
+                            output[pos] = definition
+                        else:
+                            for single_def in definition:
+                                if single_def not in output[pos]:
+                                    output[pos].append(single_def)
+                            pass
     
     # print(types)
     
     filtered_dict = dict()
-    for freq in ('low', 'med', 'high'):
-        with Path(f'data/words-ielts-{freq}.txt').open('r', encoding='utf-8') as f:
-            for word in f.read().splitlines():
-                if word not in dictionary:
-                    print(f'"{word}" not found in dictionary')
-                else:
-                    filtered_dict[word] = dictionary[word]
+    for list_type in ('cet4', 'cet6', 'ielts'):
+        for freq in ('low', 'med', 'high'):
+            with Path(f'data/words-{list_type}-{freq}.txt').open('r', encoding='utf-8') as f:
+                for word in f.read().splitlines():
+                    if word not in dictionary:
+                        print(f'{word}')
+                        # print(f'"{word}" not found in dictionary')
+                    else:
+                        filtered_dict[word] = dictionary[word]
         pass
 
     # pprint(filtered_dict)
