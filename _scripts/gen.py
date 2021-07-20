@@ -128,8 +128,10 @@ def run():
         return
     
     word_list = dict()
+    # for list_type in ('ielts', 'cet4', 'cet6'):
+    list_type = 'ielts'
     for freq in ('low', 'med', 'high'):
-        with Path(f'data/words-{freq}.txt').open('r', encoding='utf-8') as f:
+        with Path(f'data/words-{list_type}-{freq}.txt').open('r', encoding='utf-8') as f:
             for word in f.read().splitlines():
                 word_list[word] = freq
     
