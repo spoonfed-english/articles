@@ -47,7 +47,7 @@ header .image {
 }
 header .image::before {
 	float: left;
-	padding-top: 36%;
+	padding-top: 40%;
 	content: '';
 }
 header .image::after {
