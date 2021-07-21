@@ -279,11 +279,11 @@ def run():
         if is_new:
             file.rename(file.with_name(f'{output_name}.docx'))
             add_to_index(output_name, base_name)
-        
-        # Update index
-        if index != start_index or last_file != start_last_file:
-            with INDEX_FILE.open('w', encoding='utf-8') as f:
-                f.write('\n'.join([str(index), last_file]))
+
+    # Update index
+    if index != start_index or last_file != start_last_file:
+        with INDEX_FILE.open('w', encoding='utf-8') as f:
+            f.write('\n'.join([str(index), last_file]))
     pass
 
 
