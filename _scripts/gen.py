@@ -279,7 +279,7 @@ def run():
                 type_list, freq = word_freq
                 if freq:
                     freq = f' {freq}'
-                parsed_text += f'<span class="word{freq}"{data_lemma} tabindex="-1">' \
+                parsed_text += f'<span class="word {type_list}{freq}"{data_lemma} tabindex="-1">' \
                                f'{word_text}</span>'
             else:
                 parsed_text += word_text
