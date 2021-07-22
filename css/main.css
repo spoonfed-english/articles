@@ -140,7 +140,7 @@ footer.border {
 }
 
 .legend {
-
+	display: inline-block;
 }
 .legend-key {
 	padding-right: 0.5rem;
@@ -182,8 +182,11 @@ div.tippy-box[data-theme~=definition-popup] .tippy-arrow:after {
 	border-top-color: #e0e0e0 !important;
 }
 div.tippy-box[data-theme~=definition-popup] .definitions {
-	font-size: 1.5em;
+	font-size: 1.1rem;
 	white-space: pre-wrap;
+}
+div.tippy-box[data-theme~=help-popup] {
+	font-size: 1.1rem;
 }
 .definitions .pos {
 	font-style: italic;

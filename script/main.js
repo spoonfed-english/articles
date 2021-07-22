@@ -34,6 +34,13 @@
 		interactive: true,
 		allowHTML: true,
 		theme: 'light-border definition-popup',
-		onShow: onTooltipShow
+		onShow: onTooltipShow,
 	});
+	tippy('[data-tippy-content]', {
+		touch: true,
+		interactive: true,
+		allowHTML: true,
+		theme: 'light-border help-popup',
+	});
+	
 })();
