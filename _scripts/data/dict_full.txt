@@ -8202,6 +8202,7 @@ mannered	adj. 矫饰的，态度...的
 mannerism	n. 风格主义，习性
 mannish	adj. 像男人的
 mansion	n. 宅第，官邸，大厦，领主宅第
+manslaughter	n. 过失杀人；无行为能力者所犯的杀人罪行
 mantis	n. 螳螂
 mantle	n. 披风，衣钵\nv. 覆盖，掩藏
 manual	n. 手册，键盘，教范\nadj. 用手的，手册的，手的
