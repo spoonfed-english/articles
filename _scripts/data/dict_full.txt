@@ -6361,8 +6361,8 @@ highness	n. 殿下，高
 highroad	n. 大路
 highway	n. 公路，捷径
 highwayman	n. 拦路抢劫的强盗
-hijack	n. 劫持，勒索\nv. 拦路抢劫，劫持
-hijacker	n. 栏路抢劫者
+hijack|highjack	n. 劫持，勒索\nv. 拦路抢劫，劫持
+hijacker|highjacker	n. 栏路抢劫者
 hike	n. 长途步行，提高\nv. 徒步郊游，拉，提高
 hilarious	adj. 引人发笑的
 hill	n. 小山，丘陵，斜坡
