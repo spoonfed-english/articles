@@ -116,14 +116,14 @@ section.text .word.low { color: #e28d50; }
 section.text .word.med { color: #50b3e2; }
 section.text .word.high { color: #e250ae; }
 section.text .word.hard { color: #ff7575; }
-section.text .word:hover, section.text .word:focus {
+section.text .word:hover, section.text .word:focus, section.text .word[aria-expanded="true"] {
 	background: #999;
 	color: #fff;
 }
-section.text .word.low:hover, section.text .word.low:focus { background: #e28d50; }
-section.text .word.med:hover, section.text .word.med:focus { background: #50b3e2; }
-section.text .word.high:hover, section.text .word.high:focus { background: #e250ae; }
-section.text .word.hard:hover, section.text .word.hard:focus { background: #ff7575; }
+section.text .word.low:hover, section.text .word.low:focus, section.text .word.low[aria-expanded="true"] { background: #e28d50; }
+section.text .word.med:hover, section.text .word.med:focus, section.text .word.med[aria-expanded="true"] { background: #50b3e2; }
+section.text .word.high:hover, section.text .word.high:focus, section.text .word.high[aria-expanded="true"] { background: #e250ae; }
+section.text .word.hard:hover, section.text .word.hard:focus, section.text .word.hard[aria-expanded="true"] { background: #ff7575; }
 
 footer {
 	color: #666;
