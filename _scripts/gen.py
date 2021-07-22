@@ -20,6 +20,8 @@ from pathlib import Path
 from pprint import pprint
 
 from PIL import Image
+from spacy.lang.char_classes import LIST_ELLIPSES, LIST_ICONS, ALPHA_LOWER, ALPHA_UPPER, \
+    CONCAT_QUOTES, ALPHA
 from titlecase import titlecase
 import spacy
 
@@ -135,6 +137,21 @@ def run():
                 word_list[word] = freq
     
     nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
+    infixes = (
+            LIST_ELLIPSES
+            + LIST_ICONS
+            + [
+                r"(?<=[0-9])[+\-\*^](?=[0-9-])",
+                r"(?<=[{al}{q}])\.(?=[{au}{q}])".format(
+                    al=ALPHA_LOWER, au=ALPHA_UPPER, q=CONCAT_QUOTES
+                ),
+                r"(?<=[{a}]),(?=[{a}])".format(a=ALPHA),
+                # ✅ Commented out regex that splits on hyphens between letters:
+                # r"(?<=[{a}])(?:{h})(?=[{a}])".format(a=ALPHA, h=HYPHENS),
+                r"(?<=[{a}0-9])[:<>=/](?=[{a}])".format(a=ALPHA),
+            ]
+    )
+    nlp.tokenizer.infix_finditer = spacy.util.compile_infix_regex(infixes).finditer
     
     for file in files:
         print(f'-- Generating {file.stem} --')
