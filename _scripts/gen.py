@@ -9,8 +9,7 @@ Usage:
 Requirements:
 - pip install titlecase (https://pypi.org/project/titlecase/)
 - pip install Pillow (https://pypi.org/project/Pillow/)
-- pip install nltk
-    - nltk.download('wordnet')
+- pip install spacy (See full installation instructions: https://spacy.io/usage)
 """
 import os
 import re
@@ -203,28 +202,26 @@ def run():
 
         # Highlight IELTS words
         parsed_text = ''
-        search_index = 0
+        prev_index = 0
         doc = nlp(content_text)
         
         ignore_words = IGNORE_LIST_SPLIT_REGEX.split(props['ignore']) if 'ignore' in props else []
         ignore_words = set([word.lower() for word in ignore_words])
         
-        for token in doc:
+        tokens = list(doc)
+        i = 0
+        while i < len(tokens):
+            token = tokens[i]
+            i += 1
             word_text: str = token.orth_
             # upos = token.pos_
             lemma = str(token.lemma_).lower()
-            next_index = content_text.find(word_text, search_index)
-            token_props = token_properties[next_index] if next_index in token_properties else []
+            token_index = token.idx
+            token_props = token_properties[token_index] if token_index in token_properties else []
             # print(word_text, upos, lemma)
+            print(i, token)
     
-            # Should not get here
-            if next_index == -1:
-                print(f'Could not locate token "{word_text}" in content??')
-                parsed_text = content_text
-                search_index = len(content_text)
-                break
-    
-            parsed_text += content_text[search_index:next_index]
+            parsed_text += content_text[prev_index:token_index]
 
             word_freq = None
             data_lemma = None
@@ -246,11 +243,11 @@ def run():
             else:
                 parsed_text += word_text
     
-            search_index = next_index + len(word_text)
+            prev_index = token_index + len(word_text)
             pass
 
-        if search_index < len(content_text):
-            parsed_text += content_text[search_index]
+        if prev_index < len(content_text):
+            parsed_text += content_text[prev_index]
         content_text = parsed_text
 
         content_text = content_text.replace('\n\n', f'</p>\r{content_indent}<p>')
