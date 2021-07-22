@@ -60,8 +60,7 @@ def run():
     # print(types)
     
     filtered_dict = dict()
-    # for list_type in ('cet4', 'cet6', 'ielts'):
-    for list_type in ('ielts', 'extra'):
+    for list_type in ('ielts', 'cet6', 'extra'):
         freqs = ('low', 'med', 'high') if list_type != 'extra' else ('',)
         for freq in freqs:
             freq_str = f'-{freq}' if freq else ''

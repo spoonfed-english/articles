@@ -133,7 +133,7 @@ def run():
     longest_term = 1
     word_list = dict()
     # for list_type in ('ielts', 'cet4', 'cet6'):
-    for list_type in ('ielts', 'extra'):
+    for list_type in ('ielts', 'cet6', 'extra'):
         freqs = ('low', 'med', 'high') if list_type != 'extra' else ('', )
         for freq in freqs:
             freq_str = f'-{freq}' if freq else ''
@@ -143,7 +143,14 @@ def run():
                     word_count = len(TERM_SPLIT_REGEX.split(word))
                     if word_count > longest_term:
                         longest_term = word_count
-                    word_list[word] = (list_type, freq)
+                    
+                    if word not in word_list:
+                        word_data = []
+                        word_list[word] = word_data
+                    else:
+                        word_data = word_list[word]
+
+                    word_data.append((list_type, freq))
     
     nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
     
@@ -289,10 +296,9 @@ def run():
                 else:
                     data_lemma = ''
                 
-                type_list, freq = word_freq
-                if freq:
-                    freq = f' {freq}'
-                parsed_text += f'<span class="word {type_list}{freq}"{data_lemma} tabindex="-1">' \
+                word_lists = ' '.join(list_type for list_type, freq in word_freq)
+                freqs = (' ' + ' '.join(f'{list_type}-{freq}' for list_type, freq in word_freq if freq)).rstrip()
+                parsed_text += f'<span class="word {word_lists}{freqs}"{data_lemma} tabindex="-1">' \
                                f'{word_text}</span>'
             else:
                 parsed_text += word_text
