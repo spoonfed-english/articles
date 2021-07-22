@@ -86,7 +86,7 @@ advice	[ədˈvais]	n. a proposal for an appropriate course of action
 advisable	[ədˈvaizəbl]	adj. worthy of being recommended or suggested; prudent or wise: such action is neither necessary nor advisable
 advise	[ədˈvaiz]	v. inform (somebody) of something: I advised him that the rent was due
 advocate	[ˈædvəkeit,ˈædvəkit]	n. a person who pleads for a cause or propounds an idea
-aeroplane	- 	n. an aircraft that has a fixed wing and is powered by propellers or jets
+aeroplane	-	n. an aircraft that has a fixed wing and is powered by propellers or jets
 affair	[əˈfɛə]	n. a vaguely specified concern: it is none of your affair
 affect	[əˈfekt]	v. have an effect upon: Will the new rules affect me?
 affection	[əˈfekʃən]	n. a positive feeling of liking: he had trouble expressing the affection he felt
@@ -155,7 +155,7 @@ amount	[əˈmaunt]	n. a quantity of money: the amount he had in cash was insuffi
 ampere	[ˈæmpeə]	n. the basic unit of electric current adopted under the Systeme International d’Unites
 amplify	[ˈæmplifai]	v. increase in size, volume or significance
 amuse	[əˈmju:z]	v. occupy in an agreeable, entertaining or pleasant fashion: The play amused the ladies
-analyse 	-	v. break down into components or essential features
+analyse	-	v. break down into components or essential features
 analysis	[əˈnæləsis]	n. an investigation of the component parts of a whole and their relations in making up the whole
 analyze	[ˈænəlaiz]	v. make a mathematical, chemical, or grammatical analysis of; break down into components or essential features: analyze a specimen
 ancestor	[ˈænsistə]	n. someone from whom you are descended (but usually more remote than a grandparent)
@@ -288,7 +288,7 @@ attraction	[əˈtrækʃən]	n. an entertainment that is offered to the public
 attractive	[əˈtræktiv]	adj. pleasing to the eye or mind especially through beauty or charm: a remarkably attractive young man
 audience	[ˈɔ:diəns]	n. a gathering of spectators or listeners at a (usually public) performance: the audience applauded
 audio	[ˈɔ:diəu]	n. an audible acoustic wave frequency
-august 	adj. of or befitting a lord: of august lineage
+august	adj. of or befitting a lord: of august lineage
 aunt	[ɑ:nt]	n. the sister of your father or mother; the wife of your uncle
 aural	[ˈɔ:rəl]	adj. of or pertaining to hearing or the ear: an animal with a very sensitive aural apparatus
 Australia	[ɔˈstreiliə]	n. the smallest continent; between the South Pacific and the Indian Ocean
@@ -648,7 +648,7 @@ cement	[siˈment]	n. something that hardens to act as adhesive material
 cent	[sent]	n. a fractional monetary unit of several countries
 center	[ˈsentə]	n. the piece of ground in the outfield directly ahead of the catcher: he hit the ball to deep center
 centigrade	[ˈsentigreid]	adj. of or relating to a temperature scale on which the freezing point of water is 0 degrees and the boiling point of water is 100 degrees
-centimetre 	n. a metric unit of length equal to one hundredth of a meter
+centimetre	n. a metric unit of length equal to one hundredth of a meter
 central	[ˈsentrəl]	adj. serving as an essential component: the central cause of the problem
 centre	[ˈsentə]	n. an area that is approximately central within some larger region
 century	[ˈsentʃuri]	n. a period of 100 years
@@ -671,7 +671,7 @@ chaos	[ˈkeiɔs]	n. a state of extreme confusion and disorder
 chap	[tʃæp]	n. a boy or man: that chap is your host
 chapter	[ˈtʃæptə]	n. a subdivision of a written work; usually numbered and titled: he read a chapter every night before falling asleep
 character	[ˈkæriktə]	n. an imaginary person represented in a work of fiction (play or film or story): she is the main character in the novel
-characterise 	v. describe or portray the character or the qualities or peculiarities of
+characterise	v. describe or portray the character or the qualities or peculiarities of
 characteristic	[.kæriktəˈristik]	n. a prominent attribute or aspect of something: generosity is one of his best characteristics
 characterize	[ˈkæriktəraiz]	v. be characteristic of: What characterizes a Venetian painting?
 charge	[tʃɑ:dʒ]	v. to make a rush at or sudden attack upon, as in battle
@@ -691,7 +691,7 @@ cheese	[tʃi:z]	n. a solid food prepared from the pressed curd of milk
 chemical	[ˈkemikəl]	adj. of or made from or using substances produced by or used in reactions involving atomic or molecular changes: chemical fertilizer
 chemist	[ˈkemist]	n. a health professional trained in the art of preparing and dispensing drugs
 chemistry	[ˈkemistri]	n. the chemical composition and properties of a substance or object: the chemistry of soil
-cheque 	n. a written order directing a bank to pay money
+cheque	n. a written order directing a bank to pay money
 cherry	[ˈtʃeri]	n. a red fruit with a single hard stone
 chess	[tʃes]	n. weedy annual native to Europe but widely distributed as a weed especially in wheat
 chest	[tʃest]	n. the part of the human torso between the neck and the diaphragm or the corresponding part in other vertebrates
@@ -731,7 +731,7 @@ cite	[sait]	v. make reference to
 citizen	[ˈsitizn]	n. a native or naturalized member of a state or other political community
 city	[ˈsiti]	n. a large and densely populated urban area; may include several independent administrative districts: Ancient Troy was a great city
 civil	[ˈsivil]	adj. applying to ordinary citizens as contrasted with the military: civil authorities
-civilise 	v. teach or refine to be discriminative in taste or judgment
+civilise	v. teach or refine to be discriminative in taste or judgment
 civilization	[.sivilaiˈzeiʃən]	n. the social process whereby societies achieve an advanced stage of development and organization
 civilize	[ˈsivilaiz]	v. teach or refine to be discriminative in taste or judgment
 claim	[kleim]	n. an assertion of a right (as to money or property): his claim asked for damages
@@ -794,7 +794,7 @@ collision	[kəˈliʒən]	n. (physics) a brief event in which two or more bodies 
 colonel	[ˈkə:nl]	n. a commissioned military officer in the United States Army or Air Force or Marines who ranks above a lieutenant colonel and below a brigadier general
 colony	[ˈkɔləni]	n. a group of organisms of the same type living or growing together
 color	[ˈkʌlə]	n. a visual attribute of things that results from the light they emit or transmit or reflect: a white color is made up of many different wavelengths of light
-colour 	n. a race with skin pigmentation different from the white race (especially Blacks)
+colour	n. a race with skin pigmentation different from the white race (especially Blacks)
 column	[ˈkɔləm]	n. a line of units following one after another
 comb	[kəum]	n. a flat device with narrow pointed teeth on one edge; disentangles or arranges hair
 combat	[ˈkɑ:mbæt]	n. an engagement fought between two military forces
@@ -970,7 +970,7 @@ couch	[kautʃ]	n. an upholstered seat for more than one person
 cough	[kɔf]	v. exhale abruptly, as when one has a chest cold or congestion: The smoker coughs all day
 council	[ˈkaunsil]	n. a body serving in an administrative capacity: student council
 counsel	[ˈkaunsəl]	n. a lawyer who pleads cases in court
-count 	v. determine the number or amount of: Can you count the books on your shelf?
+count	v. determine the number or amount of: Can you count the books on your shelf?
 counter	[ˈkauntə]	n. table consisting of a horizontal surface over which business is transacted
 country	[ˈkʌntri]	n. a politically organized body of people under a single government: the country’s largest manufacturer
 countryside	[ˈkʌntriˈsaid]	n. rural regions
@@ -1097,7 +1097,7 @@ deepen	[ˈdi:pən]	v. make more intense, stronger, or more marked: This event on
 deer	[diə]	n. distinguished from Bovidae by the male’s having solid deciduous antlers
 defeat	[diˈfi:t]	n. an unsuccessful ending to a struggle or contest: it was a narrow defeat
 defect	[diˈfekt]	n. an imperfection in a bodily system: visual defects
-defence 	n. (psychiatry) an unconscious process that tries to reduce the anxiety associated with instinctive desires
+defence	n. (psychiatry) an unconscious process that tries to reduce the anxiety associated with instinctive desires
 defend	[diˈfend]	v. be on the defensive; act against an attack
 defense	[diˈfens]	n. (military) military action or resources protecting a country against potential enemies: they died in the defense of Stalingrad
 define	[diˈfain]	v. determine the essential quality of
@@ -1133,7 +1133,7 @@ department	[diˈpɑ:tmənt]	n. a specialized division of a large organization: y
 departure	[diˈpɑ:tʃə]	n. a variation that deviates from the standard or norm
 depend	[diˈpend]	v. be contingent upon (something that is elided): That depends
 dependent	[diˈpendənt]	adj. relying on or requiring a person or thing for support, supply, or what is needed: dependent children
-deportation 	n. the act of expelling a person from their native land: his deportation to a penal colony
+deportation	n. the act of expelling a person from their native land: his deportation to a penal colony
 deposit	[diˈpɔzit]	n. the phenomenon of sediment or gravel accumulating
 depress	[diˈpres]	v. lower someone’s spirits; make downhearted: These news depressed her
 depression	[diˈpreʃən]	n. a mental state characterized by a pessimistic sense of inadequacy and a despondent lack of activity
@@ -1235,7 +1235,7 @@ disgrace	[disˈgreis]	v. bring shame or dishonor upon
 disguise	[disˈgaiz]	n. an outward semblance that misrepresents the true nature of something: the theatrical notion of disguise is always associated with catastrophe in his stories
 disgust	[disˈgʌst]	v. fill with distaste: This spoilt food disgusts me
 dish	[diʃ]	n. a particular item of prepared food: she prepared a special dish for dinner
-dishonour 	v. force (someone) to have sex against their will
+dishonour	v. force (someone) to have sex against their will
 disk	[disk]	n. something with a round shape resembling a flat circular plate: the moon’s disk hung in a cloudless sky
 dislike	[disˈlaik]	n. an inclination to withhold approval from some person or group
 dismiss	[disˈmis]	v. bar from attention or consideration: She dismissed his advances
@@ -1589,7 +1589,7 @@ fairy	[ˈfɛəri]	n. a small being, human in form, playful and having magical po
 faith	[feiθ]	n. a strong belief in a supernatural power or powers that control human destiny: he lost his faith but not his morality
 faithful	[ˈfeiθfəl]	adj. steadfast in affection or allegiance: years of faithful service
 fall	[fɔ:l]	v. move downward and lower, but not necessarily all the way: The barometer is falling
-false 	[fɔ:ls]	adj. not in accordance with the fact or reality or actuality: gave false testimony under oath
+false	[fɔ:ls]	adj. not in accordance with the fact or reality or actuality: gave false testimony under oath
 fame	[feim]	n. the state or quality of being widely honored and acclaimed
 familiar	[fəˈmiljə]	adj. well known or easily recognized: a familiar figure
 family	[ˈfæmili]	n. a social unit living together: he moved his family to Virginia
@@ -1621,9 +1621,9 @@ faulty	[ˈfɔ:lti]	adj. having a defect
 favor	[ˈfeivə]	n. an act of gracious kindness
 favorable	[ˈfeivərəbl]	adj. encouraging or approving or pleasing: a favorable reply
 favorite	[ˈfeivərit]	n. a special loved one
-favour 	n. an inclination to approve
-favourable 	adj. encouraging or approving or pleasing
-favourite 	n. a competitor thought likely to win
+favour	n. an inclination to approve
+favourable	adj. encouraging or approving or pleasing
+favourite	n. a competitor thought likely to win
 fax	[fæks]	n. duplicator that transmits the copy by wire or radio
 fear	[fiə]	v. be afraid or scared of; be frightened of: I fear the winters in Moscow
 fearful	[ˈfiəfəl]	adj. causing fear or dread or terror: a fearful howling
@@ -1648,7 +1648,7 @@ fetch	[fetʃ]	v. go or come after and bring or take back: The dog fetched the ha
 fever	[ˈfi:və]	n. a rise in the temperature of the body; frequently a symptom of infection
 few	[fju:]	n. a small elite group: it was designed for the discriminating few
 fiber	[ˈfaibə]	n. a slender and greatly elongated substance capable of being spun into yarn
-fibre 	n. a slender and greatly elongated substance capable of being spun into yarn
+fibre	n. a slender and greatly elongated substance capable of being spun into yarn
 fiction	[ˈfikʃən]	n. a literary work based on the imagination and not necessarily on fact
 field	[fi:ld]	n. a piece of land cleared of trees and usually enclosed: he planted a field of wheat
 fierce	[fiəs]	adj. marked by extreme and violent energy: fierce fighting
@@ -1684,9 +1684,9 @@ flame	[fleim]	v. shine with a sudden light
 flare	[flɛə]	n. a shape that spreads outward: the skirt had a wide flare
 flash	[flæʃ]	n. a sudden intense burst of radiant energy
 flat	[flæt]	adj. having a surface without slope, tilt in which no part is higher or lower than another: a flat desk
-flat-footed 	adj. with feet flat on the ground; not tiptoe
+flat-footed	adj. with feet flat on the ground; not tiptoe
 flavor	[ˈfleivə]	n. the general atmosphere of a place or situation and the effect that it has on people
-flavour 	n. the general atmosphere of a place or situation and the effect that it has on people
+flavour	n. the general atmosphere of a place or situation and the effect that it has on people
 flee	[fli:]	v. run away quickly
 fleet	[fli:t]	n. group of aircraft operating together under the same ownership
 flesh	[fleʃ]	n. the soft tissue of the body of a vertebrate: mainly muscle tissue and fat
@@ -1787,7 +1787,7 @@ fruitful	[ˈfru:tfəl]	adj. productive or conducive to producing in abundance: b
 frustrate	[frʌsˈtreit]	v. hinder or prevent (the efforts, plans, or desires) of: What ultimately frustrated every challenger was Ruth’s amazing September surge
 fry	[frai]	n. English painter and art critic (1866-1934)
 fuel	[ˈfjuəl]	v. provide with a combustible substance that provides energy: fuel aircraft, ships, and cars
-fulfil 	v. put in effect
+fulfil	v. put in effect
 full	[ful]	adj. containing as much or as many as is possible or normal: a full glass
 fun	[fʌn]	n. activities that are enjoyable or amusing: I do it for the fun of it
 function	[ˈfʌŋkʃən]	n. what something is used for: the function of an auger is to bore holes
@@ -1892,7 +1892,7 @@ grain	[grein]	n. a relatively small granular particle of a substance: a grain of
 gram	[græm]	n. Danish physician and bacteriologist who developed a method of staining bacteria to distinguish among them (1853-1938)
 grammar	[ˈgræmə]	n. the branch of linguistics that deals with syntax and morphology (and sometimes also deals with semantics)
 grammatical	[grəˈmætikəl]	adj. conforming to the rules of grammar or usage accepted by native speakers: spoke in grammatical sentences
-gramme 	n. a metric unit of weight equal to one thousandth of a kilogram
+gramme	n. a metric unit of weight equal to one thousandth of a kilogram
 grand	[grænd]	adj. of behavior that is impressive and ambitious in scale or scope: in the grand manner
 granddaughter	[ˈgræn.dɔ:tə]	n. a female grandchild
 grandfather	[ˈgrænd.fɑ:ðə]	n. the father of your father or mother
@@ -1926,7 +1926,7 @@ gross	[grəus]	adj. before any deductions: gross income
 ground	[graund]	v. fix firmly and stably
 group	[gru:p]	n. any number of entities (members) considered as a unit
 grow	[grəu]	v. become larger, greater, or bigger; expand or gain
-grown-up 	n. a fully developed person from maturity onward
+grown-up	n. a fully developed person from maturity onward
 growth	[grəuθ]	n. a progression from simpler to more complex forms: the growth of culture
 guarantee	[.gærənˈti:]	v. give surety or assume responsibility
 guard	[gɑ:d]	n. a person who keeps watch over something or someone
@@ -1967,7 +1967,7 @@ happen	[ˈhæpən]	v. come to pass: What is happening?
 happiness	[ˈhæpinis]	n. state of well-being characterized by emotions ranging from contentment to intense joy
 happy	[ˈhæpi]	adj. enjoying or showing or marked by joy or pleasure: a happy smile
 harbor	[ˈhɑ:bə]	v. maintain (a theory, thoughts, or feelings): harbor a resentment
-harbour 	v. secretly shelter (as of fugitives or criminals)
+harbour	v. secretly shelter (as of fugitives or criminals)
 hard	[hɑ:d]	adj. not easy; requiring great physical or mental effort to accomplish or comprehend or endure: why is it so hard for you to keep a secret?
 harden	[ˈhɑ:dn]	v. make hard or harder: The cold hardened the butter
 hardly	[ˈhɑ:dli]	adv. only a very short time before: we hardly knew them
@@ -2063,8 +2063,8 @@ honey	[ˈhʌni]	n. a sweet yellow liquid produced by bees
 honeymoon	[ˈhʌnimu:n]	n. a holiday taken by a newly married couple
 honor	[ˈɔnə]	n. a tangible symbol signifying approval or distinction
 honorable	[ˈɔnərəbəl]	adj. not disposed to cheat or defraud; not deceptive or fraudulent
-honour 	n. a tangible symbol signifying approval or distinction
-honourable 	adj. worthy of being honored; entitled to honor and respect
+honour	n. a tangible symbol signifying approval or distinction
+honourable	adj. worthy of being honored; entitled to honor and respect
 hook	[huk]	v. rip off; ask an unreasonable price
 hope	[həup]	n. the general feeling that some desire will be fulfilled: in spite of his troubles he never gave up hope
 hopeful	[ˈhəupfəl]	adj. full or promise: a hopeful new singer on Broadway
@@ -2096,7 +2096,7 @@ humble	[ˈhʌmbl]	adj. low or inferior in station or quality: a humble cottage
 humid	[ˈhju:mid]	adj. containing or characterized by a great deal of water vapor: humid air
 humor	[ˈhju:mə]	n. a message whose ingenuity or verbal skill or incongruity has the power to evoke laughter
 humorous	[ˈhju:mərəs]	adj. full of or characterized by humor: humorous stories
-humour 	n. a characteristic (habitual or relatively temporary) state of feeling
+humour	n. a characteristic (habitual or relatively temporary) state of feeling
 hundred	[ˈhʌndrəd]	n. ten 10s
 hunger	[ˈhʌŋgə]	v. feel the need to eat
 hungry	[ˈhʌŋgri]	adj. (usually followed by `for’) extremely desirous: hungry for recognition
@@ -2109,8 +2109,8 @@ hydrogen	[ˈhaidridʒən]	n. a nonmetallic univalent element that is normally a 
 I	[ai]	n. the smallest whole number or a numeral representing this number
 ice	[ais]	n. water frozen in the solid state: Americans like ice in their drinks
 ice-cold	[ˈaisˈkəʊld]	adj. as cold as ice
-ice-cream 	n. frozen dessert containing cream and sugar and flavoring
-ice-free 	adj. free of ice and open to travel: an ice-free channel in the river
+ice-cream	n. frozen dessert containing cream and sugar and flavoring
+ice-free	adj. free of ice and open to travel: an ice-free channel in the river
 idea	[aiˈdiə]	n. the content of cognition; the main thing you are thinking about: it was not a good idea
 ideal	[aiˈdiəl]	adj. constituting or existing only in the form of an idea or mental image or conception: a poem or essay may be typical of its period in idea or ideal content
 identical	[aiˈdentikəl]	adj. exactly alike; incapable of being perceived as different: rows of identical houses
@@ -2313,7 +2313,7 @@ journey	[ˈdʒə:ni]	v. travel upon or across
 joy	[dʒɔi]	n. the emotion of great happiness
 joyful	[ˈdʒɔifəl]	adj. full of high-spirited delight: a joyful heart
 judge	[dʒʌdʒ]	v. determine the result of (a competition)
-judgement 	n. the legal document stating the reasons for a judicial decision
+judgement	n. the legal document stating the reasons for a judicial decision
 juice	[dʒu:s]	n. the liquid part that can be extracted from plant or animal tissue by squeezing or cooking
 July	[dʒu(:)ˈlai]	n. the month following June and preceding August
 jump	[dʒʌmp]	v. move forward by leaps and bounds: Can you jump over the fence?
@@ -2337,7 +2337,7 @@ kill	[kil]	v. cause to die; put to death, usually intentionally or knowingly: Th
 kilo	[ˈki:ləʊ., ˈki]	n. one thousand grams; the basic unit of mass adopted under the Systeme International d’Unites: a kilogram is approximately 2.2 pounds
 kilogram	[ˈkiləgræm]	n. one thousand grams; the basic unit of mass adopted under the Systeme International d’Unites: a kilogram is approximately 2.2 pounds
 kilometer	[ˈkilə.mi:tə]	n. a metric unit of length equal to 1000 meters (or 0.621371 miles)
-kilometre 	n. a metric unit of length equal to 1000 meters (or 0.621371 miles)
+kilometre	n. a metric unit of length equal to 1000 meters (or 0.621371 miles)
 kind	[kaind]	adj. having or showing a tender and considerate and helpful nature; used especially of persons and their behavior: kind to sick patients
 kindergarten	[ˈkində.gɑ:tn]	n. a preschool for children age 4 to 6 to prepare them for primary school
 kindle	[ˈkindl]	v. catch fire: The dried grass of the prairie kindled, spreading the flames for miles
@@ -2359,7 +2359,7 @@ knowledge	[ˈnɔlidʒ]	n. the psychological result of perception and learning an
 lab	[læb]	n. a workplace for the conduct of scientific research
 label	[ˈleibl]	v. pronounce judgment on: They labeled him unfit to work here
 laboratory	[ˈlæbrətɔ:ri]	n. a workplace for the conduct of scientific research
-labour 	n. concluding state of pregnancy; from the onset of contractions to the birth of a child
+labour	n. concluding state of pregnancy; from the onset of contractions to the birth of a child
 lace	[leis]	v. spin,wind, or twist together
 lack	[læk]	n. the state of needing something that is absent or unavailable: there is a serious lack of insight into the problem
 lad	[læd]	n. a boy or man
@@ -2480,7 +2480,7 @@ listener	[ˈlisənə]	n. someone who listens attentively
 liter	[ˈli:tə]	n. a metric unit of capacity, formerly defined as the volume of one kilogram of pure water under standard conditions; now equal to 1,000 cubic centimeters (or approximately 1.75 pints)
 literary	[ˈlitərəri]	adj. knowledgeable about literature: a literary style
 literature	[ˈlitərətʃə]	n. creative writing of recognized artistic value
-litre 	n. a metric unit of capacity, formerly defined as the volume of one kilogram of pure water under standard conditions; now equal to 1,000 cubic centimeters (or approximately 1.75 pints)
+litre	n. a metric unit of capacity, formerly defined as the volume of one kilogram of pure water under standard conditions; now equal to 1,000 cubic centimeters (or approximately 1.75 pints)
 little	[ˈlitl]	adj. limited or below average in number or quantity or magnitude or extent: a little dining room
 live	[laiv,liv]	adj. actually being performed at the time of hearing or viewing: a live television program
 lively	[ˈlaivli]	adj. full of life and energy: a lively discussion
@@ -2562,7 +2562,7 @@ manufacturer	[.mænjuˈfæktʃərə]	n. someone who manufactures something
 many	[ˈmeni]	adj. a quantifier that can be used with count nouns and is often preceded by `as’ or `too’ or `so’ or `that’; amounting to a large but indefinite number: many temptations
 map	[mæp]	v. locate within a specific region of a chromosome in relation to known DNA or gene sequences: map the genes
 marble	[ˈmɑ:bl]	n. a hard crystalline metamorphic rock that takes a high polish; used for sculpture and as building material
-march 	n. the month following February and preceding April
+march	n. the month following February and preceding April
 margin	[ˈmɑ:dʒin]	n. the boundary line or the area immediately inside the boundary
 marine	[məˈri:n]	adj. of or relating to the sea: marine explorations
 mark	[mɑ:k]	n. a distinguishing symbol: the owner’s mark was on all the sheep
@@ -2570,7 +2570,7 @@ market	[ˈmɑ:kit]	n. the world of commercial activity where goods and services 
 marriage	[ˈmæridʒ]	n. two people who are married to each other: his second marriage was happier than the first
 married	[ˈmærid]	adj. joined in matrimony: a married man
 marry	[ˈmæri]	v. perform a marriage ceremony
-marvellous 	adj. extraordinarily good or great ; used especially as intensifiers
+marvellous	adj. extraordinarily good or great ; used especially as intensifiers
 marvelous	[ˈmɑ:viləs]	adj. extraordinarily good or great ; used especially as intensifiers: a marvelous collection of rare books
 Marxist	[ˈmɑ:ksist]	n. emotionally charged terms used to refer to extreme radicals or revolutionaries
 mask	[mɑ:sk]	v. hide under a false appearance: He masked his disappointment
@@ -2600,7 +2600,7 @@ meaning	[ˈmi:niŋ]	n. the message that is intended or expressed or signified: w
 means	[mi:nz]	n. how a result is obtained or an end is achieved: a means of control
 meantime	[ˈmi:nˈtaim]	n. the time between one event, process, or period and another
 meanwhile	[ˈmi:nˈwail]	adv. at the same time but in another place: meanwhile, back at the ranch…
-measurable 	adj. of distinguished importance: a measurable figure in literature
+measurable	adj. of distinguished importance: a measurable figure in literature
 measure	[ˈmeʒə]	n. any maneuver made as part of progress toward a goal: the situation called for strong measures
 measurement	[ˈmeʒəmənt]	n. the act or process of assigning numbers to phenomena according to a rule: the measurements were carefully done
 meat	[mi:t]	n. the flesh of animals (including fishes and birds and snails) used as food
@@ -2639,7 +2639,7 @@ messenger	[ˈmesindʒə]	n. a person who carries a message
 metal	[ˈmetl]	n. any of several chemical elements that are usually shiny solids that conduct heat or electricity and can be formed into sheets etc.
 meter	[ˈmi:tə]	n. the basic unit of length adopted under the Systeme International d’Unites (approximately 1.094 yards)
 method	[ˈmeθəd]	n. a way of doing something, especially a systematic way; implies an orderly logical arrangement (usually in steps)
-metre 	n. the basic unit of length adopted under the Systeme International d’Unites (approximately 1.094 yards)
+metre	n. the basic unit of length adopted under the Systeme International d’Unites (approximately 1.094 yards)
 metric	[ˈmetrik]	n. a system of related measures that facilitates the quantification of some particular characteristic
 microcomputer	[ˈmaikrəukəmˈpju:tə]	n. a small digital computer based on a microprocessor and designed to be used by one person at a time
 microphone	[ˈmaikrəfəun]	n. device for converting sound waves into electrical energy
@@ -2656,7 +2656,7 @@ militia	[miˈliʃə]	n. civilians trained as soldiers but not part of the regula
 milk	[milk]	n. a white nutritious liquid secreted by mammals and used as food by human beings
 mill	[mil]	n. a plant consisting of one or more buildings with facilities for manufacturing
 millimeter	[ˈmili.mi:tə]	n. a metric unit of length equal to one thousandth of a meter
-millimetre 	n. a metric unit of length equal to one thousandth of a meter
+millimetre	n. a metric unit of length equal to one thousandth of a meter
 million	[ˈmiljən]	n. the number that is represented as a one followed by 6 zeros
 mind	[maind]	n. that which is responsible for one’s thoughts and feelings; the seat of the faculty of reason: his mind wandered
 mine	[main]	n. explosive device that explodes on contact; designed to destroy vehicles or ships or to kill or maim personnel
@@ -2793,8 +2793,8 @@ negotiate	[niˈgəuʃieit]	v. discuss the terms of an arrangement: They negotiat
 Negro	[ˈni:grəu]	n. a person with dark skin who comes from Africa (or whose ancestors came from Africa)
 neighbor	[ˈneibə]	n. a person who lives (or is located) near another
 neighborhood	[ˈneibəhud]	n. a surrounding or nearby region: he always blames someone else in the immediate neighborhood
-neighbour 	n. a person who lives (or is located) near another
-neighbourhood 	n. a surrounding or nearby region
+neighbour	n. a person who lives (or is located) near another
+neighbourhood	n. a surrounding or nearby region
 neither	[ˈni:ðə]	adj. not either; not one or the other
 nephew	[ˈnefju:]	n. a son of your brother or sister
 nerve	[nə:v]	n. the courage to carry on
@@ -2883,12 +2883,12 @@ occupy	[ˈɔkjupai]	v. keep busy with
 occur	[əˈkə:]	v. come to pass: Nothing occurred that seemed important
 occurrence	[əˈkʌrəns]	n. an event that happens
 ocean	[ˈəuʃən]	n. a large body of water constituting a principal part of the hydrosphere
-oceania 	n. a large group of islands in the south Pacific including Melanesia and Micronesia and Polynesia (and sometimes Australasia and the Malay Archipelago)
-o'clock 	adv. according to the clock: it’s three o’clock in Tokyo now
+oceania	n. a large group of islands in the south Pacific including Melanesia and Micronesia and Polynesia (and sometimes Australasia and the Malay Archipelago)
+o'clock	adv. according to the clock: it’s three o’clock in Tokyo now
 October	[ɔkˈtəubə]	n. the month following September and preceding November
 odd	[ɔd]	adj. not divisible by two
 odor	[ˈəudə]	n. any property detected by the olfactory system
-odour 	n. the sensation that results when olfactory receptors in the nose are stimulated by particular chemicals in gaseous form
+odour	n. the sensation that results when olfactory receptors in the nose are stimulated by particular chemicals in gaseous form
 off	[ɔ:f]	adj. not in operation or operational: the oven is off
 offend	[əˈfend]	v. cause to feel resentment or indignation: Her tactless remark offended me
 offensive	[əˈfensiv]	adj. for the purpose of attack rather than defense: offensive weapons
@@ -2987,7 +2987,7 @@ ownership	[ˈəunəʃip]	n. the act of having and controlling property
 ox	[ɔks]	n. any of various wild bovines especially of the genera Bos or closely related Bibos
 oxygen	[ˈɔksidʒən]	n. a nonmetallic bivalent element that is normally a colorless odorless tasteless nonflammable diatomic gas; constitutes 21 percent of the atmosphere by volume; the most abundant element in the earth’s crust
 pace	[peis]	n. the rate of moving (especially walking or running)
-pacific 	adj. relating to or bordering the Pacific Ocean
+pacific	adj. relating to or bordering the Pacific Ocean
 pack	[pæk]	v. arrange in a container: pack the books into the boxes
 package	[ˈpækidʒ]	n. a collection of things wrapped or boxed together
 packet	[ˈpækit]	n. a collection of things wrapped or boxed together
@@ -3111,7 +3111,7 @@ philosophy	[fiˈlɔsəfi]	n. a belief (or system of beliefs) accepted as authori
 phone	[fəun]	n. electro-acoustic transducer for converting electric signals into sounds; it is held over or inserted into the ear: it was not the typing but the earphones that she disliked
 photo	[ˈfəutəu]	n. a representation of a person or scene in the form of a print or transparent slide; recorded by a camera on light-sensitive material
 photograph	[ˈfəutəgrɑ:f, -græf]	n. a representation of a person or scene in the form of a print or transparent slide; recorded by a camera on light-sensitive material
-photographic 	adj. representing people or nature with the exactness and fidelity of a photograph
+photographic	adj. representing people or nature with the exactness and fidelity of a photograph
 phrase	[freiz]	n. an expression consisting of one or more words forming a grammatical constituent of a sentence
 physical	[ˈfizikəl]	adj. involving the body as distinguished from the mind or spirit: physical exercise
 physician	[fiˈziʃən]	n. a licensed medical practitioner
@@ -3141,7 +3141,7 @@ pipe	[paip]	n. a tube with a small bowl at one end; used for smoking tobacco
 pipeline	[ˈpaip.lain]	n. gossip spread by spoken communication
 pistol	[ˈpistl]	n. a firearm that is held and fired with one hand
 pit	[pit]	n. a sizeable hole (usually in the ground): they dug a pit to bury the body
-pitch 	v. throw or toss with a light motion
+pitch	v. throw or toss with a light motion
 pity	[ˈpiti]	n. a feeling of sympathy and sorrow for the misfortunes of others: the blind are too often objects of pity
 place	[pleis]	n. a point located with respect to surface features of some region: this is a nice place for a picnic
 plain	[plein]	adj. clearly revealed to the mind or the senses or judgment: made his meaning plain
@@ -3230,7 +3230,7 @@ powerful	[ˈpauəfəl]	adj. strong enough to knock down or overwhelm
 practical	[ˈpræktikəl]	adj. concerned with actual use or practice: he is a very practical person
 practically	[ˈpræktikəli]	adv. almost; nearly: practically the first thing I saw when I got off the train
 practice	[ˈpræktis]	n. a customary way of operation or behavior: it is their practice to give annual raises
-practise 	v. engage in a rehearsal (of)
+practise	v. engage in a rehearsal (of)
 praise	[preiz]	n. an expression of approval and commendation: he always appreciated praise for his work
 pray	[prei]	v. call upon in supplication; entreat
 prayer	[prɛə]	n. the act of communicating with a deity (especially as a petition or in adoration or contrition or thanksgiving): the priest sank to his knees in prayer
@@ -3306,7 +3306,7 @@ profile	[ˈprəufail]	n. an analysis (often in graphical form) representing the 
 profit	[ˈprɔfit]	n. the excess of revenues over outlays in a given period of time (including depreciation and other non-cash expenses)
 profitable	[ˈprɔfitəbl]	adj. yielding material gain or profit: profitable speculation on the stock market
 program	[ˈprəugræm]	n. a series of steps to be carried out or goals to be accomplished
-programme 	n. an announcement of the events that will occur as part of a theatrical or sporting event
+programme	n. an announcement of the events that will occur as part of a theatrical or sporting event
 progress	[prəuˈgres]	n. gradual improvement or growth or development: great progress in the arts
 progressive	[prəˈgresiv]	adj. favoring or promoting reform (often by government action)
 prohibit	[prəˈhibit]	v. command against
@@ -3447,7 +3447,7 @@ readily	[ˈredili]	adv. without much difficulty: these snakes can be identified 
 reading	[ˈri:diŋ]	n. the cognitive process of understanding a written linguistic message: his main reading was detective stories
 ready	[ˈredi]	adj. completely prepared or in condition for immediate action or use or progress: get ready
 real	[ˈri:əl]	adj. being or occurring in fact or actuality; having verified existence; not illusory: real objects
-realise 	v. earn on some commercial or business transaction; earn as salary or wages
+realise	v. earn on some commercial or business transaction; earn as salary or wages
 realistic	[riəˈlistik]	adj. aware or expressing awareness of things as they really are: a realistic description
 reality	[riˈæləti]	n. all of your experiences that determine how things appear to you: for them demons were as much a part of reality as trees were
 realize	[ˈriəlaiz]	v. be fully aware or cognizant of
@@ -3630,7 +3630,7 @@ rich	[ritʃ]	adj. having an abundant supply of desirable qualities or substances
 rid	[rid]	v. relieve from
 riddle	[ˈridl]	v. pierce with many holes: The bullets riddled his body
 ride	[raid]	v. sit and travel on the back of animal, usually while controlling its motions: Did you ever ride a camel?
-rider 	n. a clause that is appended to a legislative bill
+rider	n. a clause that is appended to a legislative bill
 ridge	[ridʒ]	n. a long narrow natural elevation or striation
 ridiculous	[riˈdikjuləs]	adj. inspiring scornful pity
 rifle	[ˈraifl]	v. steal goods; take as spoils
@@ -3686,7 +3686,7 @@ rug	[rʌg]	n. floor covering consisting of a piece of thick heavy fabric (usuall
 ruin	[ˈruin]	n. an irrecoverable state of devastation and destruction: you have brought ruin on this entire family
 rule	[ru:l]	n. a principle or condition that customarily governs behavior: it was his rule to take a walk before breakfast
 ruler	[ˈru:lə]	n. a person who rules or commands
-rumour 	n. gossip (usually a mixture of truth and untruth) passed around by word of mouth
+rumour	n. gossip (usually a mixture of truth and untruth) passed around by word of mouth
 run	[rʌn]	v. move fast by using one’s feet, with one foot off the ground at any given time: Don’t run–you’ll be out of breath
 runner	[ˈrʌnə(r)]	n. someone who imports or exports without paying duties
 rural	[ˈru:rəl]	adj. living in or characteristic of farming or country life: rural people
@@ -3987,7 +3987,7 @@ soak	[səuk]	v. submerge in a liquid: I soaked in the hot tub for an hour
 soap	[səup]	n. a cleansing agent made from the salts of vegetable or animal fats
 sob	[sɔb]	n. a dyspneic condition
 sober	[ˈsəubə]	adj. not affected by a chemical substance (especially alcohol)
-so-called 	adj. doubtful or suspect: these so-called experts are no help
+so-called	adj. doubtful or suspect: these so-called experts are no help
 soccer	[ˈsɔkə]	n. a football game in which two teams of 11 players try to kick or head a ball into the opponents’ goal
 social	[ˈsəuʃəl]	adj. living together or enjoying life in communities or organized groups: a human being is a social animal
 socialism	[ˈsəuʃəlizəm]	n. a political theory advocating state ownership of industry
@@ -4050,7 +4050,7 @@ speak	[spi:k]	v. exchange thoughts; talk with
 speaker	[ˈspi:kə]	n. electro-acoustic transducer that converts electrical signals into sounds loud enough to be heard at a distance
 spear	[spiə]	n. a long pointed rod used as a tool or weapon
 special	[ˈspeʃəl]	adj. unique or specific to a person or thing or category: the special features of a computer
-specialise 	v. be specific about
+specialise	v. be specific about
 specialist	[ˈspeʃəlist]	n. an expert who is devoted to one occupation or branch of learning
 speciality	[.speʃiˈæliti]	n. a distinguishing trait
 specialize	[ˈspeʃəlaiz]	v. become more focus on an area of activity or field of study: She specializes in Near Eastern history
@@ -4162,7 +4162,7 @@ stony	[ˈstəuni]	adj. showing unfeeling resistance to tender feelings
 stool	[stu:l]	n. a simple seat without a back or arms
 stoop	[stu:p]	v. bend one’s back forward from the waist on down: The young man stooped to pick up the girl’s purse
 stop	[stɔp]	n. the event of something ending: it came to a stop at the bottom of the hill
-storage 	n. a depository for goods
+storage	n. a depository for goods
 store	[stɔ:]	n. a mercantile establishment for the retail sale of goods or services
 storey	[ˈstɔ:ri]	n. a structure consisting of a room or set of rooms at a single position along a vertical scale
 storm	[stɔ:m]	v. behave violently, as if in state of a great anger
@@ -4269,7 +4269,7 @@ surname	[ˈsə:neim]	n. the name used to identify the members of a family (as di
 surplus	[ˈsə:pləs]	n. a quantity much larger than is needed
 surprise	[səˈpraiz]	n. the astonishment you feel when something totally unexpected happens to you
 surprising	[səˈpraiziŋ]	adj. causing surprise or wonder or amazement: the report shows a surprising lack of hard factual data
-surprisingly 	adv. in an amazing manner; to everyone’s surprise
+surprisingly	adv. in an amazing manner; to everyone’s surprise
 surrender	[səˈrendə]	n. acceptance of despair
 surround	[səˈraund]	v. extend on all sides of simultaneously; encircle: The forest surrounds my property
 surroundings	[səˈraundiŋz]	n. the environmental condition
@@ -4390,7 +4390,7 @@ thing	[θiŋ]	n. a special situation: this thing has got to end
 think	[θiŋk]	v. judge or regard; look upon; judge: I think he is very smart
 thinking	[ˈθiŋkiŋ]	n. the process of using your mind to consider something carefully: thinking always made him frown
 third	[θə:d]	n. one of three equal parts of a divisible whole: it contains approximately a third of the minimum daily requirement
-thirdly 	adv. in the third place
+thirdly	adv. in the third place
 thirst	[θə:st]	n. a physiological need to drink
 thirsty	[ˈθə:sti]	adj. needing moisture: thirsty fields under a rainless sky
 thirteen	[ˈθə:ti:n]	n. the cardinal number that is the sum of twelve and one
@@ -4563,7 +4563,7 @@ typical	[ˈtipikəl]	adj. exhibiting the qualities or characteristics that ident
 typist	[ˈtaipist]	n. someone paid to operate a typewriter
 tyranny	[ˈtirəni]	n. dominance through threat of punishment and violence
 tyrant	[ˈtaiərənt]	n. a cruel and oppressive dictator
-tyre 	n. a port in southern Lebanon on the Mediterranean Sea; formerly a major Phoenician seaport famous for silks
+tyre	n. a port in southern Lebanon on the Mediterranean Sea; formerly a major Phoenician seaport famous for silks
 ugly	[ˈʌgli]	adj. displeasing to the senses: an ugly face
 ultimate	[ˈʌltimit]	adj. furthest or highest in degree or order; utmost or extreme: the ultimate achievement
 ultimately	[ˈʌltimətli]	adv. as the end result of a succession or process: ultimately he had to give in
@@ -4615,7 +4615,7 @@ unsatisfactory	[ˈʌn.sætisfæktəri]	adj. not giving satisfaction: shops shoul
 unstable	[ˈʌnˈsteibl]	adj. lacking stability or fixity or firmness: unstable political conditions
 unsuitable	[ˈʌnˈsju:təbl]	adj. not meant or adapted for a particular purpose: a solvent unsuitable for use on wood surfaces
 unusual	[ʌnˈju:ʒuəl]	adj. not usual or common or ordinary: a scene of unusual beauty
-unusually 	adv. to a remarkable degree or extent: she was unusually tall
+unusually	adv. to a remarkable degree or extent: she was unusually tall
 unwilling	[ˈʌnˈwiliŋ]	adj. not disposed or inclined toward: an unwilling assistant
 up	[ʌp]	adj. being or moving higher in position or greater in some value; being above a former position or level: the anchor is up
 upper	[ˈʌpə]	n. the higher of two berths
@@ -4625,7 +4625,7 @@ upside down	[ˈʌpsaidˈdaun]	adj. being in such a position that top and bottom 
 upstairs	[ˈʌpˈstɛəz]	adv. on a floor above: they lived upstairs
 up-to-date	[ˈʌptəˈdeit]	adj. reflecting the latest information or changes: an up-to-date issue of the magazine
 upward	[ˈʌpwəd]	adj. directed up: the cards were face upward
-upwards 	adv. spatially or metaphorically from a lower to a higher position: the fragments flew upwards
+upwards	adv. spatially or metaphorically from a lower to a higher position: the fragments flew upwards
 urban	[ˈə:bən]	adj. relating to or concerned with a city or densely populated area: urban sociology
 urge	[ə:dʒ]	v. force or impel in an indicated direction: I urged him to finish his studies
 urgent	[ˈə:dʒənt]	adj. compelling immediate action: the urgent words `Hurry! Hurry!’
@@ -4638,7 +4638,7 @@ useless	[ˈju:slis]	adj. having no beneficial use or incapable of functioning us
 user	[ˈju:zə]	n. a person who uses something or someone selfishly or unethically
 usual	[ˈju:ʒuəl]	adj. occurring or encountered or experienced or observed frequently or in accordance with regular practice or procedure: grew the usual vegetables
 usually	[ˈju:ʒuəli]	adv. under normal conditions: usually she was late
-utilise 	v. put into service; make work or employ for a particular purpose or for its inherent or natural purpose
+utilise	v. put into service; make work or employ for a particular purpose or for its inherent or natural purpose
 utility	[ju:ˈtiliti]	n. a company that performs a public service; subject to government regulation
 utilize	[ˈju:tilaiz]	v. put into service; make work or employ for a particular purpose or for its inherent or natural purpose: How do you utilize this tool?
 utmost	[ˈʌtməust]	adj. of the greatest possible degree or extent or intensity: utmost contempt
@@ -4656,7 +4656,7 @@ van	[væn]	n. the leading units moving at the head of an army
 vanish	[ˈvæniʃ]	v. get lost, as without warning or explanation
 vanity	[ˈvæniti]	n. feelings of excessive pride
 vapor	[ˈveipə]	n. a visible suspension in the air of particles of some substance
-vapour 	n. a visible suspension in the air of particles of some substance
+vapour	n. a visible suspension in the air of particles of some substance
 variable	[ˈvɛəriəbl]	n. a quantity that can assume any of a set of values
 variation	[.vɛəriˈeiʃən]	n. an instance of change; the rate or magnitude of change
 variety	[vəˈraiəti]	n. noticeable heterogeneity: the range and variety of his work is amazing
@@ -4687,11 +4687,11 @@ victim	[ˈviktim]	n. an unfortunate person who suffers from some adverse circums
 victorious	[vikˈtɔ:riəs]	adj. having won: the victorious entry
 victory	[ˈviktəri]	n. a successful ending of a struggle or contest: a narrow victory
 video	[ˈvidiəu]	n. the visible part of a television transmission
-videotape 	n. a relatively wide magnetic tape for use in recording visual images and associated sound
+videotape	n. a relatively wide magnetic tape for use in recording visual images and associated sound
 view	[vju:]	n. a way of regarding situations or topics etc.: consider what follows from the positivist view
 viewpoint	[ˈvju:pɔint]	n. a mental position from which things are viewed: we should consider this problem from the viewpoint of the Russians
 vigorous	[ˈvigərəs]	adj. characterized by forceful and energetic action or activity: a vigorous hiker
-vigour 	n. forceful exertion
+vigour	n. forceful exertion
 village	[ˈvilidʒ]	n. a community of people smaller than a town
 vine	[vain]	n. a plant with a weak stem that derives support from climbing, twining, or creeping along a surface
 vinegar	[ˈvinigə]	n. dilute acetic acid
@@ -4710,7 +4710,7 @@ visit	[ˈvizit]	v. go to see a place, as for entertainment
 visitor	[ˈvizitə]	n. someone who visits
 visual	[ˈvizjuəl]	adj. relating to or using sight: visual powers
 vital	[ˈvaitl]	adj. urgently needed; absolutely necessary: vital for a healthy society
-vitally 	adv. to a vital degree: this is vitally important
+vitally	adv. to a vital degree: this is vitally important
 vitamin	[ˈvaitəmin]	n. any of a group of organic substances essential in small quantities to normal metabolism
 vivid	[ˈvivid]	adj. evoking lifelike images within the mind: a vivid description
 vocabulary	[vəˈkæbjuləri]	n. a listing of the words used in some enterprise
@@ -4726,7 +4726,7 @@ vote	[vəut]	n. the opinion of a group as determined by voting: they put the que
 voyage	[ˈvɔiidʒ]	n. an act of traveling by water
 wag	[wæg]	n. a witty amusing person who makes jokes
 wage	[weidʒ]	n. something that remunerates: wages were paid by check
-waggon 	n. any of various kinds of wheeled vehicles drawn by an animal or a tractor
+waggon	n. any of various kinds of wheeled vehicles drawn by an animal or a tractor
 wagon	[ˈwægən]	n. any of various kinds of wheeled vehicles drawn by an animal or a tractor
 waist	[weist]	n. the narrowing of the body between the ribs and hips
 wait	[weit]	v. stay in one place and anticipate or expect something: I had to wait on line for an hour to get the tickets
