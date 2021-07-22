@@ -145,11 +145,15 @@ footer.border {
 .legend-key {
 	padding-right: 0.5rem;
 	font-size: 0.9rem;
+	vertical-align: middle;
 }
 .legend-item {
 	padding-right: 0.5rem;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	vertical-align: middle;
+}
+.legend-item span {
 	vertical-align: middle;
 }
 .legend-item:before {
