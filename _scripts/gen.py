@@ -132,8 +132,8 @@ def run():
     longest_term = 1
     word_list = dict()
     # for list_type in ('ielts', 'cet4', 'cet6'):
-    for list_type in ('ielts', 'hard'):
-        freqs = ('low', 'med', 'high') if list_type != 'hard' else ('', )
+    for list_type in ('ielts', 'extra'):
+        freqs = ('low', 'med', 'high') if list_type != 'extra' else ('', )
         for freq in freqs:
             freq_str = f'-{freq}' if freq else ''
             with Path(f'data/words-{list_type}{freq_str}.txt').open('r', encoding='utf-8') as f:
