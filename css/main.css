@@ -104,9 +104,10 @@ section.text p:last-child {
 }
 section.text .word {
 	border-radius: 2px;
-	color: #eee;
+	color: #9f9f9f;
 	cursor: pointer;
 	padding: 0 2px;
+	word-spacing: -0.2em;
 }
 section.text .word:focus, section.text .word:active {
 	outline: none;
@@ -114,13 +115,15 @@ section.text .word:focus, section.text .word:active {
 section.text .word.low { color: #e28d50; }
 section.text .word.med { color: #50b3e2; }
 section.text .word.high { color: #e250ae; }
+section.text .word.hard { color: #ff7575; }
 section.text .word:hover, section.text .word:focus {
-	background: #eee;
+	background: #999;
 	color: #fff;
 }
 section.text .word.low:hover, section.text .word.low:focus { background: #e28d50; }
 section.text .word.med:hover, section.text .word.med:focus { background: #50b3e2; }
 section.text .word.high:hover, section.text .word.high:focus { background: #e250ae; }
+section.text .word.hard:hover, section.text .word.hard:focus { background: #ff7575; }
 
 footer {
 	color: #666;
@@ -148,6 +151,7 @@ footer.border {
 	padding-right: 0.5rem;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	vertical-align: middle;
 }
 .legend-item:before {
 	content: '';
@@ -164,6 +168,8 @@ footer.border {
 .legend-item.med { color: #50b3e2; }
 .legend-item.high:before { background: #e250ae; }
 .legend-item.high { color: #e250ae; }
+.legend-item.hard:before { background: #ff7575; }
+.legend-item.hard { color: #ff7575; }
 
 div.tippy-box[data-theme~=definition-popup] {
 	box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.15);

@@ -45,6 +45,7 @@ WORDS_REGEX = re.compile(r'[-\w.\'’]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
+TERM_SPLIT_REGEX = re.compile(r'\s+')
 ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
 
 TPL_HTML_FILE = Path('../_template.html')
@@ -128,13 +129,20 @@ def run():
         print(f'No .md or .html files found in input')
         return
     
+    longest_term = 1
     word_list = dict()
     # for list_type in ('ielts', 'cet4', 'cet6'):
-    list_type = 'ielts'
-    for freq in ('low', 'med', 'high'):
-        with Path(f'data/words-{list_type}-{freq}.txt').open('r', encoding='utf-8') as f:
-            for word in f.read().splitlines():
-                word_list[word] = freq
+    for list_type in ('ielts', 'hard'):
+        freqs = ('low', 'med', 'high') if list_type != 'hard' else ('', )
+        for freq in freqs:
+            freq_str = f'-{freq}' if freq else ''
+            with Path(f'data/words-{list_type}{freq_str}.txt').open('r', encoding='utf-8') as f:
+                for word in f.read().splitlines():
+                    word = word.strip()
+                    word_count = len(TERM_SPLIT_REGEX.split(word))
+                    if word_count > longest_term:
+                        longest_term = word_count
+                    word_list[word] = (list_type, freq)
     
     nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
     infixes = (
@@ -226,8 +234,9 @@ def run():
         ignore_words = set([word.lower() for word in ignore_words])
         
         tokens = list(doc)
+        num_tokens = len(tokens)
         i = 0
-        while i < len(tokens):
+        while i < num_tokens:
             token = tokens[i]
             i += 1
             word_text: str = token.orth_
@@ -235,9 +244,20 @@ def run():
             lemma = str(token.lemma_).lower()
             token_index = token.idx
             token_props = token_properties[token_index] if token_index in token_properties else []
-            # print(word_text, upos, lemma)
-            print(i, token)
-    
+
+            for j in range(min(num_tokens - 1, i + longest_term - 1), i, -1):
+                term_tokens = tokens[i - 1:j]
+                if len(term_tokens) <= 1:
+                    break
+                term_str = ' '.join([term_token.orth_.lower() for term_token in term_tokens])
+                
+                if term_str in word_list:
+                    word_text = term_str
+                    lemma = term_str
+                    i = j
+                    break
+
+            # print(i, word_text, f'{{{lemma}}}')
             parsed_text += content_text[prev_index:token_index]
 
             word_freq = None
@@ -255,7 +275,11 @@ def run():
                     data_lemma = f' data-lemma="{data_lemma}"'
                 else:
                     data_lemma = ''
-                parsed_text += f'<span class="word {word_freq}"{data_lemma} tabindex="-1">' \
+                
+                type_list, freq = word_freq
+                if freq:
+                    freq = f' {freq}'
+                parsed_text += f'<span class="word{freq}"{data_lemma} tabindex="-1">' \
                                f'{word_text}</span>'
             else:
                 parsed_text += word_text
