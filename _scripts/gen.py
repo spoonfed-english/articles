@@ -42,10 +42,11 @@ WORDS_CLEAN_REGEX = (
     (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~]){2,}'), r'\1'),
 )
 WORDS_REGEX = re.compile(r'[-\w.\'’]+')
-TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-\w]+)')
+TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-–\w]+)')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
-TERM_SPLIT_REGEX = re.compile(r'\s+')
+TERM_SPLIT_REGEX = re.compile(r'[-–\s]+')
+HYPEN_REGEX = re.compile(r'^[-–]+$')
 ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
 
 TPL_HTML_FILE = Path('../_template.html')
@@ -145,21 +146,6 @@ def run():
                     word_list[word] = (list_type, freq)
     
     nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
-    infixes = (
-            LIST_ELLIPSES
-            + LIST_ICONS
-            + [
-                r"(?<=[0-9])[+\-\*^](?=[0-9-])",
-                r"(?<=[{al}{q}])\.(?=[{au}{q}])".format(
-                    al=ALPHA_LOWER, au=ALPHA_UPPER, q=CONCAT_QUOTES
-                ),
-                r"(?<=[{a}]),(?=[{a}])".format(a=ALPHA),
-                # ✅ Commented out regex that splits on hyphens between letters:
-                # r"(?<=[{a}])(?:{h})(?=[{a}])".format(a=ALPHA, h=HYPHENS),
-                r"(?<=[{a}0-9])[:<>=/](?=[{a}])".format(a=ALPHA),
-            ]
-    )
-    nlp.tokenizer.infix_finditer = spacy.util.compile_infix_regex(infixes).finditer
     
     for file in files:
         print(f'-- Generating {file.stem} --')
@@ -244,20 +230,47 @@ def run():
             lemma = str(token.lemma_).lower()
             token_index = token.idx
             token_props = token_properties[token_index] if token_index in token_properties else []
+            
+            # Find multi-word terms in the dictionary
+            has_whitespace = bool(token.whitespace_)
+            terms = [(i - 1, has_whitespace, token)]
+            j = i
+            while j < num_tokens and len(terms) < longest_term:
+                term_token = tokens[j]
+                if term_token.whitespace_:
+                    has_whitespace = True
+                if has_whitespace or not HYPEN_REGEX.match(term_token.orth_):
+                    terms.append((j, has_whitespace, term_token))
+                j += 1
 
-            for j in range(min(num_tokens - 1, i + longest_term - 1), i, -1):
-                term_tokens = tokens[i - 1:j]
-                if len(term_tokens) <= 1:
-                    break
-                term_str = ' '.join([term_token.orth_.lower() for term_token in term_tokens])
+            for j in range(len(terms), 1, -1):
+                sub_terms = terms[:j]
+                has_whitespace = any(
+                    [bool(has_whitespace) for _, has_whitespace, term_token in sub_terms[:-1]])
+                sub_terms_strs = [term_token.orth_.lower() for _, _, term_token in sub_terms]
+
+                for delimiter in (' ', '-'):
+                    require_whitespace = delimiter == ' '
+                    # Don't allow shitespace beteen hyphens
+                    if require_whitespace != has_whitespace:
+                        continue
+
+                    term_str = delimiter.join(sub_terms_strs)
+
+                    if term_str in word_list:
+                        word_text = term_str
+                        lemma = term_str
+                        end_index = sub_terms[-1][0]
+                        i = end_index + 1
+                        j = False
+                        break
                 
-                if term_str in word_list:
-                    word_text = term_str
-                    lemma = term_str
-                    i = j
+                if not j:
                     break
+                pass
 
-            # print(i, word_text, f'{{{lemma}}}')
+            # print(i - 1, word_text, f'{{{lemma}}}', f'"{token.whitespace_}"')
+
             parsed_text += content_text[prev_index:token_index]
 
             word_freq = None
