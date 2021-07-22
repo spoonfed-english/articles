@@ -107,7 +107,6 @@ section.text .word {
 	color: #9f9f9f;
 	cursor: pointer;
 	padding: 0 2px;
-	word-spacing: -0.2em;
 }
 section.text .word:focus, section.text .word:active {
 	outline: none;
