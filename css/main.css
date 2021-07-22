@@ -113,7 +113,8 @@ section.text.cet6 .word.cet6
 		border-radius: 2px;
 		color: #888;
 		cursor: pointer;
-		padding: 0 2px;
+		padding: 0 0.1em;
+		margin: 0 -0.1em;
 	}
 section.text.ielts .word.ielts-low,
 section.text.cet6 .word.cet6-low
