@@ -1,0 +1,380 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:selector";
+
+$word-lists: ielts, cet6;
+$frequencies: (
+	low: #e28d50,
+	med: #50b3e2,
+	high: #e250ae,
+);
+$frequencies-dark: (
+	low: #bb8b69,
+	med: #6fa8c3,
+	high: #c1619f,
+);
+
+html, body {
+	margin: 0;
+	padding: 0;
+
+	font-family: Calibri, Arial, sans-serif;
+	font-size: 110%;
+	color: #444;
+}
+
+body.theme-dark {
+	background: #292929;
+	color: #bfbfbf;
+}
+
+article {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	min-height: 100%;
+	box-sizing: border-box;
+
+	.theme-dark & {
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
+}
+
+header {
+	h1 {
+		font-size: 2em;
+		margin: 0 0 1rem 0;
+		color: #1e78c2;
+		text-align: center;
+		position: relative;
+
+		.theme-dark & {
+			color: #5fa6bf;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			left: 0;
+			height: 0.5em;
+			border-top: 5px solid #3ab5e6;
+
+			.theme-dark & {
+				border-color: #5fa6bf;
+			}
+		}
+
+		span {
+			background: #fff;
+			z-index: 1;
+			position: relative;
+			box-shadow: 1rem 0 0 #fff, -1rem 0 0 #fff;
+
+			.theme-dark & {
+				background: #292929;
+				box-shadow: 1rem 0 0 #292929, -1rem 0 0 #292929;
+			}
+		}
+	}
+
+	.image {
+		position: relative;
+		margin-bottom: 1rem;
+
+		&::before {
+			float: left;
+			padding-top: 40%;
+			content: '';
+		}
+		&::after {
+			display: block;
+			content: '';
+			clear: both;
+		}
+		img {
+			position: absolute;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			border-radius: 5px;
+		}
+		img.align-top {
+			object-position: center top;
+		}
+	}
+
+	.stats {
+		display: flex;
+		font-size: 1.1em;
+		font-weight: bold;
+		flex-wrap: wrap;
+	}
+	.stats .filler {
+		flex-grow: 1;
+	}
+	.stats .words {
+		margin-right: 1rem;
+	}
+	p {
+		border-width: 5px 0;
+		border-style: solid;
+		border-color: #88dff9;
+		padding: 1rem 1rem;
+		font-style: italic;
+		color: #555;
+		margin: 1rem 0 0 0;
+		text-align: center;
+
+		.theme-dark & {
+			border-color: #86a7b3;
+			color: #a7a7a7;
+		}
+	}
+}
+
+section.text {
+	padding: 1rem 0 0 0;
+	line-height: 1.4rem;
+
+	p {
+		margin: 1rem 0;
+		text-align: justify;
+	}
+	p:first-child {
+		margin-top: 0;
+	}
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	.word:focus, .word:active {
+		outline: none;
+	}
+
+	.word.extra, %word-base {
+		border-radius: 2px;
+		color: #888;
+		cursor: pointer;
+		padding: 0 0.15em;
+		margin: 0 -0.15em;
+	}
+
+	@each $freq, $colour in $frequencies {
+		%word-#{$freq} { color: $colour }
+		%word-dark-#{$freq} { color: map.get($frequencies-dark, $freq) }
+	}
+
+	$word-active-selector: '&:focus, &:hover, &[aria-expanded=true]';
+	%word-hover {
+		#{$word-active-selector} {
+			color: #fff;
+			background: #888;
+
+			.theme-dark & {
+				color: #aaa;
+				background: #444;
+			}
+		}
+	}
+	.word.extra {
+		#{$word-active-selector} { @extend %word-hover }
+	}
+	@each $freq, $colour in $frequencies {
+		%word-hover-#{$freq} { background: $colour }
+		%word-dark-hover-#{$freq} {
+			$clr: map.get($frequencies-dark, $freq);
+			background: color.scale($clr, $saturation: -30%, $lightness: -55%);
+			color: $clr;
+		}
+	}
+
+	@each $list in $word-lists {
+		&.#{$list} {
+			.word.#{$list} {
+				@extend %word-base;
+				#{$word-active-selector} { @extend %word-hover }
+			}
+
+			@each $freq, $colour in $frequencies {
+				.word.#{$list}-#{$freq} {
+					// Colours
+					@extend %word-#{$freq};
+					.theme-dark & { @extend %word-dark-#{$freq} }
+
+					// Hover
+					#{$word-active-selector} {
+						@extend %word-hover-#{$freq};
+						.theme-dark & { @extend %word-dark-hover-#{$freq} }
+					}
+				}
+			}
+		}
+	}
+
+}
+
+footer {
+	color: #666;
+	overflow: hidden;
+
+	&.grad {
+		background: linear-gradient(180deg, #eee, transparent, transparent);
+		width: 100%;
+		margin: 1rem -1rem -1rem -1rem;
+		padding: 1rem;
+
+		.theme-dark & {
+			background: linear-gradient(180deg, #232323, transparent, transparent);
+		}
+	}
+	&.border {
+		padding-top: 1rem;
+		margin-top: 1rem;
+		border-top: 5px solid #88dff9;
+	}
+	&.flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.col.fill {
+		flex-grow: 1;
+	}
+
+	.row {
+		padding-bottom: 0.4rem;
+
+		//&:last-child { padding-bottom: 0 }
+	}
+}
+
+.item-list {
+	display: inline-block;
+
+	.key {
+		padding-right: 0.5rem;
+		font-size: 0.9rem;
+		vertical-align: middle;
+		text-decoration: underline;
+		text-decoration-style: dotted;
+		text-underline-offset: 0.2em;
+		text-decoration-color: #888;
+	}
+	.item {
+		margin-right: 0.5rem;
+		white-space: nowrap;
+		vertical-align: middle;
+
+		span {
+			vertical-align: middle;
+		}
+
+		&.button {
+			display: inline-block;
+			padding: 0.1rem 0.25rem;
+
+			border-radius: 0.2em;
+			background: #e6e6e6;
+			color: #797979;
+			border: 1px solid #a0a0a0;
+			cursor: pointer;
+
+			.theme-dark & {
+				background: #464646;
+				color: #797979;
+				border-color: #656565;
+			}
+		}
+		&.button.active {
+			background: #b6eeff;
+			color: #3e89a0;
+			border: 1px solid #43b3d6;
+
+			.theme-dark & {
+				background: #2d4d56;
+				color: #72b8ce;
+				border-color: #6292a0;
+			}
+		}
+	}
+}
+
+.legend {
+	.item {
+		font-size: 0.9rem;
+	}
+	.item:before {
+		content: '';
+		border-radius: 25%;
+		width: 16px;
+		height: 16px;
+		vertical-align: middle;
+		display: inline-block;
+		margin-right: 0.25rem;
+	}
+
+	@each $freq, $colour in map.merge($frequencies, (extra: #888)) {
+		.item.#{$freq} {
+			color: $colour;
+			&:before { background: $colour }
+		}
+	}
+}
+
+div.tippy-box {
+	color: #444;
+
+	.theme-dark & {
+		color: #bfbfbf;
+	}
+
+	&[data-theme~=dark] {
+		box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.25);
+		border: 1px solid #545454 !important;
+
+		.tippy-arrow:after {
+			border-top-color: #545454 !important;
+		}
+	}
+
+	&[data-theme~=definition-popup] {
+		box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.15);
+		border-color: #e0e0e0;
+
+		.tippy-arrow:after {
+			border-top-color: #e0e0e0 !important;
+		}
+		.definitions {
+			font-size: 1.1rem;
+			white-space: pre-wrap;
+
+			.pos {
+				font-style: italic;
+				color: #666;
+
+				.theme-dark & {
+					color: #999;
+				}
+			}
+			.pos:after {
+				content: '•';
+				vertical-align: middle;
+				font-size: 0.8em;
+				padding: 0 0.25rem;
+			}
+			.text {
+
+			}
+		}
+	}
+
+	&[data-theme~=help-popup] {
+		font-size: 1.1rem;
+	}
+
+}

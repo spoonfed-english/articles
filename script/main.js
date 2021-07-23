@@ -5,11 +5,19 @@
 	const POSSub = `<span class="pos">$1</span> <span class="text">$2</span>`;
 	
 	const ValidWordLists = ['ielts', 'cet6', 'off'];
+	const ValidThemes = ['light', 'dark'];
+	const TippyThemes = {
+		'light': 'light-border',
+		'dark': 'dark',
+	}
+	const ThemeRegex = new RegExp(`\\s*(${Object.values(TippyThemes).join('|')})\\s*`, 'g');
 	
 	const $content = document.querySelector('section.text');
 	const wordListButtons = {};
+	const $nightModeButton = document.getElementById('night-mode-btn');
 	
-	let wordList = load('wordList', 'ielts');
+	let wordList = load('wordList', ValidWordLists[0], ValidWordLists);
+	let theme = load('theme', ValidThemes[0], ValidThemes);
 	
 	function init()
 	{
@@ -18,6 +26,7 @@
 			wordList = ValidWordLists[0];
 		}
 		
+		setPageClass();
 		setContentClass();
 		
 		const $wordListButtons = document.querySelectorAll('.word-lists .item');
@@ -29,22 +38,27 @@
 			wordListButtons[type] = $button;
 		}
 		
+		$nightModeButton.classList.toggle('active', theme === 'dark');
+		$nightModeButton.addEventListener('click', onNightModeButtonClick);
+		
 		wordListButtons[wordList].classList.add('active');
 		
 		tippy.delegate('section.text', {
 			target: 'span.word',
 			touch: true,
 			content: '...',
-			trigger: 'focus',
+			trigger: 'click',
+			// hideOnClick: false,
 			interactive: true,
 			allowHTML: true,
-			theme: 'light-border definition-popup',
-			onShow: onTooltipShow,
+			onShow: onWordTooltipShow,
+			theme: 'definition-popup',
 		});
 		tippy('[data-tippy-content]', {
 			touch: true,
 			allowHTML: true,
-			theme: 'light-border help-popup',
+			onShow: onTooltipShow,
+			theme: 'help-popup',
 		});
 	}
 	
@@ -60,8 +74,31 @@
 		
 		wordList = newWordList;
 		store('wordList', wordList);
-		
 		setContentClass();
+	}
+	
+	function changeTheme(newTheme)
+	{
+		if(theme === newTheme)
+			return;
+		if(ValidThemes.indexOf(newTheme) === -1)
+			return;
+		
+		$nightModeButton.classList.toggle('active', newTheme === 'dark');
+		
+		theme = newTheme;
+		store('theme', theme);
+		setPageClass();
+	}
+	
+	function setPageClass()
+	{
+		for(const theme of ValidThemes)
+		{
+			document.body.classList.remove(`theme-${theme}`);
+		}
+		
+		document.body.classList.add(`theme-${theme}`);
 	}
 	
 	function setContentClass()
@@ -75,7 +112,27 @@
 		}
 	}
 	
-	function onTooltipShow(instance){
+	function onNightModeButtonClick()
+	{
+		changeTheme($nightModeButton.classList.contains('active') ? 'light' : 'dark');
+	}
+	
+	function onTooltipShow(instance)
+	{
+		const tippyTheme = TippyThemes[theme];
+		
+		const $tippyDiv = instance.popper.querySelector('.tippy-box');
+		const tippyThemeClass = $tippyDiv.dataset.theme.replace(ThemeRegex, '');
+		
+		instance.setProps({
+			theme: `${tippyTheme} ${tippyThemeClass}`,
+		});
+	}
+	
+	function onWordTooltipShow(instance)
+	{
+		onTooltipShow(instance);
+		
 		const $word = instance.reference;
 		
 		if(!$word.classList.contains(wordList) && !$word.classList.contains('extra'))
@@ -120,7 +177,12 @@ function store(name, value)
 	return localStorage.setItem(name, value);
 }
 
-function load(name, defaultValue)
+function load(name, defaultValue, validValues)
 {
-	return localStorage.getItem(name) || defaultValue;
+	const value = localStorage.getItem(name) || defaultValue;
+	
+	if(validValues && validValues.length && validValues.indexOf(value) === -1)
+		return validValues[0];
+	
+	return value;
 }
