@@ -161,6 +161,9 @@ section.text {
 		cursor: pointer;
 		padding: 0 0.15em;
 		margin: 0 -0.15em;
+
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	@each $freq, $colour in $frequencies {
