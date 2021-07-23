@@ -225,13 +225,14 @@ footer {
 	overflow: hidden;
 
 	&.grad {
-		background: linear-gradient(180deg, #eee, transparent, transparent);
+		background: #f9f9f9 linear-gradient(180deg, #eee, transparent, transparent, #eee);
 		width: 100%;
-		margin: 1rem -1rem -1rem -1rem;
 		padding: 1rem;
+		box-sizing: border-box;
+		margin: 1rem 0 0 0;
 
 		.theme-dark & {
-			background: linear-gradient(180deg, #232323, transparent, transparent);
+			background: #252525 linear-gradient(180deg, #232323, transparent, transparent, #232323);
 		}
 	}
 	&.border {
