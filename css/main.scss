@@ -12,6 +12,7 @@ $frequencies-dark: (
 	low: #bb8b69,
 	med: #6fa8c3,
 	high: #c1619f,
+	extra: 444,
 );
 
 html, body {
@@ -326,6 +327,12 @@ footer {
 		.item.#{$freq} {
 			color: $colour;
 			&:before { background: $colour }
+
+			.theme-dark & {
+				$clr: map.get($frequencies-dark, $freq);
+				color: $clr;
+				&:before { background: $clr }
+			}
 		}
 	}
 }
