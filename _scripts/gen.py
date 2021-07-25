@@ -205,7 +205,7 @@ def run():
         token_offset = 0
         content_text = TOKEN_PROPERTY_REGEX.sub(parse_token_properties, content_text)
         
-        props['title'] = titlecase(props['title'])
+        props['title'] = titlecase(props['title'].lower())
         props['description'] = props['description'].rstrip('.')
         
         words_text = props['description'] + '\n' + content_text
