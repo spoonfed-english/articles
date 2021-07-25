@@ -24,6 +24,8 @@ def to_bool(value):
 PROP_CONVERSIONS = dict(
     preview=to_bool,
 )
+PROP_REGEX = re.compile(r'(?:\s*(.+)\s*:)?\s*(.+)\s*')
+PROP_KEY_REGEX = re.compile(r'[\s_-]+')
 
 
 class ParseMode(Enum):
@@ -97,6 +99,7 @@ def parse_doc(path, export_images: Path = None):
         title=None,
         description=None,
         preview=False,
+        image_align='',
         difficulty='Medium',
         content=None,
     )
@@ -117,10 +120,10 @@ def parse_doc(path, export_images: Path = None):
             elif style == 'Subtitle':
                 props['description'] = text
             elif style == 'ListParagraph':
-                key, value = re.match(r'(?:\s*(.+)\s*:)?\s*(.+)\s*', text).groups()
+                key, value = PROP_REGEX.match(text).groups()
                 
                 if key is not None:
-                    key = key.lower()
+                    key = PROP_KEY_REGEX.sub('_', key.lower())
                     if key in PROP_CONVERSIONS:
                         value = PROP_CONVERSIONS[key](value)
                     props[key] = value

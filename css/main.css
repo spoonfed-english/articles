@@ -78,8 +78,17 @@ header .image img {
   overflow: hidden;
   border-radius: 5px;
 }
-header .image img.align-top {
+header .image.align-25p img {
+  object-position: center 25%;
+}
+header .image.align-75p img {
+  object-position: center 75%;
+}
+header .image.align-top img {
   object-position: center top;
+}
+header .image.align-bottom img {
+  object-position: center bottom;
 }
 header .stats {
   display: flex;

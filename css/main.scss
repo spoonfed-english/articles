@@ -103,8 +103,17 @@ header {
 			overflow: hidden;
 			border-radius: 5px;
 		}
-		img.align-top {
+		&.align-25p img{
+			object-position: center 25%;
+		}
+		&.align-75p img{
+			object-position: center 75%;
+		}
+		&.align-top img{
 			object-position: center top;
+		}
+		&.align-bottom img{
+			object-position: center bottom;
 		}
 	}
 

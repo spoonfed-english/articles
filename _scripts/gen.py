@@ -217,6 +217,13 @@ def run():
 
         props['image'] = base_name
         props['preview'] = props['image'] if not props['preview'] else f'{base_name}-preview'
+        props['image_class'] = []
+        if props['image_align']:
+            props['image_class'].append('align-' + props['image_align'])
+        del props['image_align']
+        props['image_class'] = ' '.join(props['image_class'])
+        if props['image_class']:
+            props['image_class'] = ' ' + props['image_class']
 
         # Highlight IELTS words
         parsed_text = ''
