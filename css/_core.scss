@@ -26,15 +26,19 @@ article {
 }
 
 footer {
+	$padding: 0.5rem;
+
 	color: #666;
 	overflow: hidden;
+	padding: $padding;
+	margin: 1rem 0 0 0;
+	position: relative;
 
 	&.grad {
 		background: #f9f9f9 linear-gradient(180deg, #eee, transparent, transparent, #eee);
 		width: 100%;
-		padding: 1rem;
+
 		box-sizing: border-box;
-		margin: 1rem 0 0 0;
 
 		.theme-dark & {
 			background: #252525 linear-gradient(180deg, #232323, transparent, transparent, #232323);
@@ -48,7 +52,7 @@ footer {
 	&.flex {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.4rem;
+		gap: 0.5rem;
 	}
 
 	.col.fill {
@@ -58,7 +62,13 @@ footer {
 	.row {
 		padding-bottom: 0.4rem;
 
-		//&:last-child { padding-bottom: 0 }
+		&:last-child { padding-bottom: 0 }
+	}
+
+	.item-list.themes {
+		position: absolute;
+		top: $padding;
+		right: $padding;
 	}
 }
 
@@ -66,7 +76,8 @@ footer {
 	display: inline-block;
 
 	.key {
-		padding-right: 0.5rem;
+		display: block;
+		margin-bottom: 0.25rem;
 		font-size: 0.9rem;
 		vertical-align: middle;
 		text-decoration: underline;
@@ -75,7 +86,7 @@ footer {
 		text-decoration-color: #888;
 	}
 	.item {
-		margin-right: 0.5rem;
+		margin-right: 0.1rem;
 		white-space: nowrap;
 		vertical-align: middle;
 
@@ -85,13 +96,14 @@ footer {
 
 		&.button {
 			display: inline-block;
-			padding: 0.1rem 0.25rem;
+			padding: 0.05rem 0.2rem;
 
 			border-radius: 0.2em;
 			background: #e6e6e6;
 			color: #797979;
 			border: 1px solid #a0a0a0;
 			cursor: pointer;
+			font-size: 0.7em;
 
 			.theme-dark & {
 				background: #464646;

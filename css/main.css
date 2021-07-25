@@ -27,13 +27,14 @@ article {
 footer {
   color: #666;
   overflow: hidden;
+  padding: 0.5rem;
+  margin: 1rem 0 0 0;
+  position: relative;
 }
 footer.grad {
   background: #f9f9f9 linear-gradient(180deg, #eee, transparent, transparent, #eee);
   width: 100%;
-  padding: 1rem;
   box-sizing: border-box;
-  margin: 1rem 0 0 0;
 }
 .theme-dark footer.grad {
   background: #252525 linear-gradient(180deg, #232323, transparent, transparent, #232323);
@@ -46,7 +47,7 @@ footer.border {
 footer.flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 footer .col.fill {
   flex-grow: 1;
@@ -54,12 +55,21 @@ footer .col.fill {
 footer .row {
   padding-bottom: 0.4rem;
 }
+footer .row:last-child {
+  padding-bottom: 0;
+}
+footer .item-list.themes {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
 
 .item-list {
   display: inline-block;
 }
 .item-list .key {
-  padding-right: 0.5rem;
+  display: block;
+  margin-bottom: 0.25rem;
   font-size: 0.9rem;
   vertical-align: middle;
   text-decoration: underline;
@@ -68,7 +78,7 @@ footer .row {
   text-decoration-color: #888;
 }
 .item-list .item {
-  margin-right: 0.5rem;
+  margin-right: 0.1rem;
   white-space: nowrap;
   vertical-align: middle;
 }
@@ -77,12 +87,13 @@ footer .row {
 }
 .item-list .item.button {
   display: inline-block;
-  padding: 0.1rem 0.25rem;
+  padding: 0.05rem 0.2rem;
   border-radius: 0.2em;
   background: #e6e6e6;
   color: #797979;
   border: 1px solid #a0a0a0;
   cursor: pointer;
+  font-size: 0.7em;
 }
 .theme-dark .item-list .item.button {
   background: #464646;

@@ -170,7 +170,7 @@ class WordHighlighter
 	
 	onWordListButtonClick(event)
 	{
-		this.changeWordList(event.target.dataset.type);
+		this.changeWordList(event.target.closest('.button').dataset.type);
 	}
 	
 	onWordTooltipShow(instance)
