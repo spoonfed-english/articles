@@ -1,0 +1,136 @@
+html, body {
+	margin: 0;
+	padding: 0;
+
+	font-family: Calibri, Arial, sans-serif;
+	font-size: 110%;
+	color: #444;
+}
+
+body.theme-dark {
+	background: #292929;
+	color: #bfbfbf;
+}
+
+article {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	min-height: 100%;
+	box-sizing: border-box;
+
+	.theme-dark & {
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
+}
+
+footer {
+	color: #666;
+	overflow: hidden;
+
+	&.grad {
+		background: #f9f9f9 linear-gradient(180deg, #eee, transparent, transparent, #eee);
+		width: 100%;
+		padding: 1rem;
+		box-sizing: border-box;
+		margin: 1rem 0 0 0;
+
+		.theme-dark & {
+			background: #252525 linear-gradient(180deg, #232323, transparent, transparent, #232323);
+		}
+	}
+	&.border {
+		padding-top: 1rem;
+		margin-top: 1rem;
+		border-top: 5px solid #88dff9;
+	}
+	&.flex {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.col.fill {
+		flex-grow: 1;
+	}
+
+	.row {
+		padding-bottom: 0.4rem;
+
+		//&:last-child { padding-bottom: 0 }
+	}
+}
+
+.item-list {
+	display: inline-block;
+
+	.key {
+		padding-right: 0.5rem;
+		font-size: 0.9rem;
+		vertical-align: middle;
+		text-decoration: underline;
+		text-decoration-style: dotted;
+		text-underline-offset: 0.2em;
+		text-decoration-color: #888;
+	}
+	.item {
+		margin-right: 0.5rem;
+		white-space: nowrap;
+		vertical-align: middle;
+
+		span {
+			vertical-align: middle;
+		}
+
+		&.button {
+			display: inline-block;
+			padding: 0.1rem 0.25rem;
+
+			border-radius: 0.2em;
+			background: #e6e6e6;
+			color: #797979;
+			border: 1px solid #a0a0a0;
+			cursor: pointer;
+
+			.theme-dark & {
+				background: #464646;
+				color: #797979;
+				border-color: #656565;
+			}
+		}
+		&.button.active {
+			background: #b6eeff;
+			color: #3e89a0;
+			border: 1px solid #43b3d6;
+
+			.theme-dark & {
+				background: #2d4d56;
+				color: #72b8ce;
+				border-color: #6292a0;
+			}
+		}
+	}
+}
+
+div.tippy-box {
+	color: #444;
+
+	.theme-dark & {
+		color: #bfbfbf;
+	}
+
+	&[data-theme~=dark] {
+		box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.25);
+		border: 1px solid #545454 !important;
+
+		.tippy-arrow:after {
+			border-top-color: #545454 !important;
+		}
+	}
+
+	&[data-theme~=help-popup] {
+		font-size: 1.1rem;
+	}
+
+}

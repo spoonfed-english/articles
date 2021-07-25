@@ -1,0 +1,157 @@
+$word-lists: ielts, cet6;
+$frequencies: (
+		low: #e28d50,
+		med: #50b3e2,
+		high: #e250ae,
+);
+$frequencies-dark: (
+		low: #bb8b69,
+		med: #6fa8c3,
+		high: #c1619f,
+		extra: 444,
+);
+
+section.content {
+	padding: 1rem 0 0 0;
+	line-height: 1.4rem;
+
+	p {
+		margin: 1rem 0;
+		text-align: justify;
+	}
+	p:first-child {
+		margin-top: 0;
+	}
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	.word:focus, .word:active {
+		outline: none;
+	}
+
+	.word.extra, %word-base {
+		border-radius: 2px;
+		color: #888;
+		cursor: pointer;
+		padding: 0 0.15em;
+		margin: 0 -0.15em;
+
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	@each $freq, $colour in $frequencies {
+		%word-#{$freq} { color: $colour }
+		%word-dark-#{$freq} { color: map.get($frequencies-dark, $freq) }
+	}
+
+	$word-active-selector: '&:focus, &:hover, &[aria-expanded=true]';
+	%word-hover {
+		#{$word-active-selector} {
+			color: #fff;
+			background: #888;
+
+			.theme-dark & {
+				color: #aaa;
+				background: #444;
+			}
+		}
+	}
+	.word.extra {
+		#{$word-active-selector} { @extend %word-hover }
+	}
+	@each $freq, $colour in $frequencies {
+		%word-hover-#{$freq} { background: $colour }
+		%word-dark-hover-#{$freq} {
+			$clr: map.get($frequencies-dark, $freq);
+			background: color.scale($clr, $saturation: -30%, $lightness: -55%);
+			color: $clr;
+		}
+	}
+
+	@each $list in $word-lists {
+		&.#{$list} {
+			.word.#{$list} {
+				@extend %word-base;
+				#{$word-active-selector} { @extend %word-hover }
+			}
+
+			@each $freq, $colour in $frequencies {
+				.word.#{$list}-#{$freq} {
+					// Colours
+					@extend %word-#{$freq};
+					.theme-dark & { @extend %word-dark-#{$freq} }
+
+					// Hover
+					#{$word-active-selector} {
+						@extend %word-hover-#{$freq};
+						.theme-dark & { @extend %word-dark-hover-#{$freq} }
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.legend {
+	.item {
+		font-size: 0.9rem;
+	}
+	.item:before {
+		content: '';
+		border-radius: 25%;
+		width: 16px;
+		height: 16px;
+		vertical-align: middle;
+		display: inline-block;
+		margin-right: 0.25rem;
+	}
+
+	@each $freq, $colour in map.merge($frequencies, (extra: #888)) {
+		.item.#{$freq} {
+			color: $colour;
+			&:before { background: $colour }
+
+			.theme-dark & {
+				$clr: map.get($frequencies-dark, $freq);
+				color: $clr;
+				&:before { background: $clr }
+			}
+		}
+	}
+}
+
+div.tippy-box {
+	&[data-theme~=definition-popup] {
+		box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.15);
+		border-color: #e0e0e0;
+
+		.tippy-arrow:after {
+			border-top-color: #e0e0e0 !important;
+		}
+		.definitions {
+			font-size: 1.1rem;
+			white-space: pre-wrap;
+
+			.pos {
+				font-style: italic;
+				color: #666;
+
+				.theme-dark & {
+					color: #999;
+				}
+			}
+			.pos:after {
+				content: '•';
+				vertical-align: middle;
+				font-size: 0.8em;
+				padding: 0 0.25rem;
+			}
+			.text {
+
+			}
+		}
+	}
+
+}

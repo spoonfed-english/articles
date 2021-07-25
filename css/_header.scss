@@ -1,0 +1,104 @@
+header {
+	h1 {
+		font-size: 2em;
+		margin: 0 0 1rem 0;
+		color: #1e78c2;
+		text-align: center;
+		position: relative;
+
+		.theme-dark & {
+			color: #5fa6bf;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			left: 0;
+			height: 0.5em;
+			border-top: 5px solid #3ab5e6;
+
+			.theme-dark & {
+				border-color: #5fa6bf;
+			}
+		}
+
+		span {
+			background: #fff;
+			z-index: 1;
+			position: relative;
+			box-shadow: 1rem 0 0 #fff, -1rem 0 0 #fff;
+
+			.theme-dark & {
+				background: #292929;
+				box-shadow: 1rem 0 0 #292929, -1rem 0 0 #292929;
+			}
+		}
+	}
+
+	.image {
+		position: relative;
+		margin-bottom: 1rem;
+
+		&::before {
+			float: left;
+			padding-top: 40%;
+			content: '';
+		}
+		&::after {
+			display: block;
+			content: '';
+			clear: both;
+		}
+		img {
+			position: absolute;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			border-radius: 5px;
+		}
+		&.align-25p img {
+			object-position: center 25%;
+		}
+		&.align-75p img {
+			object-position: center 75%;
+		}
+		&.align-top img {
+			object-position: center top;
+		}
+		&.align-bottom img {
+			object-position: center bottom;
+		}
+	}
+
+	.stats {
+		display: flex;
+		font-size: 1.1em;
+		font-weight: bold;
+		flex-wrap: wrap;
+	}
+	.stats .filler {
+		flex-grow: 1;
+	}
+	.stats .words {
+		margin-right: 1rem;
+	}
+
+	p {
+		border-width: 5px 0;
+		border-style: solid;
+		border-color: #88dff9;
+		padding: 1rem 1rem;
+		font-style: italic;
+		color: #555;
+		margin: 1rem 0 0 0;
+		text-align: center;
+
+		.theme-dark & {
+			border-color: #86a7b3;
+			color: #a7a7a7;
+		}
+	}
+}
