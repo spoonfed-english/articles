@@ -2110,7 +2110,6 @@ I	[ai]	n. the smallest whole number or a numeral representing this number
 ice	[ais]	n. water frozen in the solid state: Americans like ice in their drinks
 ice-cold	[ˈaisˈkəʊld]	adj. as cold as ice
 ice-cream	n. frozen dessert containing cream and sugar and flavoring
-ice-free	adj. free of ice and open to travel: an ice-free channel in the river
 idea	[aiˈdiə]	n. the content of cognition; the main thing you are thinking about: it was not a good idea
 ideal	[aiˈdiəl]	adj. constituting or existing only in the form of an idea or mental image or conception: a poem or essay may be typical of its period in idea or ideal content
 identical	[aiˈdentikəl]	adj. exactly alike; incapable of being perceived as different: rows of identical houses
