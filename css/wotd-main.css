@@ -1,0 +1,292 @@
+@charset "UTF-8";
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 110%;
+  color: #444;
+}
+
+body.theme-dark {
+  background: #292929;
+  color: #bfbfbf;
+}
+
+article {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.theme-dark article {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+footer {
+  color: #666;
+  overflow: hidden;
+  padding: 0.5rem;
+  margin: 1rem 0 0 0;
+  position: relative;
+}
+footer.grad {
+  background: #f9f9f9 linear-gradient(180deg, #eee, transparent, transparent, #eee);
+  width: 100%;
+  box-sizing: border-box;
+}
+.theme-dark footer.grad {
+  background: #252525 linear-gradient(180deg, #232323, transparent, transparent, #232323);
+}
+footer.border {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 5px solid #88dff9;
+}
+footer.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+footer .col.fill {
+  flex-grow: 1;
+}
+footer .row {
+  padding-bottom: 0.4rem;
+}
+footer .row:last-child {
+  padding-bottom: 0;
+}
+footer .item-list.themes {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.item-list {
+  display: inline-block;
+}
+.item-list .key {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  vertical-align: middle;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.2em;
+  text-decoration-color: #888;
+}
+.item-list .item {
+  margin-right: 0.1rem;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.item-list .item span {
+  vertical-align: middle;
+}
+.item-list .item.button {
+  display: inline-block;
+  padding: 0.05rem 0.2rem;
+  border-radius: 0.2em;
+  background: #e6e6e6;
+  color: #797979;
+  border: 1px solid #a0a0a0;
+  cursor: pointer;
+  font-size: 0.7em;
+}
+.theme-dark .item-list .item.button {
+  background: #464646;
+  color: #797979;
+  border-color: #656565;
+}
+.item-list .item.button.active {
+  background: #b6eeff;
+  color: #3e89a0;
+  border: 1px solid #43b3d6;
+}
+.theme-dark .item-list .item.button.active {
+  background: #2d4d56;
+  color: #72b8ce;
+  border-color: #6292a0;
+}
+
+div.tippy-box {
+  color: #444;
+}
+.theme-dark div.tippy-box {
+  color: #bfbfbf;
+}
+div.tippy-box[data-theme~=dark] {
+  box-shadow: 0 2px 4px 0 rgba(0, 8, 16, 0.25);
+  border: 1px solid #545454 !important;
+}
+div.tippy-box[data-theme~=dark] .tippy-arrow:after {
+  border-top-color: #545454 !important;
+}
+div.tippy-box[data-theme~=help-popup] {
+  font-size: 1.1rem;
+}
+
+article {
+  max-width: 800px;
+}
+
+header {
+  margin: -0.5rem -0.5rem 1rem -0.5rem;
+  overflow: hidden;
+  background: #12a89d;
+  border-radius: 0.25rem;
+}
+header .top {
+  display: flex;
+}
+header .top .title {
+  flex-grow: 1;
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 1.1em;
+}
+header .top .word-lists {
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 0 0 0 0.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+header .top .word-lists .cet:before {
+  content: "CET ✓";
+  color: #548fd8;
+  white-space: nowrap;
+}
+header .top .word-lists .ielts:before {
+  content: "IELTS ✓";
+  color: #d85454;
+  white-space: nowrap;
+}
+
+h1 {
+  margin: 0 0 0 1rem;
+  padding: 0.5rem;
+  line-height: 1em;
+  color: #fff;
+  font-size: 2.5em;
+}
+
+h2 {
+  margin: 0 0 1rem 0;
+  color: #12a89d;
+  font-size: 2.5em;
+}
+
+section {
+  margin: 1rem 0;
+}
+
+section:last-child {
+  margin: 0;
+}
+
+ol.definitions {
+  margin: 0;
+  padding-left: 2rem;
+  font-size: 1.25em;
+  overflow: hidden;
+}
+ol.definitions li::marker {
+  font-size: 1.25em;
+}
+ol.definitions li + li {
+  margin-top: 1rem;
+}
+ol.definitions .info {
+  display: flex;
+  align-items: baseline;
+}
+ol.definitions .info .pos {
+  flex-grow: 1;
+  padding-right: 0.5rem;
+  color: #666;
+}
+ol.definitions .info .translation {
+  font-size: 1.5em;
+  color: #6cc8c3;
+}
+ol.definitions .pronunciation {
+  color: #888;
+}
+ol.definitions .meaning {
+  color: #12a89d;
+  font-size: 1em;
+}
+ol.definitions.simple .meaning {
+  text-align: left;
+}
+ol.definitions blockquote {
+  text-align: center;
+  font-size: 0.9em;
+  margin: 1.5rem 0 0 -2rem;
+  position: relative;
+  padding: 0 2.5rem;
+}
+ol.definitions blockquote:before, ol.definitions blockquote:after {
+  content: open-quote;
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #bdecea;
+  vertical-align: middle;
+  line-height: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+}
+ol.definitions blockquote:before {
+  padding-right: 1rem;
+}
+ol.definitions blockquote:after {
+  content: close-quote;
+  padding-left: 1rem;
+  left: auto;
+  right: 0;
+}
+ol.definitions blockquote .word {
+  color: #12a89d;
+}
+
+section.images figure {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+section.images figure img {
+  display: block;
+  width: 100%;
+  height: 50vmin;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+section.images figure figcaption {
+  color: #666;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+  margin-top: 0.25rem;
+  padding: 0 0.5rem;
+}
+section.images.cols-2 {
+  display: flex;
+}
+section.images.cols-2 figure {
+  flex-shrink: 1;
+}
+section.images.cols-2 figure:first-child {
+  margin-right: 0.25rem;
+}
+section.images.cols-2 figure:last-child {
+  margin-left: 0.25rem;
+}
+
+/*# sourceMappingURL=wotd-main.css.map */
