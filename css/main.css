@@ -2,6 +2,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: Calibri, Arial, sans-serif;
   font-size: 110%;
   color: #444;
