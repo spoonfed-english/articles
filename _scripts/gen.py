@@ -348,8 +348,9 @@ def run():
             f.write(output_html)
 
         if is_new:
-            file = file.rename(file.with_name(f'{output_name}.docx'))
-            last_file = str(file)
+            rename_file = file.with_name(f'{output_name}.docx')
+            file = file.rename(rename_file)
+            last_file = str(rename_file)
             add_to_index(output_name, base_name)
 
     # Update index
