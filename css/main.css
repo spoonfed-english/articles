@@ -226,6 +226,10 @@ section.content {
   padding: 1rem 0 0 0;
   line-height: 1.4rem;
 }
+section.content ul, section.content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
 section.content p {
   margin: 1rem 0;
   text-align: justify;
