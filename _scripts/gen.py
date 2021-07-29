@@ -20,12 +20,13 @@ from pathlib import Path
 from pprint import pprint
 
 from PIL import Image
-from spacy.lang.char_classes import LIST_ELLIPSES, LIST_ICONS, ALPHA_LOWER, ALPHA_UPPER, \
-    CONCAT_QUOTES, ALPHA
 from titlecase import titlecase
-import spacy
 
 from gen_docx import parse_doc
+
+TEST_DOC_PARSE = False
+if TEST_DOC_PARSE:
+    import spacy
 
 SLUG_REGEX = re.compile(r'\W+')
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
@@ -152,7 +153,10 @@ def run():
 
                     word_data.append((list_type, freq))
     
-    nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
+    if TEST_DOC_PARSE:
+        nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
+    else:
+        nlp = None
     
     for file in files:
         print(f'-- Generating {file.stem} --')
@@ -224,6 +228,9 @@ def run():
         props['image_class'] = ' '.join(props['image_class'])
         if props['image_class']:
             props['image_class'] = ' ' + props['image_class']
+            
+        if not TEST_DOC_PARSE:
+            continue
 
         # Highlight IELTS words
         parsed_text = ''
@@ -341,7 +348,8 @@ def run():
             f.write(output_html)
 
         if is_new:
-            file.rename(file.with_name(f'{output_name}.docx'))
+            file = file.rename(file.with_name(f'{output_name}.docx'))
+            last_file = str(file)
             add_to_index(output_name, base_name)
 
     # Update index
