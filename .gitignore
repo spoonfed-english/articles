@@ -144,3 +144,4 @@ src/
 !src/_tpl.jpg
 !src/icon.ai
 !src/icon.png
+_scripts/data/__token_cache.pickle
