@@ -33,7 +33,10 @@ if DO_NLP:
 
 TOKEN_CACHE_FILE = Path(r'data/__token_cache.pickle')
 
-SLUG_REGEX = re.compile(r'\W+')
+SLUG_REGEXES = (
+    (re.compile(r'\s*\(\d+\)$'), ''),
+    (re.compile(r'\W+'), '-'),
+)
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
@@ -237,7 +240,9 @@ class ArticleGenerator:
             
             if is_new:
                 current_data = datetime.today().strftime('%d-%B-%Y').lower()
-                slugged_name = SLUG_REGEX.sub('-', file.stem.strip().lower()).strip('-')
+                slugged_name = file.stem.strip().lower()
+                for regex, sub in SLUG_REGEXES:
+                    slugged_name = regex.sub(sub, slugged_name).strip('-')
                 output_name = f'{index:02d}-{current_data}-{slugged_name}'
                 index += 1
             else:
