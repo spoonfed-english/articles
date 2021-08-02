@@ -417,6 +417,7 @@ alkali	n. 碱
 all	n. 一切\npron. 全体，一切\nadj. 所有的\nadv. 单单，更其
 allay	v. 减轻，平息
 allege	v. 断言，提出，指控，声言
+allegedly	adv. 据称
 allegedly	adv. 根据宣称
 allegiance	n. 忠诚，忠贞
 allegory	n. 讽喻法，寓言
@@ -671,6 +672,7 @@ appearance	n. 出现，外表，出版
 appease	v. 缓解，平息
 append	v. 附加，盖
 appendage	n. 附器，附属物
+appendicitis	n. 阑尾炎
 appendix	n. 附录，盲肠，阑尾
 appertain	v. 属
 appetite	n. 食欲，欲望，爱好，胃口
@@ -1230,7 +1232,7 @@ baton	n. 短棍，官杖
 battalion	n. 队伍，营
 batten	n. 板条，箝座\nv. 养肥，长肥
 batter	n. 面糊，倾斜\nv. 打击，捣毁，磨损
-battery	n. 电池，连续猛击，炮台
+battery	n. 电池，连续猛击，炮台；\nn. 电池； 一组，一套，一连串（同类事物）
 battle	n. 战斗，战役，格斗，竞赛\nv. 搏斗，作战
 battlement	n. 雉堞
 batty	adj. 蝙蝠的
@@ -4174,6 +4176,7 @@ drink	n. 饮料，酒，喝酒\nv. 喝，饮
 drinkable	n. 饮料\nadj. 可饮用的
 drip	n. 滴水声，滴下\nv. 滴下，流下，溢出，充溢
 drive	n. 车道，驾驶，紧迫\nv. 驾驶，乘车，逼迫，赶
+drive-through	n. 得来速
 drivel	n. 蠢话，涎沫\nv. 流淌，说傻话
 driver	n. 司机
 drizzle	n. 毛毛雨，涓涓细流\nv. 洒湿，洒落
@@ -5403,6 +5406,7 @@ foment	v. 热敷，挑起
 fond	adj. 喜爱..的，慈爱的，喜爱的
 fondle	v. 爱抚，娇养
 food	n. 食物，食粮，养料
+food poisoning	n. 食物中毒
 foodstuff	n. 食品
 fool	n. 蠢人，傻瓜，弄臣\nv. 愚弄，玩弄
 foolish	n. 愚蠢的，笨的\nadj. 发窘的，荒谬的
@@ -7234,6 +7238,7 @@ intensive	n. 加强器，强调成分\nadj. 强化的，密集的，集约的，
 intent	n. 意图，故意，意思\nadj. 专心的，急切的
 intention	n. 意图，目的，意思
 intentional	adj. 有意的，故意的
+intentionally	adv. 无意之中； 非故意地
 interact	v. 相互作用，相互影响，互相作用
 interaction	n. 相互作用
 intercede	v. 代为请求，调解
@@ -7990,6 +7995,7 @@ list	n. 表，名单，布条\nv. 列表，列举，听
 listen	v. 听，听从
 listener	n. 听者，收听者
 listless	adj. 倦怠的
+litany	n. 一连串（反复发生的不愉快的事情）； 连祷文，总祷文
 literacy	n. 识字，熟谙文学
 literal	n. 误排\nadj. 字面的，不夸张的，照字面的，逐字的
 literally	adv. 简直，字面上，确实地
@@ -8019,6 +8025,7 @@ living	n. 生计\nadj. 活着的
 living-room	n. 客厅，起居室
 lizard	n. 蜥蜴，蜥蜴皮
 load	n. 负载，负担，负荷，思想负担\nv. 装载，装，装货
+loads	adj. 大量的（非书面）
 loaf	n. 面包，肉糕\nv. 游荡，闲混
 loam	n. 烂砂，壤土
 loan	n. 贷款，暂借\nv. 出借，错出，贷款
@@ -8253,7 +8260,7 @@ malefactor	n. 罪犯
 malevolent	adj. 有害的
 malformed	adj. 畸形的
 malice	n. 恶意，恶感，蓄意害人
-malicious	adj. 恶意的
+malicious	adj. 恶意的，恶毒的
 malign	v. 诽谤\nadj. 恶性的，恶意的
 malignant	n. 不满分子，不满者\nadj. 恶性的，恶意的
 malinger	v. 诈病
@@ -10156,6 +10163,7 @@ pieces	n. 身心崩溃\nv. 拆开
 pied	adj. 杂色的
 pier	n. 码头，栈桥，桥墩，支柱
 pierce	v. 穿入，刺入
+piercing	n. 穿洞
 piety	n. 虔诚
 piffle	n. 废话\nv. 胡扯
 pig	n. 猪，陶土\nv. 生，生小猪
@@ -13009,7 +13017,7 @@ stipulate	v. 合同规定，约定，规定，确定
 stipulation	n. 规定
 stir	n. 骚动，拨动，活跃\nv. 搅拌，激起，拨动，惊动
 stirring	adj. 动人的
-stitch	n. 一针，缝法\nv. 缝合，缝，联接
+stitch	n. 一针，缝法，缝合\nv. 缝合，缝，联接，缝针
 stock	n. 存货，股份，砧木，主干，储备\nv. 贮存，备货，发肿
 stockade	n. 防波围桩，栅栏\nv. 用栅栏围起
 stocking	n. 长袜
