@@ -9,6 +9,7 @@ import sys
 from enum import Enum
 from pathlib import Path
 from pprint import pprint
+from statistics import median
 from typing import List, Dict
 
 import clipboard
@@ -57,7 +58,7 @@ class Checker:
         if self.mode == Mode.CERF:
             self.load_cerf_words()
         elif self.mode == Mode.FREQUENCY:
-            print('\t'.join((
+            print(',\t'.join((
                 'Document',
                 'Difficulty',
                 'Word Count',
@@ -65,6 +66,9 @@ class Checker:
                 'Average Word Length',
                 'Word Frequency Sum',
                 'Average Word Frequency',
+                'Median Word Frequency',
+                'Lowest Frequency',
+                'Highest Frequency',
                 'Unknown Words'
             )))
             self.load_frequency_words()
@@ -153,16 +157,24 @@ class Checker:
         word_length_sum = 0
         word_frequency_count = 0
         word_frequency_sum = 0
+        lowest_frequency = sys.maxsize
+        highest_frequency = 0
+        frequencies = []
         for word in self.words:
             longest_word = max(longest_word, len(word))
             word_length_sum += len(word)
             if word in self.word_frequencies:
-                word_frequency_sum += self.word_frequencies[word]
+                freq = self.word_frequencies[word]
+                lowest_frequency = min(lowest_frequency, freq)
+                highest_frequency = max(highest_frequency, freq)
+                frequencies.append(freq)
+                word_frequency_sum += freq
                 word_frequency_count += 1
             pass
 
         average_word_length = word_length_sum / self.total_words
         average_word_frequency = word_frequency_sum / word_frequency_count
+        median_word_frequency = median(frequencies)
         data = (
             self.document_name,
             self.difficulty,
@@ -171,9 +183,12 @@ class Checker:
             average_word_length,
             word_frequency_sum,
             average_word_frequency,
+            median_word_frequency,
+            lowest_frequency,
+            highest_frequency,
             len(self.words) - word_frequency_count
         )
-        print('\t'.join(f'{v:.1f}' if isinstance(v, float) else str(v) for v in data))
+        print(',\t'.join(f'{v:.1f}' if isinstance(v, float) else str(v) for v in data))
         pass
     
     pass
