@@ -1214,7 +1214,7 @@ basis	n. 基础，根据，主要部分
 bask	v. 感到舒适，晒太阳
 basket	n. 篮子，筐，篮，篮状物
 basketball	n. 篮球，篮球运动
-bass	n. 椴树\nadj. 低沉的，低音的
+bass	n. 椴树，鲈鱼\nadj. 低沉的低音的
 bassinet	n. 婴儿摇篮
 bassoon	n. 低音管，巴松
 bastard	n. 劣等货，杂种\nadj. 私生的，野种的
