@@ -36,6 +36,7 @@ class DocParser:
     zip_file: ZipFile
     doc: BeautifulSoup
     body: Tag
+    only_content = False
     
     def __init__(self):
         self.image_paths = dict()
@@ -93,10 +94,11 @@ class DocParser:
         self.zip_file = ZipFile(path)
         # pprint(zip_file.namelist())
 
-        exported_images = self.parse_rels(export_images)
-    
-        if export_images:
-            return exported_images
+        if not self.only_content:
+            exported_images = self.parse_rels(export_images)
+        
+            if export_images:
+                return exported_images
     
         doc_text = self.zip_file.read('word/document.xml').decode('utf-8')
         self.doc = BeautifulSoup(doc_text, 'xml')
