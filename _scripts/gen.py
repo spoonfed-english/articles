@@ -41,7 +41,8 @@ PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
 CONTENT_CLEAN_REGEX = (
-    (re.compile(r'’'), '\''),
+    # (re.compile(r'‘’'), '\''),
+    # (re.compile(r'“”'), '"'),
 )
 WORDS_CLEAN_REGEX = (
     # Remove floating punctuation
