@@ -418,6 +418,8 @@ section.questions .answer.open .contents {
   display: inline-block;
   padding: 0.05rem 0;
   border: 1px solid transparent;
+  border-left: 3px solid #88dff9;
+  padding-left: 0.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */
