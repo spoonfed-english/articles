@@ -1,0 +1,41 @@
+section.questions {
+	ol {
+		margin: 0;
+		line-height: 1.5em;
+
+		li {
+			padding-bottom: 0.25rem;
+		}
+	}
+	.question {
+		font-weight: bold;
+	}
+	.answer {
+		margin-left: 1rem;
+
+		span.button {
+			padding: 0.05rem 0.5rem;
+
+			&:before {
+				font-size: 1em;
+				content: 'Show Answer';
+			}
+		}
+
+		.contents {
+			display: none;
+		}
+
+		&.open {
+			span.button {
+				display: none;
+			}
+			.contents {
+				display: inline-block;
+				// Add this to match the "Show Answer" button height
+				padding: 0.05rem 0;
+				border: 1px solid transparent;
+			}
+		}
+	}
+}

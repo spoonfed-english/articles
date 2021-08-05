@@ -24,6 +24,8 @@ def to_bool(value):
 class ParseMode(Enum):
     Properties = 1
     Content = 2
+    Questions = 3
+    End = 4
 
 
 class DocParser:
@@ -90,6 +92,13 @@ class DocParser:
         
         return exported_images
     
+    @staticmethod
+    def select_mode(heading):
+        heading = heading.strip()
+        if heading == 'Questions':
+            return ParseMode.Questions
+        return ParseMode.End
+    
     def parse(self, path, export_images: Path = None):
         self.zip_file = ZipFile(path)
         # pprint(zip_file.namelist())
@@ -108,6 +117,7 @@ class DocParser:
             return None
     
         mode = ParseMode.Properties
+        questions = []
         props = dict(
             title=None,
             description=None,
@@ -115,11 +125,14 @@ class DocParser:
             image_align='',
             difficulty='Medium',
             content=None,
+            questions=questions,
         )
         content = []
         content_tags = []
         content_length = 0
         list_index = -1
+        skip_questions = False
+        question = None
     
         before_tags = []
         inner_tags = []
@@ -154,12 +167,13 @@ class DocParser:
                         pass
                 else:
                     mode = ParseMode.Content
-                pass
-        
-            if mode == ParseMode.Content:
-                if style == 'Heading2':
-                    break
+                continue
+
+            if style == 'Heading2':
+                mode = DocParser.select_mode(DocParser.get_text(p))
+                continue
             
+            if mode == ParseMode.Content:
                 if style == 'ListParagraph':
                     list_id_tag = properties_tag.find('numId')
                     new_list_index = int(list_id_tag['w:val']) \
@@ -227,7 +241,27 @@ class DocParser:
                 
                     content.append(f'{text}\n')
                     content_length += 1
-                pass
+                continue
+
+            if mode == ParseMode.Questions:
+                if skip_questions:
+                    continue
+                
+                text = DocParser.get_text(p).strip()
+                # Ignore template questions
+                if text.startswith('QUESTION'):
+                    skip_questions = True
+                    continue
+                
+                if not question:
+                    question = text
+                else:
+                    questions.append((question, text))
+                    question = None
+                continue
+                
+            if mode == ParseMode.End:
+                break
     
         content = ''.join(content)
         if content_length > 0:

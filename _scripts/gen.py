@@ -58,6 +58,8 @@ IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
 TERM_SPLIT_REGEX = re.compile(r'[-–\s]+')
 HYPEN_REGEX = re.compile(r'^[-–]+$')
 ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
+QUESTIONS_REGEX = re.compile(r'(\t*)__\[QUESTIONS__(.+)__QUESTIONS]__\n*', re.DOTALL)
+QUESTION_REGEX = re.compile(r'(\t+)__\[QUESTION__(.+)__QUESTION]__', re.DOTALL)
 
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
@@ -276,7 +278,9 @@ class ArticleGenerator:
             # Read data
             props = doc_parse.parse(data_file)
             content_tags = props['content_tags']
+            questions = props['questions']
             del props['content_tags']
+            del props['questions']
             
             # Validate properties
             for name in ['title', 'description', 'difficulty', 'content']:
@@ -448,6 +452,37 @@ class ArticleGenerator:
             for key in ('ignore', ):
                 if key in props:
                     del props[key]
+            
+            # Question substitutions
+            qsm = QUESTIONS_REGEX.search(tpl_data)
+            if qsm:
+                tpl_start = tpl_data[:qsm.start()]
+                tpl_end = tpl_data[qsm.end():]
+                questions_indent = qsm.group(1)
+                questions_tpl = qsm.group(2)
+                qm = QUESTION_REGEX.search(questions_tpl)
+                if not qm:
+                    raise Exception('Invalid question template')
+                questions_tpl_start = questions_tpl[:qm.start()]
+                questions_tpl_end = questions_tpl[qm.end():]
+                question_indent = qm.group(1)
+                question_tpl = qm.group(2)
+                questions_data = ''
+                
+                questions_output = []
+                for question_text, answer_text in questions:
+                    question_item = question_tpl.replace('__QUESTION__', question_text)
+                    question_item = question_item.replace('__ANSWER__', answer_text)
+                    questions_output.append(f'{question_indent}{question_item}')
+                
+                if questions_output:
+                    questions_data = questions_indent + questions_tpl_start +\
+                                     '\n'.join(questions_output) +\
+                                     questions_tpl_end
+                
+                tpl_data = tpl_start + questions_data + tpl_end
+            else:
+                raise Exception('Could not find questions section template')
             
             # Do substitutions
             output_html = tpl_data

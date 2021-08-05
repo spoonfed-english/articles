@@ -13,6 +13,11 @@ body.theme-dark {
   color: #bfbfbf;
 }
 
+h2 {
+  margin: 1rem 0;
+  color: #1e78c2;
+}
+
 article {
   max-width: 1200px;
   margin: 0 auto;
@@ -382,6 +387,37 @@ div.tippy-box[data-theme~=definition-popup] .definitions .pos:after {
   vertical-align: middle;
   font-size: 0.8em;
   padding: 0 0.25rem;
+}
+section.questions ol {
+  margin: 0;
+  line-height: 1.5em;
+}
+section.questions ol li {
+  padding-bottom: 0.25rem;
+}
+section.questions .question {
+  font-weight: bold;
+}
+section.questions .answer {
+  margin-left: 1rem;
+}
+section.questions .answer span.button {
+  padding: 0.05rem 0.5rem;
+}
+section.questions .answer span.button:before {
+  font-size: 1em;
+  content: "Show Answer";
+}
+section.questions .answer .contents {
+  display: none;
+}
+section.questions .answer.open span.button {
+  display: none;
+}
+section.questions .answer.open .contents {
+  display: inline-block;
+  padding: 0.05rem 0;
+  border: 1px solid transparent;
 }
 
 /*# sourceMappingURL=main.css.map */
