@@ -167,7 +167,9 @@ class DocParser:
                         pass
                 else:
                     mode = ParseMode.Content
-                continue
+                
+                if mode == ParseMode.Properties:
+                    continue
 
             if style == 'Heading2':
                 mode = DocParser.select_mode(DocParser.get_text(p))
