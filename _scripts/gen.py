@@ -199,6 +199,28 @@ class ArticleGenerator:
                 print(f'Unable to parse index from index file: "{value}"')
                 return
             index = start_index
+
+        qsm = QUESTIONS_REGEX.search(tpl_data)
+        if qsm:
+            tpl_start = tpl_data[:qsm.start()]
+            tpl_end = tpl_data[qsm.end():]
+            questions_indent = qsm.group(1)
+            questions_tpl = questions_indent + qsm.group(2)
+            qm = QUESTION_REGEX.search(questions_tpl)
+            if not qm:
+                print('Invalid question template')
+                return
+            
+            questions_tpl_start = questions_tpl[:qm.start()]
+            questions_tpl_end = questions_tpl[qm.end():]
+            question_indent = qm.group(1)
+            question_tpl = qm.group(2)
+            
+            questions_tpl = f'{questions_tpl_start}__CONTENT__{questions_tpl_end}\n'
+            tpl_data = f'{tpl_start}__QUESTIONS__{tpl_end}'
+        else:
+            print('Could not find questions section template')
+            return
             
         files = ArticleGenerator.get_file_args(last_file)
         if not files:
@@ -454,38 +476,21 @@ class ArticleGenerator:
                     del props[key]
             
             # Question substitutions
-            qsm = QUESTIONS_REGEX.search(tpl_data)
-            if qsm:
-                tpl_start = tpl_data[:qsm.start()]
-                tpl_end = tpl_data[qsm.end():]
-                questions_indent = qsm.group(1)
-                questions_tpl = qsm.group(2)
-                qm = QUESTION_REGEX.search(questions_tpl)
-                if not qm:
-                    raise Exception('Invalid question template')
-                questions_tpl_start = questions_tpl[:qm.start()]
-                questions_tpl_end = questions_tpl[qm.end():]
-                question_indent = qm.group(1)
-                question_tpl = qm.group(2)
-                questions_data = ''
-                
-                questions_output = []
-                for question_text, answer_text in questions:
-                    question_item = question_tpl.replace('__QUESTION__', question_text)
-                    question_item = question_item.replace('__ANSWER__', answer_text)
-                    questions_output.append(f'{question_indent}{question_item}')
-                
-                if questions_output:
-                    questions_data = questions_indent + questions_tpl_start +\
-                                     '\n'.join(questions_output) +\
-                                     questions_tpl_end
-                
-                tpl_data = tpl_start + questions_data + tpl_end
-            else:
-                raise Exception('Could not find questions section template')
+            output_html = tpl_data
+            questions_text = ''
+            
+            questions_output = []
+            for question_text, answer_text in questions:
+                question_item = question_tpl.replace('__QUESTION__', question_text)
+                question_item = question_item.replace('__ANSWER__', answer_text)
+                questions_output.append(f'{question_indent}{question_item}')
+            
+            if questions_output:
+                questions_text = questions_tpl.replace('__CONTENT__', '\n'.join(questions_output))
+
+            output_html = output_html.replace('__QUESTIONS__', questions_text)
             
             # Do substitutions
-            output_html = tpl_data
             for key, value in props.items():
                 key = f'__{key.upper()}__'
                 output_html = output_html.replace(key, value)
