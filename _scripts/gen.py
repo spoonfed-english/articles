@@ -1,10 +1,10 @@
 """
 Usage:
-- A new .dat file: Will generate a new html file, using the data and file name of the .dat file
+- A new .docx file: Will generate a new html file, using the data and file name of the .dat file
   automatically prepending a new index and the date.
-  Will rename the .dat file to match
-- A .dat file with a corresponding html file: Will regenerate that html file
-- A folder: Will generate/regenerate all .dat or html files
+  Will rename the .docx file to match
+- A .docx file with a corresponding html file: Will regenerate that html file
+- A folder: Will generate/regenerate all .docx or html files
 
 Requirements:
 - pip install titlecase (https://pypi.org/project/titlecase/)
