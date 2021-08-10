@@ -14,7 +14,6 @@ Requirements:
 import os
 import pickle
 import re
-import string
 import sys
 import traceback
 from datetime import datetime
