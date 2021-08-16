@@ -304,11 +304,7 @@ class DocParser:
         content = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, content)
 
         words_text = props['description'] + '\n' + content
-        for regex, sub in WORDS_CLEAN_REGEX:
-            words_text = regex.sub(sub, words_text)
-        split_words = WORDS_REGEX.findall(words_text)
-        props['word_count'] = str(len(split_words))
-        # pprint(split_words)
+        props['word_count'] = self.word_count(words_text)
         
         props['content'] = content
         props['content_tags'] = content_tags
@@ -338,6 +334,14 @@ class DocParser:
                     output.append('\n')
         
         return ''.join(output)
+    
+    @staticmethod
+    def word_count(text):
+        for regex, sub in WORDS_CLEAN_REGEX:
+            text = regex.sub(sub, text)
+        split_words = WORDS_REGEX.findall(text)
+        # pprint(split_words)
+        return len(split_words)
 
 
 if __name__ == '__main__':

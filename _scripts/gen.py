@@ -456,7 +456,7 @@ class ArticleGenerator:
             # Do substitutions
             for key, value in props.items():
                 key = f'__{key.upper()}__'
-                output_html = output_html.replace(key, value)
+                output_html = output_html.replace(key, str(value))
             
             # Output
             with Path(f'../{output_name}.html').open('w', encoding='utf-8') as f:
