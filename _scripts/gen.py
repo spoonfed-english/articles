@@ -39,19 +39,6 @@ SLUG_REGEXES = (
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
-CONTENT_CLEAN_REGEX = (
-    # (re.compile(r'‘’'), '\''),
-    # (re.compile(r'“”'), '"'),
-)
-WORDS_CLEAN_REGEX = (
-    # Remove floating punctuation
-    (re.compile(r'(^|\s+)([ -/]|[:-@]|[\[-`]|[{-~])+(\s+|$)'), ' '),
-    # Consecutive puntionation, which may cause issues, e.g. ". (quote followed by period) will
-    # count the period as a word
-    (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~]){2,}'), r'\1'),
-)
-WORDS_REGEX = re.compile(r'[-\w.\'’]+')
-TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-–\w]+)')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
 TERM_SPLIT_REGEX = re.compile(r'[-–\s]+')
@@ -69,9 +56,6 @@ VOCAB_SIZE = 'sm'
 
 class ArticleGenerator:
     def __init__(self):
-        self.token_properties = dict()
-        self.token_offset = 0
-        
         self.content_indent = ''
         pass
 
@@ -166,14 +150,6 @@ class ArticleGenerator:
         
         return ''.join(reversed(output))
 
-    def parse_token_properties(self, m):
-        token_index = m.start() + self.token_offset
-        self.token_properties[token_index] = m.group(1).strip(',').split(',')\
-            if m.group(1) else ['ignore']
-    
-        self.token_offset -= len(m.group(0)) - len(m.group(2))
-        return m.group(2)
-    
     def run(self):
         if not INDEX_FILE.exists():
             print(f'Cannot find index file: "{str(INDEX_FILE)}"')
@@ -297,7 +273,7 @@ class ArticleGenerator:
                 img_width, img_height = 1200, 1200
             
             # Read data
-            props = doc_parse.parse(data_file)
+            props, token_properties = doc_parse.parse(data_file)
             content_tags = props['content_tags']
             questions = props['questions']
             del props['content_tags']
@@ -310,21 +286,9 @@ class ArticleGenerator:
                     props[name] = ''
     
             content_text = props['content']
-            for regex, sub in CONTENT_CLEAN_REGEX:
-                content_text = regex.sub(sub, content_text)
-            self.token_properties.clear()
-            self.token_offset = 0
-            content_text = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, content_text)
             
             props['title'] = titlecase(props['title'].lower())
             props['description'] = props['description'].rstrip('.')
-            
-            words_text = props['description'] + '\n' + content_text
-            for regex, sub in WORDS_CLEAN_REGEX:
-                words_text = regex.sub(sub, words_text)
-            split_words = WORDS_REGEX.findall(words_text)
-            props['word_count'] = str(len(split_words))
-            # pprint(split_words)
     
             props['image'] = base_name
             props['preview'] = props['image'] if not props['preview'] else f'{base_name}-preview'
@@ -373,8 +337,8 @@ class ArticleGenerator:
                     # upos = token.pos_
                     lemma = str(token.lemma_).lower()
                     token_index = token.idx
-                    token_props = self.token_properties[token_index]\
-                        if token_index in self.token_properties else []
+                    token_props = token_properties[token_index]\
+                        if token_index in token_properties else []
                     # print(f'{len(token)} "{token}"', token_props)
                     
                     # Find multi-word terms in the dictionary

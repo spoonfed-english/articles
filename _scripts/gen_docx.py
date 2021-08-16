@@ -12,6 +12,20 @@ Requirements:
     - pip install bs4
 """
 
+CONTENT_CLEAN_REGEX = (
+    # (re.compile(r'‘’'), '\''),
+    # (re.compile(r'“”'), '"'),
+)
+WORDS_CLEAN_REGEX = (
+    # Remove floating punctuation
+    (re.compile(r'(^|\s+)([ -/]|[:-@]|[\[-`]|[{-~])+(\s+|$)'), ' '),
+    # Consecutive puntionation, which may cause issues, e.g. ". (quote followed by period) will
+    # count the period as a word
+    (re.compile(r'([ -/]|[:-@]|[\[-`]|[{-~]){2,}'), r'\1'),
+)
+WORDS_REGEX = re.compile(r'[-\w.\'’]+')
+TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-–\w]+)')
+
 
 def to_bool(value):
     value = str(value).lower()
@@ -42,6 +56,8 @@ class DocParser:
     
     def __init__(self):
         self.image_paths = dict()
+        self.token_properties = dict()
+        self.token_offset = 0
         pass
     
     def parse_rels(self, export_images: Path):
@@ -91,6 +107,14 @@ class DocParser:
             pass
         
         return exported_images
+
+    def parse_token_properties(self, m):
+        token_index = m.start() + self.token_offset
+        self.token_properties[token_index] = m.group(1).strip(',').split(',') \
+            if m.group(1) else ['ignore']
+    
+        self.token_offset -= len(m.group(0)) - len(m.group(2))
+        return m.group(2)
     
     @staticmethod
     def select_mode(heading):
@@ -126,6 +150,7 @@ class DocParser:
             difficulty='Medium',
             content=None,
             questions=questions,
+            word_count=0,
         )
         content = []
         content_tags = []
@@ -271,15 +296,27 @@ class DocParser:
     
         if list_index != -1:
             content_tags.append((len(content), '/ul'))
-    
+
+        for regex, sub in CONTENT_CLEAN_REGEX:
+            content = regex.sub(sub, content)
+        self.token_properties.clear()
+        self.token_offset = 0
+        content = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, content)
+
+        words_text = props['description'] + '\n' + content
+        for regex, sub in WORDS_CLEAN_REGEX:
+            words_text = regex.sub(sub, words_text)
+        split_words = WORDS_REGEX.findall(words_text)
+        props['word_count'] = str(len(split_words))
+        # pprint(split_words)
+        
         props['content'] = content
         props['content_tags'] = content_tags
 
         self.zip_file.close()
         
         # pprint(props)
-        return props
-        pass
+        return props, self.token_properties
 
     @staticmethod
     def tag(tag):
