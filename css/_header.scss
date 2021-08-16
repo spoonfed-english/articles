@@ -85,6 +85,31 @@ header {
 	.stats .words {
 		margin-right: 1rem;
 	}
+	.rating {
+		.score {
+			color: #fff;
+			background: #b3b3b3;
+			border-radius: 2px;
+			padding: 0 0.25rem;
+			margin-left: 0.25rem;
+		}
+
+		&.extremely-easy .score, &.very-easy .score {
+			background: #a56bb3;
+		}
+		&.easy .score {
+			background: #6bb38b;
+		}
+		&.medium .score {
+			background: #6b92b3;
+		}
+		&.difficult .score {
+			background: #b3896b;
+		}
+		&.very-difficult .score {
+			background: #b36b6b;
+		}
+	}
 
 	p {
 		border-width: 5px 0;

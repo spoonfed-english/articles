@@ -23,7 +23,9 @@ SCORE_ADJUSTMENTS = dict(
     coleman_liau_score=0.9,
     gunningfog_score=0.9,
 )
-DIFFICULTIES = ('Extremely Easy', 'Very Easy', 'Easy', 'Medium', 'Difficult', 'Very Difficult')
+DIFFICULTIES = (
+    'Extremely Easy', 'Very Easy', 'Easy', 'Medium',
+    'Difficult', 'Very Difficult')
 
 DEBUG_OUTPUT = False
 
@@ -67,11 +69,8 @@ class DifficultyChecker:
         
         scores = ('ari_score', 'fleschkincaid_score', 'coleman_liau_score', 'gunningfog_score')
         self.grade = statistics.mean(data[name] for name in scores)
-        self.score = min(max((self.grade / 13.0) * 10, 0), 10)
-        self.score_nice = round(self.score * 2) / 2
-        
-        index = round(self.score / 10 * (len(DIFFICULTIES) - 1))
-        self.difficulty = DIFFICULTIES[index]
+        self.score, self.score_nice = self.calculate_score(self.grade)
+        self.difficulty = self.calculate_difficulty(self.score)
         
         pass
     
@@ -85,6 +84,18 @@ class DifficultyChecker:
         data['coleman_liau_score'] = 0.0588 * (data['awl'] * 100) - \
                                      0.296 * (data['asc'] * 100) - 15.8
         pass
+
+    @staticmethod
+    def calculate_score(grade):
+        score = min(max((grade / 13.0) * 10, 0), 10)
+        score_nice = round(score * 2) / 2
+        return score, score_nice
+        pass
+
+    @staticmethod
+    def calculate_difficulty(score):
+        index = round(score / 10 * (len(DIFFICULTIES) - 1))
+        return DIFFICULTIES[index]
     
     @staticmethod
     def ease_in_sine(x):

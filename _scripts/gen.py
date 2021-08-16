@@ -23,6 +23,7 @@ from pprint import pprint
 from PIL import Image
 from titlecase import titlecase
 
+from difficulty_checker import DifficultyChecker
 from gen_docx import DocParser
 
 DO_NLP = True
@@ -225,6 +226,7 @@ class ArticleGenerator:
                         word_data.append((list_type, freq))
                         
         doc_parse = DocParser()
+        checker = DifficultyChecker()
         
         if DO_NLP:
             nlp = spacy.load(f'en_core_web_{VOCAB_SIZE}')
@@ -280,7 +282,7 @@ class ArticleGenerator:
             del props['questions']
             
             # Validate properties
-            for name in ['title', 'description', 'difficulty', 'content']:
+            for name in ['title', 'description', 'content']:
                 if props[name] is None:
                     print(f'"{name}" property not found')
                     props[name] = ''
@@ -299,7 +301,29 @@ class ArticleGenerator:
             props['image_class'] = ' '.join(props['image_class'])
             if props['image_class']:
                 props['image_class'] = ' ' + props['image_class']
+            
+            # Calculate rating
+            if not props['difficulty'] or not props['grade']:
+                full_text = props['description'] + '\n' + content_text
+                checker.run(full_text)
                 
+                if not props['grade']:
+                    props['grade'] = checker.grade
+                    props['score'] = checker.score
+                    if not props['difficulty']:
+                        props['difficulty'] = checker.difficulty
+                else:
+                    props['score'], _ = checker.calculate_score(props['grade'])
+                    if not props['difficulty']:
+                        props['difficulty'] = checker.calculate_difficulty(props['score'])
+            
+            grade = props['grade']
+            score = props['score']
+            props['score'] = f'{score:.2f}'
+            props['grade'] = f'{grade:.2f}'
+            props['score_nice'] = int(score)
+            props['grade_class'] = props['difficulty'].lower().replace(' ', '-')
+            
             if DO_NLP or CACHE_TOKENS:
                 # Highlight IELTS words
                 combined_tags = []

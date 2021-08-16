@@ -212,6 +212,28 @@ header .stats .filler {
 header .stats .words {
   margin-right: 1rem;
 }
+header .rating .score {
+  color: #fff;
+  background: #b3b3b3;
+  border-radius: 2px;
+  padding: 0 0.25rem;
+  margin-left: 0.25rem;
+}
+header .rating.extremely-easy .score, header .rating.very-easy .score {
+  background: #a56bb3;
+}
+header .rating.easy .score {
+  background: #6bb38b;
+}
+header .rating.medium .score, header .rating.medium-high .score {
+  background: #6b92b3;
+}
+header .rating.difficult .score {
+  background: #b3896b;
+}
+header .rating.very-difficult .score {
+  background: #b36b6b;
+}
 header p {
   border-width: 5px 0;
   border-style: solid;
