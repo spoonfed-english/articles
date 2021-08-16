@@ -11,7 +11,6 @@ from pathlib import Path
 from pprint import pprint
 
 import clipboard
-# from hyphen import Hyphenator
 from textatistic import Textatistic
 
 from gen_docx import DocParser
