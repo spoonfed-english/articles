@@ -1,4 +1,6 @@
 """
+DON'T USE THIS.
+A naive approach - just totalled up a few different stats, e.g. word frequency, word length
 Requirements:
     - pip install clipboard
     - pip install colorama
