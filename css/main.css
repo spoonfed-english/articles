@@ -225,7 +225,7 @@ header .rating.extremely-easy .score, header .rating.very-easy .score {
 header .rating.easy .score {
   background: #6bb38b;
 }
-header .rating.medium .score, header .rating.medium-high .score {
+header .rating.medium .score {
   background: #6b92b3;
 }
 header .rating.difficult .score {
