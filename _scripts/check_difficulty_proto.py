@@ -67,21 +67,22 @@ class DifficultyChecker:
             pass
         pass
     
-    def run(self, text):
-        if isinstance(text, Path):
-            self.document_name = DOC_NAME_CLEAN_REGEX.sub('', text.stem)
+    def run(self, text_or_path):
+        if isinstance(text_or_path, Path):
+            self.document_name = DOC_NAME_CLEAN_REGEX.sub('', text_or_path.stem)
         
-            if text.suffix == '.docx':
-                props = self.doc_parser.parse(text)
+            if text_or_path.suffix == '.docx':
+                props = self.doc_parser.parse(text_or_path)
                 description = props['description'].rstrip('.')
                 content = props['content']
                 self.text = f'{description}\n{content}'
                 self.difficulty = props['difficulty']
             else:
-                with text.open('r', encoding='utf-8') as f:
+                with text_or_path.open('r', encoding='utf-8') as f:
                     self.text = f.read()
         else:
             self.document_name = 'Clipboard'
+            self.text = text_or_path
 
         # readability.summarize(self.text)
 
