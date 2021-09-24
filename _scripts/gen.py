@@ -11,6 +11,7 @@ Requirements:
 - pip install Pillow (https://pypi.org/project/Pillow/)
 - pip install spacy (See full installation instructions: https://spacy.io/usage)
 """
+import json
 import os
 import pickle
 import re
@@ -47,6 +48,9 @@ HYPEN_REGEX = re.compile(r'^[-–]+$')
 ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
 QUESTIONS_REGEX = re.compile(r'(\t*)__\[QUESTIONS__(.+)__QUESTIONS]__\n*', re.DOTALL)
 QUESTION_REGEX = re.compile(r'(\t+)__\[QUESTION__(.+)__QUESTION]__', re.DOTALL)
+
+PARSE_ATTRIBS_REGEX = re.compile(r'\s*(.+?)\s*="([^"]*?)"')
+CLASS_LIST_SPLIT_REGEX = re.compile(r'\s+')
 
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
@@ -120,7 +124,7 @@ class ArticleGenerator:
         indent = ''
         output = []
         end_index = len(content_text)
-        for index, tag_name, attribs in reversed(content_tags):
+        for index, tag_name, attribs, data in reversed(content_tags):
             if end_index != index:
                 output.append(content_text[index:end_index])
         
@@ -273,7 +277,7 @@ class ArticleGenerator:
             except Exception:
                 print(f'Unable to open image: "{str(image_path)}"')
                 img_width, img_height = 1200, 1200
-            
+                
             # Read data
             props, token_properties = doc_parse.parse(data_file)
             content_tags = props['content_tags']
@@ -417,17 +421,24 @@ class ArticleGenerator:
                             data_lemma = lemma
                     
                     if word_freq:
+                        data = dict(
+                            word_lists=set(
+                                [list_type for list_type, freq in word_freq] +
+                                [f'{list_type}-{freq}' for list_type, freq in word_freq])
+                        )
+                        
                         if data_lemma is not None:
-                            data_lemma = f' data-lemma="{data_lemma}"'
+                            lemma_attr = f' data-lemma="{data_lemma}"'
+                            data['lemma'] = data_lemma
                         else:
-                            data_lemma = ''
+                            lemma_attr = ''
                         
                         word_lists = ' '.join(list_type for list_type, freq in word_freq)
                         freq_list = [f'{list_type}-{freq}' for list_type, freq in word_freq if freq]
                         freqs = (' ' + ' '.join(freq_list)).rstrip()
                         
                         tag_name = 'span'
-                        attribs = f'class="word {word_lists}{freqs}"{data_lemma} tabindex="-1"'
+                        attribs = f'class="word {word_lists}{freqs}"{lemma_attr} tabindex="-1"'
                         
                         while content_tags_index < len(content_tags):
                             tag_data = content_tags[content_tags_index]
@@ -438,8 +449,8 @@ class ArticleGenerator:
                             content_tags_index += 1
                             pass
 
-                        combined_tags.append((token_index, tag_name, attribs))
-                        combined_tags.append((token_index + len(word_text), f'/{tag_name}', ''))
+                        combined_tags.append((token_index, tag_name, attribs, data))
+                        combined_tags.append((token_index + len(word_text), f'/{tag_name}', '', dict()))
                     
                     pass
         
@@ -450,6 +461,7 @@ class ArticleGenerator:
                 content_tags = combined_tags
 
             # pprint(content_tags)
+            content_raw = content_text
             content_text = self.add_tags(content_text, content_tags)
             
             props['content'] = content_text
@@ -481,11 +493,15 @@ class ArticleGenerator:
             for key, value in props.items():
                 key = f'__{key.upper()}__'
                 output_html = output_html.replace(key, str(value))
-            
+                
             # Output
             with Path(f'../{output_name}.html').open('w', encoding='utf-8') as f:
                 f.write(output_html)
-    
+
+            with Path(f'../data/articles/{base_name}.json').open('w', encoding='utf-8') as f:
+                json_data = self.get_json(props, content_raw, content_tags)
+                json.dump(json_data, f)
+            
             if is_new:
                 rename_file = file.with_name(f'{output_name}.docx')
                 file.rename(rename_file)
@@ -497,6 +513,85 @@ class ArticleGenerator:
             with INDEX_FILE.open('w', encoding='utf-8') as f:
                 f.write('\n'.join([str(index), last_file]))
         pass
+    
+    @staticmethod
+    def get_json(props, content_text, content_tags):
+        output = []
+        paragraph_content = None
+        end_index = len(content_text)
+        text_buffer = []
+        i = 0
+        while i < len(content_tags):
+            index, tag_name, _, data = content_tags[i]
+            i += 1
+            
+            # if tag_name[0] == '/':
+            #     continue
+
+            print(index, tag_name, data)
+
+            if end_index != index:
+                text_buffer.append(content_text[end_index:index])
+                end_index = index
+            
+            if tag_name == 'p':
+                if paragraph_content is not None and text_buffer:
+                    paragraph_content.append([''.join(text_buffer)])
+                    text_buffer.clear()
+                paragraph_content = None
+                end_index = index
+                continue
+            
+            if paragraph_content is None:
+                paragraph_content = []
+                output.append(paragraph_content)
+
+            if tag_name == 'br':
+                text_buffer.append('\n')
+                pass
+            
+            if tag_name == 'span':
+                if text_buffer:
+                    paragraph_content.append([''.join(text_buffer)])
+                    text_buffer.clear()
+                
+                # Get the closing /span tag
+                index, _, _, _ = content_tags[i]
+                i += 1
+                run = [content_text[end_index:index]]
+                if 'word_lists' in data and data['word_lists']:
+                    run.append(' '.join(data['word_lists']))
+                if 'lemma' in data:
+                    run.append(data['lemma'])
+                paragraph_content.append(run)
+                end_index = index
+                continue
+
+        if text_buffer:
+            if paragraph_content is None:
+                paragraph_content = []
+                output.append(paragraph_content)
+            paragraph_content.append([''.join(text_buffer)])
+            text_buffer.clear()
+        
+        data = dict(
+            title=props['title'],
+            description=props['description'],
+            wordCount=props['word_count'],
+            difficulty=props['difficulty'],
+            grade=float(props['grade']),
+            rating=float(props['score']),
+            content=output,
+        )
+        return data
+    
+    @staticmethod
+    def parse_attribs(attribs):
+        data = dict()
+        for name, value in PARSE_ATTRIBS_REGEX.findall(attribs):
+            data[name] = value
+        
+        return data
 
 
 if __name__ == "__main__":

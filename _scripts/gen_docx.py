@@ -256,16 +256,19 @@ class DocParser:
                     content_length -= t_length - len(text)
                     
                     if before_tags:
-                        content_tags += [(start_index, DocParser.tag(tag), DocParser.attribs(tag))
-                                         for tag in before_tags]
+                        content_tags += [
+                            (start_index, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                            for tag in before_tags]
                         before_tags.clear()
                     if inner_tags:
-                        content_tags += [(index, DocParser.tag(tag), DocParser.attribs(tag))
-                                         for index, tag in inner_tags]
+                        content_tags += [
+                            (index, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                            for index, tag in inner_tags]
                         inner_tags.clear()
                     if after_tags:
-                        content_tags += [(content_length, DocParser.tag(tag), DocParser.attribs(tag))
-                                         for tag in after_tags]
+                        content_tags += [
+                            (content_length, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                            for tag in after_tags]
                         after_tags.clear()
                 
                     content.append(f'{text}\n')
