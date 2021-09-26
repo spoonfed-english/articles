@@ -53,9 +53,12 @@ QUESTION_REGEX = re.compile(r'(\t+)__\[QUESTION__(.+)__QUESTION]__', re.DOTALL)
 PARSE_ATTRIBS_REGEX = re.compile(r'\s*(.+?)\s*="([^"]*?)"')
 CLASS_LIST_SPLIT_REGEX = re.compile(r'\s+')
 
+DATA_BASE = Path('../data')
+ARTICLES_DATA_BASE = DATA_BASE / 'articles'
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
 ARTICLE_INDEX_FILE = Path('../articles.html')
+JSON_INDEX_FILE = ARTICLES_DATA_BASE / '_index.json'
 
 VOCAB_SIZE = 'sm'
 
@@ -106,25 +109,40 @@ class ArticleGenerator:
         return files
 
     @staticmethod
+    def add_to_json_index(base_name):
+        if not JSON_INDEX_FILE.exists():
+            data = dict(articles=[])
+        else:
+            with JSON_INDEX_FILE.open('r', encoding='utf-8') as f:
+                data = json.load(f)
+
+        data['articles'].insert(0, base_name)
+        with JSON_INDEX_FILE.open('w', encoding='utf-8') as f:
+            json.dump(data, f)
+        pass
+
+    @staticmethod
     def add_to_index(output_name, base_name):
+        ArticleGenerator.add_to_json_index(base_name)
+        
         if not ARTICLE_INDEX_FILE.exists():
             print(f'Article index file not found "{ARTICLE_INDEX_FILE.name}"')
             return
-    
+
         with ARTICLE_INDEX_FILE.open('r', encoding='utf-8') as f:
             text = f.read()
-    
+
         m = ARTICLE_INDEX_LIST_END_REGEX.search(text)
         if not m:
             print('Cannot find list end in article index')
             return
-    
+
         indent = m.group(1)
         base_name = SLUG_TO_TITLE_REGEX.sub(' ', base_name)
         new_item = f'{indent}<li><a href="{output_name}.html">{titlecase(base_name)}</a></li>'
         start, end = m.start(), m.end()
         text = text[:start] + f'{new_item}\n{indent}{m.group(2)}' + text[end:]
-    
+
         with ARTICLE_INDEX_FILE.open('w', encoding='utf-8') as f:
             f.write(text)
         pass
