@@ -20,6 +20,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 from pprint import pprint
+from typing import List, Optional
 
 from PIL import Image
 from titlecase import titlecase
@@ -60,8 +61,18 @@ VOCAB_SIZE = 'sm'
 
 
 class ArticleGenerator:
+    output_child: Optional[List]
+    output_paragraph: Optional[List]
+    output_parent: Optional[List]
+    
     def __init__(self):
         self.content_indent = ''
+        
+        self.json_output = []
+        self.text_buffer = []
+        self.output_paragraph = None
+        self.output_parent = None
+        self.output_child = None
         pass
 
     @staticmethod
@@ -514,12 +525,63 @@ class ArticleGenerator:
                 f.write('\n'.join([str(index), last_file]))
         pass
     
-    @staticmethod
-    def get_json(props, content_text, content_tags):
-        output = []
-        paragraph_content = None
+    def json_reset(self):
+        self.text_buffer.clear()
+        self.json_output = []
+        self.text_buffer = []
+        self.output_paragraph = None
+        self.output_parent = None
+        self.output_child = None
+    
+    def push_text(self, text):
+        self.text_buffer.append(text)
+        pass
+    
+    def push_data(self, data):
+        self.flush_text()
+
+        self.ensure_para()
+        self.output_parent.append(data)
+        pass
+    
+    def new_paragraph(self):
+        self.flush_text()
+        self.pop_child()
+        self.output_paragraph = None
+        self.output_parent = None
+        pass
+    
+    def flush_text(self):
+        if not self.text_buffer:
+            return
+
+        self.ensure_para()
+        self.output_parent.append([''.join(self.text_buffer)])
+        self.text_buffer.clear()
+        pass
+    
+    def ensure_para(self):
+        if self.output_parent is None:
+            self.output_paragraph = []
+            self.output_parent = self.output_paragraph
+            self.json_output.append(self.output_parent)
+    
+    def push_child(self):
+        self.ensure_para()
+        self.output_child = []
+        self.output_parent.append(self.output_child)
+        self.output_parent = self.output_child
+    
+    def pop_child(self):
+        if self.output_child is None:
+            return
+
+        self.output_parent = self.output_paragraph
+        self.output_child = None
+    
+    def get_json(self, props, content_text, content_tags):
         end_index = len(content_text)
-        text_buffer = []
+        self.json_reset()
         i = 0
         while i < len(content_tags):
             index, tag_name, _, data = content_tags[i]
@@ -528,32 +590,32 @@ class ArticleGenerator:
             # if tag_name[0] == '/':
             #     continue
 
-            print(index, tag_name, data)
+            # print(index, tag_name, data)
 
             if end_index != index:
-                text_buffer.append(content_text[end_index:index])
+                self.push_text(content_text[end_index:index])
                 end_index = index
             
             if tag_name == 'p':
-                if paragraph_content is not None and text_buffer:
-                    paragraph_content.append([''.join(text_buffer)])
-                    text_buffer.clear()
-                paragraph_content = None
+                self.new_paragraph()
                 end_index = index
                 continue
-            
-            if paragraph_content is None:
-                paragraph_content = []
-                output.append(paragraph_content)
 
             if tag_name == 'br':
-                text_buffer.append('\n')
+                self.push_text('\n')
+            if tag_name == 'ul':
+                self.new_paragraph()
+            if tag_name == '/ul':
+                # self.pop_child()
+                self.new_paragraph()
+            if tag_name == 'li':
+                # self.pop_child()
+                # self.new_paragraph()
+                self.push_data((chr(2), ))
+                # self.push_child()
                 pass
-            
-            if tag_name == 'span':
-                if text_buffer:
-                    paragraph_content.append([''.join(text_buffer)])
-                    text_buffer.clear()
+            elif tag_name == 'span':
+                self.flush_text()
                 
                 # Get the closing /span tag
                 index, _, _, _ = content_tags[i]
@@ -563,16 +625,11 @@ class ArticleGenerator:
                     run.append(' '.join(data['word_lists']))
                 if 'lemma' in data:
                     run.append(data['lemma'])
-                paragraph_content.append(run)
+                self.push_data(run)
                 end_index = index
                 continue
 
-        if text_buffer:
-            if paragraph_content is None:
-                paragraph_content = []
-                output.append(paragraph_content)
-            paragraph_content.append([''.join(text_buffer)])
-            text_buffer.clear()
+        self.flush_text()
         
         data = dict(
             title=props['title'],
@@ -581,7 +638,7 @@ class ArticleGenerator:
             difficulty=props['difficulty'],
             grade=float(props['grade']),
             rating=float(props['score']),
-            content=output,
+            content=self.json_output,
         )
         return data
     
