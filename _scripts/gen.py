@@ -109,21 +109,32 @@ class ArticleGenerator:
         return files
 
     @staticmethod
-    def add_to_json_index(base_name):
+    def add_to_json_index(base_name, title):
         if not JSON_INDEX_FILE.exists():
             data = dict(articles=[])
         else:
             with JSON_INDEX_FILE.open('r', encoding='utf-8') as f:
                 data = json.load(f)
 
-        data['articles'].insert(0, base_name)
+        found_match = False
+        for i in range(len(data['articles'])):
+            article_data = data['articles'][i]
+            if isinstance(article_data, str) and article_data == base_name\
+                    or article_data[0] == base_name:
+                data['articles'][i] = (base_name, title)
+                found_match = True
+                break
+        
+        if not found_match:
+            data['articles'].insert(0, (base_name, title))
+        
         with JSON_INDEX_FILE.open('w', encoding='utf-8') as f:
-            json.dump(data, f)
+            json.dump(data, f, indent='\t')
         pass
 
     @staticmethod
-    def add_to_index(output_name, base_name):
-        ArticleGenerator.add_to_json_index(base_name)
+    def add_to_index(output_name, base_name, title):
+        ArticleGenerator.add_to_json_index(base_name, title)
         
         if not ARTICLE_INDEX_FILE.exists():
             print(f'Article index file not found "{ARTICLE_INDEX_FILE.name}"')
@@ -530,12 +541,13 @@ class ArticleGenerator:
             with Path(f'../data/articles/{base_name}.json').open('w', encoding='utf-8') as f:
                 json_data = self.get_json(props, content_raw, content_tags)
                 json.dump(json_data, f)
-            
-            if is_new:
-                rename_file = file.with_name(f'{output_name}.docx')
-                file.rename(rename_file)
-                last_file = str(rename_file)
-                ArticleGenerator.add_to_index(output_name, base_name)
+
+            ArticleGenerator.add_to_index(output_name, base_name, props['title'])
+            # if is_new:
+            #     rename_file = file.with_name(f'{output_name}.docx')
+            #     file.rename(rename_file)
+            #     last_file = str(rename_file)
+            #     ArticleGenerator.add_to_index(output_name, base_name, props['title'])
     
         # Update index
         if index != start_index or last_file != start_last_file:
