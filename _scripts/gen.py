@@ -58,7 +58,7 @@ ARTICLES_DATA_BASE = DATA_BASE / 'articles'
 TPL_HTML_FILE = Path('../_template.html')
 INDEX_FILE = Path('data/index')
 ARTICLE_INDEX_FILE = Path('../articles.html')
-JSON_INDEX_FILE = ARTICLES_DATA_BASE / '_articles_index.json'
+JSON_INDEX_FILE = ARTICLES_DATA_BASE / 'articles_index.json'
 
 VOCAB_SIZE = 'sm'
 
