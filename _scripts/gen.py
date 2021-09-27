@@ -542,12 +542,11 @@ class ArticleGenerator:
                 json_data = self.get_json(props, content_raw, content_tags)
                 json.dump(json_data, f)
 
-            ArticleGenerator.add_to_index(output_name, base_name, props['title'])
-            # if is_new:
-            #     rename_file = file.with_name(f'{output_name}.docx')
-            #     file.rename(rename_file)
-            #     last_file = str(rename_file)
-            #     ArticleGenerator.add_to_index(output_name, base_name, props['title'])
+            if is_new:
+                rename_file = file.with_name(f'{output_name}.docx')
+                file.rename(rename_file)
+                last_file = str(rename_file)
+                ArticleGenerator.add_to_index(output_name, base_name, props['title'])
     
         # Update index
         if index != start_index or last_file != start_last_file:
