@@ -61,6 +61,8 @@ INDEX_FILE = Path('data/index')
 ARTICLE_INDEX_FILE = Path('../articles.html')
 JSON_INDEX_FILE = ARTICLES_DATA_BASE / 'articles_index.json'
 
+TITLE_ABBREVIATIONS = {'sa', 'uk'}
+
 VOCAB_SIZE = 'sm'
 
 
@@ -109,6 +111,14 @@ class ArticleGenerator:
     
         return files
 
+    def titlecase(self, text):
+        return titlecase(text, callback=self.titlecase_abbreviations)
+
+    @staticmethod
+    def titlecase_abbreviations(word, **kwargs):
+        if word.lower() in TITLE_ABBREVIATIONS:
+            return word.upper()
+
     @staticmethod
     def add_to_json_index(base_name, props):
         if not JSON_INDEX_FILE.exists():
@@ -126,13 +136,13 @@ class ArticleGenerator:
         )
 
         found_match = False
-        # for i in range(len(data['articles'])):
-        #     article_data = data['articles'][i]
-        #     if isinstance(article_data, list) and article_data[0] == base_name or \
-        #             isinstance(article_data, dict) and article_data['slug'] == base_name:
-        #         data['articles'][i] = new_data
-        #         found_match = True
-        #         break
+        for i in range(len(data['articles'])):
+            article_data = data['articles'][i]
+            if isinstance(article_data, list) and article_data[0] == base_name or \
+                    isinstance(article_data, dict) and article_data['slug'] == base_name:
+                data['articles'][i] = new_data
+                found_match = True
+                break
         
         if not found_match:
             data['articles'].insert(0, new_data)
@@ -141,8 +151,7 @@ class ArticleGenerator:
             json.dump(data, f, indent='\t')
         pass
 
-    @staticmethod
-    def add_to_index(output_name, base_name, props):
+    def add_to_index(self, output_name, base_name, props):
         ArticleGenerator.add_to_json_index(base_name, props)
         
         if not ARTICLE_INDEX_FILE.exists():
@@ -159,7 +168,7 @@ class ArticleGenerator:
 
         indent = m.group(1)
         base_name = SLUG_TO_TITLE_REGEX.sub(' ', base_name)
-        new_item = f'{indent}<li><a href="{output_name}.html">{titlecase(base_name)}</a></li>'
+        new_item = f'{indent}<li><a href="{output_name}.html">{self.titlecase(base_name)}</a></li>'
         start, end = m.start(), m.end()
         text = text[:start] + f'{new_item}\n{indent}{m.group(2)}' + text[end:]
 
@@ -343,7 +352,7 @@ class ArticleGenerator:
             content_text = props['content']
             
             props['date'] = FILENAME_DATE_REGEX.match(output_name).group(1)
-            props['title'] = titlecase(props['title'].lower())
+            props['title'] = self.titlecase(props['title'].lower())
             props['description'] = props['description'].rstrip('.')
     
             props['image'] = base_name
@@ -556,7 +565,7 @@ class ArticleGenerator:
                 rename_file = file.with_name(f'{output_name}.docx')
                 file.rename(rename_file)
                 last_file = str(rename_file)
-                ArticleGenerator.add_to_index(output_name, base_name, props)
+                self.add_to_index(output_name, base_name, props)
     
         # Update index
         if index != start_index or last_file != start_last_file:
