@@ -1,124 +1,214 @@
 {
 	"articles": [
-		[
-			"516-arouca-the-longest-suspension-bridge",
-			"\"516 Arouca\" the World's Longest Pedestrian Suspension Bridge"
-		],
-		[
-			"kfc-and-du-fu-museum-team-up",
-			"KFC and Du Fu Thatched Hut Museum Team Up"
-		],
-		[
-			"dolphins-and-humans-have-similar-personality-traits",
-			"Dolphins and Humans Have Similar Personality Traits"
-		],
-		[
-			"volcanoes-mt-st-helens",
-			"Volcanoes - Mt St Helens"
-		],
-		[
-			"seed-sized-chameleon-found-in-madagascar",
-			"Seed-Sized Chameleon Found in Madagascar"
-		],
-		[
-			"sa-to-ban-breeding-of-lions-in-captivity",
-			"Sa to Ban Breeding of Lions in Captivity"
-		],
-		[
-			"tension-on-mars",
-			"Tension on Mars"
-		],
-		[
-			"most-countries-nowhere-near-zero-net-emissions",
-			"Most Countries Nowhere Near Net-Zero Emissions"
-		],
-		[
-			"i-fell-in-love-with-my-bests-friend-s-uncle-when-i-was-12",
-			"I Fell in Love With My Best Friend\u2019s Uncle When I Was 12"
-		],
-		[
-			"fake-piercing-trend-on-social-media-part-2",
-			"Fake Piercings a Trend on Social Media"
-		],
-		[
-			"fake-piercing-trend-on-social-media-part-1",
-			"Teenager in Hospital After Swallowing Magnets"
-		],
-		[
-			"man-swallowed-by-humpback-whale",
-			"Man Was Swallowed by a Humpback Whale"
-		],
-		[
-			"woman-finds-ancient-artefact-in-her-garden",
-			"Woman\u2019s an Ancient Roman Artefact in Her Garden"
-		],
-		[
-			"why-is-india-the-world-capital-for-selfie-deaths",
-			"Why Is India the World Capital of Selfie Deaths"
-		],
-		[
-			"police-chase-ends-at-mcdonalds-drive-through",
-			"Police Chase Ends at McDonald\u2019s Drive-Through"
-		],
-		[
-			"3-5m-snake-that-escaped-zoo",
-			"3.5m Snake That Escaped Zoo, Found in Shopping Mall"
-		],
-		[
-			"woman-finds-note-in-bedside-table",
-			"Woman Finds Note in Bedside Table Bought at a Charity Shop"
-		],
-		[
-			"cameron-herrin-part-2",
-			"Driver Gets 24 Years \u2013 Part 2"
-		],
-		[
-			"driver-gets-24-years-prison-for-crash",
-			"Driver Gets 24 Years Prison for Crash That Killed Mother and Daughter"
-		],
-		[
-			"china-ecological-poverty-relief",
-			"Ecological Poverty-Relief Programmes in China Help Increase Income for Rural Residents"
-		],
-		[
-			"the-louvre",
-			"The Louvre's 480 000 Artworks Can Now Be Viewed Online"
-		],
-		[
-			"radfords",
-			"The Radford\u2019s - Britians Largest Family"
-		],
-		[
-			"vets-saved-cat-with-vodka",
-			"How South African Vets Saved Babi the Cat's Life With a Few Shots of Vodka"
-		],
-		[
-			"youngest-woman-to-row-atlantic-solo",
-			"21-Year-Old Uk Teacher Becomes Youngest Woman to Row Atlantic Solo"
-		],
-		[
-			"man-claims-wife-is-dead",
-			"Man Claims Wife Is Dead - But She Is Not"
-		],
-		[
-			"christian-eriksen",
-			"Christian Eriksen, Denmark Footballer Collapses"
-		],
-		[
-			"the-amur-leopard",
-			"The Amur Leopard - National Geographic - Scott Elder"
-		],
-		[
-			"the-reason-the-titanic-sank",
-			"An Aurora Might Be the Reason the Titanic Sank"
-		],
-		[
-			"dean-nicholson-cycling-with-his-stray-cat",
-			"Dean Nicholson Cycling With His Stray Cat"
-		],
-		[
-			"how-pets-can-help-improve-mental-health",
-			"How Pets Can Help Improve Mental Health"
-		]
+		{
+			"slug": "516-arouca-the-longest-suspension-bridge",
+			"title": "\"516 Arouca\" the World's Longest Pedestrian Suspension Bridge",
+			"difficulty": "Medium",
+			"wordCount": 209,
+			"date": "27-september-2021"
+		},
+		{
+			"slug": "kfc-and-du-fu-museum-team-up",
+			"title": "KFC and Du Fu Thatched Hut Museum Team Up",
+			"difficulty": "Medium",
+			"wordCount": 299,
+			"date": "20-september-2021"
+		},
+		{
+			"slug": "dolphins-and-humans-have-similar-personality-traits",
+			"title": "Dolphins and Humans Have Similar Personality Traits",
+			"difficulty": "Difficult",
+			"wordCount": 267,
+			"date": "20-september-2021"
+		},
+		{
+			"slug": "volcanoes-mt-st-helens",
+			"title": "Volcanoes - Mt St Helens",
+			"difficulty": "Medium",
+			"wordCount": 246,
+			"date": "08-september-2021"
+		},
+		{
+			"slug": "seed-sized-chameleon-found-in-madagascar",
+			"title": "Seed-Sized Chameleon Found in Madagascar",
+			"difficulty": "Medium",
+			"wordCount": 194,
+			"date": "30-august-2021"
+		},
+		{
+			"slug": "sa-to-ban-breeding-of-lions-in-captivity",
+			"title": "Sa to Ban Breeding of Lions in Captivity",
+			"difficulty": "Very Difficult",
+			"wordCount": 408,
+			"date": "23-august-2021"
+		},
+		{
+			"slug": "tension-on-mars",
+			"title": "Tension on Mars",
+			"difficulty": "Medium",
+			"wordCount": 348,
+			"date": "13-august-2021"
+		},
+		{
+			"slug": "most-countries-nowhere-near-zero-net-emissions",
+			"title": "Most Countries Nowhere Near Net-Zero Emissions",
+			"difficulty": "Very Difficult",
+			"wordCount": 377,
+			"date": "06-august-2021"
+		},
+		{
+			"slug": "i-fell-in-love-with-my-bests-friend-s-uncle-when-i-was-12",
+			"title": "I Fell in Love With My Best Friend\u2019s Uncle When I Was 12",
+			"difficulty": "Easy",
+			"wordCount": 643,
+			"date": "04-august-2021"
+		},
+		{
+			"slug": "fake-piercing-trend-on-social-media-part-2",
+			"title": "Fake Piercings a Trend on Social Media",
+			"difficulty": "Difficult",
+			"wordCount": 298,
+			"date": "02-august-2021"
+		},
+		{
+			"slug": "fake-piercing-trend-on-social-media-part-1",
+			"title": "Teenager in Hospital After Swallowing Magnets",
+			"difficulty": "Medium",
+			"wordCount": 297,
+			"date": "02-august-2021"
+		},
+		{
+			"slug": "man-swallowed-by-humpback-whale",
+			"title": "Man Was Swallowed by a Humpback Whale",
+			"difficulty": "Medium",
+			"wordCount": 562,
+			"date": "02-august-2021"
+		},
+		{
+			"slug": "woman-finds-ancient-artefact-in-her-garden",
+			"title": "Woman\u2019s an Ancient Roman Artefact in Her Garden",
+			"difficulty": "Medium",
+			"wordCount": 282,
+			"date": "29-july-2021"
+		},
+		{
+			"slug": "why-is-india-the-world-capital-for-selfie-deaths",
+			"title": "Why Is India the World Capital of Selfie Deaths",
+			"difficulty": "Medium",
+			"wordCount": 719,
+			"date": "29-july-2021"
+		},
+		{
+			"slug": "police-chase-ends-at-mcdonalds-drive-through",
+			"title": "Police Chase Ends at McDonald\u2019s Drive-Through",
+			"difficulty": "Medium",
+			"wordCount": 363,
+			"date": "29-july-2021"
+		},
+		{
+			"slug": "3-5m-snake-that-escaped-zoo",
+			"title": "3.5m Snake That Escaped Zoo, Found in Shopping Mall",
+			"difficulty": "Medium",
+			"wordCount": 256,
+			"date": "25-july-2021"
+		},
+		{
+			"slug": "woman-finds-note-in-bedside-table",
+			"title": "Woman Finds Note in Bedside Table Bought at a Charity Shop",
+			"difficulty": "Medium",
+			"wordCount": 222,
+			"date": "25-july-2021"
+		},
+		{
+			"slug": "cameron-herrin-part-2",
+			"title": "Driver Gets 24 Years \u2013 Part 2",
+			"difficulty": "Medium",
+			"wordCount": 408,
+			"date": "21-july-2021"
+		},
+		{
+			"slug": "driver-gets-24-years-prison-for-crash",
+			"title": "Driver Gets 24 Years Prison for Crash That Killed Mother and Daughter",
+			"difficulty": "Medium",
+			"wordCount": 906,
+			"date": "20-july-2021"
+		},
+		{
+			"slug": "china-ecological-poverty-relief",
+			"title": "Ecological Poverty-Relief Programmes in China Help Increase Income for Rural Residents",
+			"difficulty": "Very Difficult",
+			"wordCount": 513,
+			"date": "13-july-2021"
+		},
+		{
+			"slug": "the-louvre",
+			"title": "The Louvre's 480 000 Artworks Can Now Be Viewed Online",
+			"difficulty": "Difficult",
+			"wordCount": 261,
+			"date": "12-july-2021"
+		},
+		{
+			"slug": "radfords",
+			"title": "The Radford\u2019s - Britians Largest Family",
+			"difficulty": "Medium",
+			"wordCount": 443,
+			"date": "06-july-2021"
+		},
+		{
+			"slug": "vets-saved-cat-with-vodka",
+			"title": "How South African Vets Saved Babi the Cat's Life With a Few Shots of Vodka",
+			"difficulty": "Medium",
+			"wordCount": 621,
+			"date": "03-july-2021"
+		},
+		{
+			"slug": "youngest-woman-to-row-atlantic-solo",
+			"title": "21-Year-Old Uk Teacher Becomes Youngest Woman to Row Atlantic Solo",
+			"difficulty": "Difficult",
+			"wordCount": 333,
+			"date": "20-june-2021"
+		},
+		{
+			"slug": "man-claims-wife-is-dead",
+			"title": "Man Claims Wife Is Dead - But She Is Not",
+			"difficulty": "Medium",
+			"wordCount": 255,
+			"date": "20-june-2021"
+		},
+		{
+			"slug": "christian-eriksen",
+			"title": "Christian Eriksen, Denmark Footballer Collapses",
+			"difficulty": "Medium",
+			"wordCount": 306,
+			"date": "14-june-2021"
+		},
+		{
+			"slug": "the-amur-leopard",
+			"title": "The Amur Leopard - National Geographic - Scott Elder",
+			"difficulty": "Difficult",
+			"wordCount": 283,
+			"date": "14-june-2021"
+		},
+		{
+			"slug": "the-reason-the-titanic-sank",
+			"title": "An Aurora Might Be the Reason the Titanic Sank",
+			"difficulty": "Medium",
+			"wordCount": 334,
+			"date": "06-june-2021"
+		},
+		{
+			"slug": "dean-nicholson-cycling-with-his-stray-cat",
+			"title": "Dean Nicholson Cycling With His Stray Cat",
+			"difficulty": "Easy",
+			"wordCount": 440,
+			"date": "03-june-2021"
+		},
+		{
+			"slug": "how-pets-can-help-improve-mental-health",
+			"title": "How Pets Can Help Improve Mental Health",
+			"difficulty": "Medium",
+			"wordCount": 225,
+			"date": "01-june-2021"
+		}
 	]
 }

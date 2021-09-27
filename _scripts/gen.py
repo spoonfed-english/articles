@@ -42,6 +42,7 @@ SLUG_REGEXES = (
 PROP_REGEX = re.compile(r'^\[(.+)\]$')
 CONTENT_INDENT_REGEX = re.compile(r'^(\s*).*__CONTENT__', re.MULTILINE)
 BASE_NAME_REGEX = re.compile(r'\d+-\d+-[a-z]+-\d+-', re.MULTILINE)
+FILENAME_DATE_REGEX = re.compile(r'\d+-(\d+-[a-zA-Z]+-\d+).+')
 SLUG_TO_TITLE_REGEX = re.compile(r'-+')
 IGNORE_LIST_SPLIT_REGEX = re.compile(r'\s+')
 TERM_SPLIT_REGEX = re.compile(r'[-–\s]+')
@@ -109,32 +110,40 @@ class ArticleGenerator:
         return files
 
     @staticmethod
-    def add_to_json_index(base_name, title):
+    def add_to_json_index(base_name, props):
         if not JSON_INDEX_FILE.exists():
             data = dict(articles=[])
         else:
             with JSON_INDEX_FILE.open('r', encoding='utf-8') as f:
                 data = json.load(f)
 
+        new_data = dict(
+            slug=base_name,
+            title=props['title'],
+            difficulty=props['difficulty'],
+            wordCount=props['word_count'],
+            date=props['date']
+        )
+
         found_match = False
-        for i in range(len(data['articles'])):
-            article_data = data['articles'][i]
-            if isinstance(article_data, str) and article_data == base_name\
-                    or article_data[0] == base_name:
-                data['articles'][i] = (base_name, title)
-                found_match = True
-                break
+        # for i in range(len(data['articles'])):
+        #     article_data = data['articles'][i]
+        #     if isinstance(article_data, list) and article_data[0] == base_name or \
+        #             isinstance(article_data, dict) and article_data['slug'] == base_name:
+        #         data['articles'][i] = new_data
+        #         found_match = True
+        #         break
         
         if not found_match:
-            data['articles'].insert(0, (base_name, title))
+            data['articles'].insert(0, new_data)
         
         with JSON_INDEX_FILE.open('w', encoding='utf-8') as f:
             json.dump(data, f, indent='\t')
         pass
 
     @staticmethod
-    def add_to_index(output_name, base_name, title):
-        ArticleGenerator.add_to_json_index(base_name, title)
+    def add_to_index(output_name, base_name, props):
+        ArticleGenerator.add_to_json_index(base_name, props)
         
         if not ARTICLE_INDEX_FILE.exists():
             print(f'Article index file not found "{ARTICLE_INDEX_FILE.name}"')
@@ -333,6 +342,7 @@ class ArticleGenerator:
     
             content_text = props['content']
             
+            props['date'] = FILENAME_DATE_REGEX.match(output_name).group(1)
             props['title'] = titlecase(props['title'].lower())
             props['description'] = props['description'].rstrip('.')
     
@@ -367,7 +377,7 @@ class ArticleGenerator:
             props['grade'] = f'{grade:.2f}'
             props['score_nice'] = int(score)
             props['grade_class'] = props['difficulty'].lower().replace(' ', '-')
-            
+
             if DO_NLP or CACHE_TOKENS:
                 # Highlight IELTS words
                 combined_tags = []
@@ -546,7 +556,7 @@ class ArticleGenerator:
                 rename_file = file.with_name(f'{output_name}.docx')
                 file.rename(rename_file)
                 last_file = str(rename_file)
-                ArticleGenerator.add_to_index(output_name, base_name, props['title'])
+                ArticleGenerator.add_to_index(output_name, base_name, props)
     
         # Update index
         if index != start_index or last_file != start_last_file:
@@ -668,6 +678,7 @@ class ArticleGenerator:
             grade=float(props['grade']),
             rating=float(props['score']),
             content=self.json_output,
+            date=props['date'],
         )
         return data
     
