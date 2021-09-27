@@ -33,6 +33,8 @@ CACHE_TOKENS = False
 if DO_NLP:
     import spacy
 
+UPDATE_JSON_INDEX_ONLY = False
+
 TOKEN_CACHE_FILE = Path(r'data/__token_cache.pickle')
 
 SLUG_REGEXES = (
@@ -386,6 +388,10 @@ class ArticleGenerator:
             props['grade'] = f'{grade:.2f}'
             props['score_nice'] = int(score)
             props['grade_class'] = props['difficulty'].lower().replace(' ', '-')
+
+            if UPDATE_JSON_INDEX_ONLY:
+                ArticleGenerator.add_to_json_index(base_name, props)
+                continue
 
             if DO_NLP or CACHE_TOKENS:
                 # Highlight IELTS words
