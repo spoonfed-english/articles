@@ -634,7 +634,7 @@ class ArticleGenerator:
         self.output_child = None
     
     def get_json(self, props, content_text, content_tags):
-        end_index = len(content_text)
+        end_index = 0
         self.json_reset()
         i = 0
         while i < len(content_tags):
