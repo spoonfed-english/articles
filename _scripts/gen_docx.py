@@ -86,6 +86,8 @@ class DocParser:
         
             if export_images is not None:
                 rel_file = Path(r_path)
+                if rel_file.suffix == 'jpeg':
+                    rel_file = rel_file.with_suffix('jpg')
                 if is_first_image:
                     output_file = export_images.with_name(
                         f'{export_images.stem}{rel_file.suffix}')
