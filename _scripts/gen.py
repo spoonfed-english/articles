@@ -16,6 +16,7 @@ import os
 import pickle
 import re
 import sys
+import time
 import traceback
 from datetime import datetime
 from pathlib import Path
@@ -154,7 +155,7 @@ class ArticleGenerator:
         pass
 
     def add_to_index(self, output_name, base_name, props):
-        ArticleGenerator.add_to_json_index(base_name, props)
+        # ArticleGenerator.add_to_json_index(base_name, props)
         
         if not ARTICLE_INDEX_FILE.exists():
             print(f'Article index file not found "{ARTICLE_INDEX_FILE.name}"')
@@ -352,7 +353,8 @@ class ArticleGenerator:
                     props[name] = ''
     
             content_text = props['content']
-            
+
+            props['is_new'] = is_new
             props['date'] = FILENAME_DATE_REGEX.match(output_name).group(1)
             props['title'] = self.titlecase(props['title'].lower())
             props['description'] = props['description'].rstrip('.')
@@ -412,8 +414,8 @@ class ArticleGenerator:
                 if doc is None:
                     if not DO_NLP:
                         raise Exception('NLP document cache not found. Please set DO_NLP to True,'
-                                        ' run again to generate the cache, the DO_NLP can be set to'
-                                        ' false.')
+                                        ' run again to generate the cache, then DO_NLP can be set'
+                                        ' to false.')
                     
                     doc = nlp(content_text)
     
@@ -562,10 +564,8 @@ class ArticleGenerator:
             # Output
             with Path(f'../{output_name}.html').open('w', encoding='utf-8') as f:
                 f.write(output_html)
-
-            with Path(f'../data/articles/{base_name}.json').open('w', encoding='utf-8') as f:
-                json_data = self.get_json(props, content_raw, content_tags)
-                json.dump(json_data, f)
+            
+            self.wechat_export(base_name, props, content_raw, content_tags)
 
             if is_new:
                 rename_file = file.with_name(f'{output_name}.docx')
@@ -577,6 +577,36 @@ class ArticleGenerator:
         if index != start_index or last_file != start_last_file:
             with INDEX_FILE.open('w', encoding='utf-8') as f:
                 f.write('\n'.join([str(index), last_file]))
+        pass
+    
+    def wechat_export(self, base_name, props, content_text, content_tags):
+        self.parse_json(content_text, content_tags)
+        data = dict(
+            title=props['title'],
+            description=props['description'],
+            wordCount=props['word_count'],
+            difficulty=props['difficulty'],
+            grade=float(props['grade']),
+            rating=float(props['score']),
+            content=self.json_output,
+        )
+        
+        if not props['is_new']:
+            date = datetime.strptime(props['date'], '%d-%B-%Y').replace(hour=12)
+            data['date'] = date.isoformat()
+        
+        import_data_file = Path('data/wechat_import/data.json')
+        if import_data_file.exists():
+            with import_data_file.open('r') as f:
+                import_data = json.load(f)
+        else:
+            import_data = dict()
+
+        import_data[base_name] = data
+
+        with import_data_file.open('w') as f:
+            json.dump(import_data, f, indent='\t')
+        
         pass
     
     def json_reset(self):
@@ -633,28 +663,28 @@ class ArticleGenerator:
         self.output_parent = self.output_paragraph
         self.output_child = None
     
-    def get_json(self, props, content_text, content_tags):
+    def parse_json(self, content_text, content_tags):
         end_index = 0
         self.json_reset()
         i = 0
         while i < len(content_tags):
             index, tag_name, _, data = content_tags[i]
             i += 1
-            
+        
             # if tag_name[0] == '/':
             #     continue
-
+        
             # print(index, tag_name, data)
-
+        
             if end_index != index:
                 self.push_text(content_text[end_index:index])
                 end_index = index
-            
+        
             if tag_name == 'p':
                 self.new_paragraph()
                 end_index = index
                 continue
-
+        
             if tag_name == 'br':
                 self.push_text('\n')
             if tag_name == 'ul':
@@ -665,12 +695,12 @@ class ArticleGenerator:
             if tag_name == 'li':
                 # self.pop_child()
                 # self.new_paragraph()
-                self.push_data((chr(2), ))
+                self.push_data((chr(2),))
                 # self.push_child()
                 pass
             elif tag_name == 'span':
                 self.flush_text()
-                
+            
                 # Get the closing /span tag
                 index, _, _, _ = content_tags[i]
                 i += 1
@@ -682,8 +712,11 @@ class ArticleGenerator:
                 self.push_data(run)
                 end_index = index
                 continue
-
+    
         self.flush_text()
+    
+    def get_json(self, props, content_text, content_tags):
+        self.parse_json(content_text, content_tags)
         
         data = dict(
             title=props['title'],

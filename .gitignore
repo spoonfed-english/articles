@@ -145,3 +145,4 @@ src/
 !src/icon.ai
 !src/icon.png
 _scripts/data/__token_cache.pickle
+_scripts/data/wechat_import
