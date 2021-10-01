@@ -15,6 +15,7 @@ API_URL = f'{WECHAT_URL}/tcb'
 API_ENV = 'cloud1-4g09gzne0a03d7bd'
 
 BASE_PATH = Path('data/wechat_import/')
+IMG_PATH = BASE_PATH / 'img'
 
 
 def invoke_article_function(access_token, function_name, data):
@@ -103,7 +104,7 @@ def run():
             if len(output_data) == API_CHUNK_SIZE:
                 output_data = None
         
-        img_path = BASE_PATH / f'{article_id}.jpg'
+        img_path = IMG_PATH / f'{article_id}.jpg'
         if img_path.exists():
             images_upload.append((article_id, img_path))
         elif not has_data:
@@ -112,6 +113,7 @@ def run():
     access_token = get_access_token()
     
     failed_article_count = 0
+    # TODO: Check access token expiry after each action and update if necessary
     for output_chunk in output_chunks:
         if not output_chunk:
             continue
