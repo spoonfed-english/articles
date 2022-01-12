@@ -282,8 +282,15 @@ class DocParser:
                         elif child.name == 'rPr':
                             for style in child.contents:
                                 if style.name == 'b':
-                                    run_before_tags.append(('strong', ''))
-                                    run_after_tags.append(('/strong', ''))
+                                    run_before_tags.append(['strong', ''])
+                                    run_after_tags.append(['/strong', ''])
+                                if style.name == 'color':
+                                    if not run_before_tags:
+                                        run_before_tags.append(['span', ''])
+                                        run_after_tags.append(['/span', ''])
+                                    
+                                    tag = run_before_tags[0]
+                                    tag[1] = (tag[1] + ' style="color:#' + style['w:val'] + '"').lstrip()
                             pass
                     
                     if run_before_tags:

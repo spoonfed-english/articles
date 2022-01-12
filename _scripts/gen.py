@@ -205,7 +205,7 @@ class ArticleGenerator:
                 post_whitespace = f'\n{self.content_indent}{indent}\t'
         
             if attribs:
-                attribs = f' {attribs}'
+                attribs = f' {attribs.lstrip()}'
         
             output.append(f'{pre_whitespace}<{tag_name}{attribs}>{post_whitespace}')
             end_index = index
