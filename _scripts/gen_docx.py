@@ -61,6 +61,7 @@ class DocParser:
         self.token_properties = dict()
         self.token_offset = 0
         self.content_buffer_length = 0
+        self.clean_regex_sub = ''
         pass
     
     def parse_rels(self, export_images: Path):
@@ -116,18 +117,28 @@ class DocParser:
 
     def parse_token_properties(self, m):
         index = m.start()
-        
-        # TODO: Update all inner_tags with position > index
-        # print(m,  self.inner_tags)
-        # for prop in self.inner_tags:
-        #     print(prop)
+        offset = len(m.group(0)) - len(m.group(2))
+        self.update_inner_tag_indices(index, offset)
         
         token_index = self.content_buffer_length + index + self.token_offset
         self.token_properties[token_index] = m.group(1).strip(',').split(',') \
             if m.group(1) else ['ignore']
     
-        self.token_offset -= len(m.group(0)) - len(m.group(2))
+        self.token_offset -= offset
         return m.group(2)
+
+    def clean_regex(self, m):
+        index = m.start()
+        
+        offset = len(m.group(0)) - len(self.clean_regex_sub)
+        self.update_inner_tag_indices(index, offset)
+        
+        return self.clean_regex_sub
+
+    def update_inner_tag_indices(self, index, offset):
+        for prop in self.inner_tags:
+            if prop[0] > index:
+                prop[0] -= offset
     
     @staticmethod
     def select_mode(heading):
@@ -273,7 +284,8 @@ class DocParser:
                     
                     text = text.rstrip()
                     for regex, sub in CONTENT_CLEAN_REGEX:
-                        text = regex.sub(sub, text)
+                        self.clean_regex_sub = sub
+                        text = regex.sub(self.clean_regex, text)
                     text = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, text)
                     text_length = len(text)
                     
