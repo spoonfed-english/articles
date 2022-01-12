@@ -3,6 +3,7 @@ import sys
 from enum import Enum
 from pathlib import Path
 from pprint import pprint
+from typing import List
 
 from bs4 import BeautifulSoup, Tag
 from zipfile import ZipFile
@@ -53,11 +54,13 @@ class DocParser:
     doc: BeautifulSoup
     body: Tag
     only_content = False
+    inner_tags: List
     
     def __init__(self):
         self.image_paths = dict()
         self.token_properties = dict()
         self.token_offset = 0
+        self.content_buffer_length = 0
         pass
     
     def parse_rels(self, export_images: Path):
@@ -112,7 +115,14 @@ class DocParser:
         return exported_images
 
     def parse_token_properties(self, m):
-        token_index = m.start() + self.token_offset
+        index = m.start()
+        
+        # TODO: Update all inner_tags with position > index
+        # print(m,  self.inner_tags)
+        # for prop in self.inner_tags:
+        #     print(prop)
+        
+        token_index = self.content_buffer_length + index + self.token_offset
         self.token_properties[token_index] = m.group(1).strip(',').split(',') \
             if m.group(1) else ['ignore']
     
@@ -167,6 +177,8 @@ class DocParser:
         before_tags = []
         inner_tags = []
         after_tags = []
+
+        self.token_properties.clear()
     
         for p in self.body.find_all('w:p'):
             properties_tag = p.find('pPr')
@@ -232,6 +244,7 @@ class DocParser:
             
                 text = []
                 start_index = content_length
+                text_length = 0
             
                 for r in p.find_all('w:r'):
                     for child in r.contents:
@@ -242,21 +255,27 @@ class DocParser:
                                 child_txt = child_txt.lstrip()
                             if child_txt:
                                 text.append(child_txt)
-                                content_length += len(child_txt)
+                                text_length += len(child_txt)
                         elif child.name == 'br':
                             # Trim trailing whitespace before other elements
                             if text:
                                 text[-1] = text[-1].rstrip()
-                            inner_tags.append((content_length, 'br'))
+                            inner_tags.append((text_length, 'br'))
                             pass
             
                 if text:
                     text = ''.join(text)
                     
-                    # Trim trailing whitespace
-                    t_length = len(text)
+                    # Clean and parse token properties
+                    self.content_buffer_length = start_index
+                    self.inner_tags = inner_tags
+                    self.token_offset = 0
+                    
                     text = text.rstrip()
-                    content_length -= t_length - len(text)
+                    for regex, sub in CONTENT_CLEAN_REGEX:
+                        text = regex.sub(sub, text)
+                    text = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, text)
+                    text_length = len(text)
                     
                     if before_tags:
                         content_tags += [
@@ -265,17 +284,17 @@ class DocParser:
                         before_tags.clear()
                     if inner_tags:
                         content_tags += [
-                            (index, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                            (start_index + index, DocParser.tag(tag), DocParser.attribs(tag), dict())
                             for index, tag in inner_tags]
                         inner_tags.clear()
                     if after_tags:
                         content_tags += [
-                            (content_length, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                            (start_index + text_length, DocParser.tag(tag), DocParser.attribs(tag), dict())
                             for tag in after_tags]
                         after_tags.clear()
                 
                     content.append(f'{text}\n')
-                    content_length += 1
+                    content_length += len(text) + 1
                 continue
 
             if mode == ParseMode.Questions:
@@ -304,12 +323,6 @@ class DocParser:
     
         if list_index != -1:
             content_tags.append((len(content), '/ul'))
-
-        for regex, sub in CONTENT_CLEAN_REGEX:
-            content = regex.sub(sub, content)
-        self.token_properties.clear()
-        self.token_offset = 0
-        content = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, content)
 
         words_text = props['description'] + '\n' + content
         props['word_count'] = self.word_count(words_text)
