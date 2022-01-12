@@ -180,7 +180,7 @@ class ArticleGenerator:
         pass
     
     def add_tags(self, content_text, content_tags):
-        inline_tags = {'br', '/li', '/p', 'span', '/span'}
+        inline_tags = {'br', '/li', '/p', 'span', '/span', '/b', '/strong', 'strong'}
         block_tags = {'ul', '/ul', 'ol', '/ol'}
         indent = ''
         output = []

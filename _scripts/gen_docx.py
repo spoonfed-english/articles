@@ -188,6 +188,8 @@ class DocParser:
         before_tags = []
         inner_tags = []
         after_tags = []
+        run_before_tags = []
+        run_after_tags = []
 
         self.token_properties.clear()
     
@@ -258,6 +260,10 @@ class DocParser:
                 text_length = 0
             
                 for r in p.find_all('w:r'):
+                    run_before_tags.clear()
+                    run_after_tags.clear()
+                    run_start_index = text_length
+                    
                     for child in r.contents:
                         if child.name == 't':
                             child_txt = str(child.string)
@@ -271,8 +277,23 @@ class DocParser:
                             # Trim trailing whitespace before other elements
                             if text:
                                 text[-1] = text[-1].rstrip()
-                            inner_tags.append((text_length, 'br'))
+                            inner_tags.append([(text_length, ('br', ''))])
                             pass
+                        elif child.name == 'rPr':
+                            for style in child.contents:
+                                if style.name == 'b':
+                                    run_before_tags.append(('strong', ''))
+                                    run_after_tags.append(('/strong', ''))
+                            pass
+                    
+                    if run_before_tags:
+                        for tag in run_before_tags:
+                            inner_tags.append([run_start_index, tag])
+                        run_before_tags.clear()
+                    if run_after_tags:
+                        for tag in run_after_tags:
+                            inner_tags.append([text_length, tag])
+                        run_after_tags.clear()
             
                 if text:
                     text = ''.join(text)
