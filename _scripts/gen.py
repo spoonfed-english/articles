@@ -53,6 +53,8 @@ HYPEN_REGEX = re.compile(r'^[-–]+$')
 ARTICLE_INDEX_LIST_END_REGEX = re.compile(r'([ \t]*)(<!-- __LIST_END__ -->)')
 QUESTIONS_REGEX = re.compile(r'(\t*)__\[QUESTIONS__(.+)__QUESTIONS]__\n*', re.DOTALL)
 QUESTION_REGEX = re.compile(r'(\t+)__\[QUESTION__(.+)__QUESTION]__', re.DOTALL)
+DIFFICULT_WORDS_REGEX = re.compile(r'(\t*)__\[DIFFICULT_WORDS__(.+)__DIFFICULT_WORDS]__\n*', re.DOTALL)
+DIFFICULT_WORD_ITEM_REGEX = re.compile(r'(\t+)__\[ITEM__(.+)__ITEM]__', re.DOTALL)
 
 PARSE_ATTRIBS_REGEX = re.compile(r'\s*(.+?)\s*="([^"]*?)"')
 CLASS_LIST_SPLIT_REGEX = re.compile(r'\s+')
@@ -242,29 +244,19 @@ class ArticleGenerator:
                 print(f'Unable to parse index from index file: "{value}"')
                 return
             index = start_index
-
-        qsm = QUESTIONS_REGEX.search(tpl_data)
-        if qsm:
-            tpl_start = tpl_data[:qsm.start()]
-            tpl_end = tpl_data[qsm.end():]
-            questions_indent = qsm.group(1)
-            questions_tpl = questions_indent + qsm.group(2)
-            qm = QUESTION_REGEX.search(questions_tpl)
-            if not qm:
-                print('Invalid question template')
-                return
-            
-            questions_tpl_start = questions_tpl[:qm.start()]
-            questions_tpl_end = questions_tpl[qm.end():]
-            question_indent = qm.group(1)
-            question_tpl = qm.group(2)
-            
-            questions_tpl = f'{questions_tpl_start}__CONTENT__{questions_tpl_end}\n'
-            tpl_data = f'{tpl_start}__QUESTIONS__{tpl_end}'
-        else:
+        
+        questions_tpl = ListTemplate()
+        tpl_data = questions_tpl.fetch(tpl_data, 'QUESTIONS', 'QUESTION')
+        if tpl_data is None:
             print('Could not find questions section template')
             return
-            
+        
+        diff_words_tpl = ListTemplate()
+        tpl_data = diff_words_tpl.fetch(tpl_data, 'DIFFICULT_WORDS', 'ITEM')
+        if tpl_data is None:
+            print('Could not find difficult words section template')
+            return
+        
         files = ArticleGenerator.get_file_args(last_file)
         if not files:
             print(f'No .md or .html files found in input')
@@ -345,8 +337,10 @@ class ArticleGenerator:
             props, token_properties = doc_parse.parse(data_file)
             content_tags = props['content_tags']
             questions = props['questions']
+            difficult_words = props['difficult_words']
             del props['content_tags']
             del props['questions']
+            del props['difficult_words']
             
             # Validate properties
             for name in ['title', 'description', 'content']:
@@ -543,20 +537,15 @@ class ArticleGenerator:
                 if key in props:
                     del props[key]
             
-            # Question substitutions
             output_html = tpl_data
-            questions_text = ''
             
-            questions_output = []
-            for question_text, answer_text in questions:
-                question_item = question_tpl.replace('__QUESTION__', question_text)
-                question_item = question_item.replace('__ANSWER__', answer_text)
-                questions_output.append(f'{question_indent}{question_item}')
-            
-            if questions_output:
-                questions_text = questions_tpl.replace('__CONTENT__', '\n'.join(questions_output))
+            # Question substitutions
+            questions_text = questions_tpl.replace_items(('QUESTION', 'ANSWER'), questions)
+            output_html = questions_tpl.insert(output_html, questions_text)
 
-            output_html = output_html.replace('__QUESTIONS__', questions_text)
+            # Difficult word substitutions
+            diff_words_text = diff_words_tpl.replace_items(('WORD', 'DEF'), difficult_words)
+            output_html = diff_words_tpl.insert(output_html, diff_words_text)
             
             # Do substitutions
             for key, value in props.items():
@@ -739,6 +728,67 @@ class ArticleGenerator:
             data[name] = value
         
         return data
+
+
+class ListTemplate:
+    container_marker: str
+    indent: str
+    tpl: str
+    item_indent: str
+    item_tpl: str
+    
+    def fetch(self, tpl_data, container_marker, item_marker):
+        self.container_marker = container_marker
+        container_regex = re.compile(r'(\t*)__\[M__(.+)__M]__\n*'.replace('M', container_marker), re.DOTALL)
+        item_regex = re.compile(r'(\t+)__\[M__(.+)__M]__'.replace('M', item_marker), re.DOTALL)
+
+        m = container_regex.search(tpl_data)
+        if not m:
+            return None
+        
+        tpl_start = tpl_data[:m.start()]
+        tpl_end = tpl_data[m.end():]
+        self.indent = m.group(1)
+        self.tpl = self.indent + m.group(2)
+        im = item_regex.search(self.tpl)
+        if not im:
+            print('Invalid item template')
+            return None
+
+        item_tpl_start = self.tpl[:im.start()]
+        item_tpl_end = self.tpl[im.end():]
+        self.item_indent = im.group(1)
+        self.item_tpl = im.group(2)
+
+        self.tpl = f'{item_tpl_start}__CONTENT__{item_tpl_end}\n'
+        
+        return f'{tpl_start}__LIST_{container_marker}__{tpl_end}'
+
+    def replace_items(self, keys, data):
+        items = []
+        
+        for item in data:
+            text = self.item_tpl
+            
+            for key, value in zip(keys, item):
+                text = text.replace(f'__{key}__', value)
+            
+            items.append(text)
+        
+        if items:
+            text = self.replace_content('\n'.join(items))
+        else:
+            text = ''
+        
+        return text
+    
+    def replace_content(self, content):
+        return self.tpl.replace(f'__CONTENT__', content)
+    
+    def insert(self, data, content):
+        return data.replace(f'__LIST_{self.container_marker}__', content)
+    
+    pass
 
 
 if __name__ == "__main__":

@@ -444,4 +444,21 @@ section.questions .answer.open .contents {
   padding-left: 0.5rem;
 }
 
+section.difficult_words ol {
+  margin: 0;
+  line-height: 1.5em;
+}
+section.difficult_words ol li {
+  padding-bottom: 0.25rem;
+}
+section.difficult_words .word {
+  font-weight: bold;
+}
+section.difficult_words .word:after {
+  content: ": ";
+}
+section.difficult_words .definition {
+  display: inline;
+}
+
 /*# sourceMappingURL=main.css.map */

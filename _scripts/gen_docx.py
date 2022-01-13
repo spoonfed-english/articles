@@ -26,6 +26,7 @@ WORDS_CLEAN_REGEX = (
 )
 WORDS_REGEX = re.compile(r'[-\w.\'’]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-–\w]+)')
+DIFFICULT_WORD_SPLIT_REGEX = re.compile(r'\s*[-–:]\s*')
 
 
 def to_bool(value):
@@ -39,8 +40,9 @@ def to_bool(value):
 class ParseMode(Enum):
     Properties = 1
     Content = 2
-    Questions = 3
-    End = 4
+    DifficultWords = 3
+    Questions = 4
+    End = 5
 
 
 class DocParser:
@@ -145,6 +147,8 @@ class DocParser:
         heading = heading.strip()
         if heading == 'Questions':
             return ParseMode.Questions
+        if heading == 'Difficult Words':
+            return ParseMode.DifficultWords
         return ParseMode.End
     
     def parse(self, path, export_images: Path = None):
@@ -166,6 +170,7 @@ class DocParser:
     
         mode = ParseMode.Properties
         questions = []
+        difficult_words = []
         props = dict(
             title=None,
             description=None,
@@ -176,6 +181,7 @@ class DocParser:
             difficulty=None,
             content=None,
             questions=questions,
+            difficult_words=difficult_words,
             word_count=0,
         )
         content = []
