@@ -194,6 +194,8 @@ class ArticleGenerator:
         
             pre_whitespace = ''
             if index != 0 and tag_name not in inline_tags:
+                if tag_name in block_tags and tag_name[0] == '/':
+                    pre_whitespace += '\n'
                 pre_whitespace += f'{self.content_indent}{indent}'
         
             if tag_name in block_tags:
@@ -206,7 +208,7 @@ class ArticleGenerator:
         
             if attribs:
                 attribs = f' {attribs.lstrip()}'
-        
+            
             output.append(f'{pre_whitespace}<{tag_name}{attribs}>{post_whitespace}')
             end_index = index
         

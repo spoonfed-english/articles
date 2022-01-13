@@ -247,13 +247,10 @@ class DocParser:
                         before_tags.append(('/ul', ''))
                         list_index = -1
                     pass
-            
+                
                 if list_index != -1:
                     before_tags.append(('li', ''))
                     after_tags.append(('/li', ''))
-                else:
-                    before_tags.append(('p', ''))
-                    after_tags.append(('/p', ''))
             
                 text = []
                 start_index = content_length
@@ -301,7 +298,17 @@ class DocParser:
                         for tag in run_after_tags:
                             inner_tags.append([text_length, tag])
                         run_after_tags.clear()
-            
+                
+                if text and list_index == -1:
+                    before_tags.append(('p', ''))
+                    after_tags.append(('/p', ''))
+
+                if before_tags:
+                    content_tags += [
+                        (start_index, DocParser.tag(tag), DocParser.attribs(tag), dict())
+                        for tag in before_tags]
+                    before_tags.clear()
+                
                 if text:
                     text = ''.join(text)
                     
@@ -317,26 +324,37 @@ class DocParser:
                     text = TOKEN_PROPERTY_REGEX.sub(self.parse_token_properties, text)
                     text_length = len(text)
                     
-                    if before_tags:
-                        content_tags += [
-                            (start_index, DocParser.tag(tag), DocParser.attribs(tag), dict())
-                            for tag in before_tags]
-                        before_tags.clear()
+                    content.append(f'{text}\n')
+                    content_length += len(text) + 1
+                    
                     if inner_tags:
                         content_tags += [
                             (start_index + index, DocParser.tag(tag), DocParser.attribs(tag), dict())
                             for index, tag in inner_tags]
                         inner_tags.clear()
-                    if after_tags:
-                        content_tags += [
-                            (start_index + text_length, DocParser.tag(tag), DocParser.attribs(tag), dict())
-                            for tag in after_tags]
-                        after_tags.clear()
                 
-                    content.append(f'{text}\n')
-                    content_length += len(text) + 1
+                if after_tags:
+                    content_tags += [
+                        (start_index + text_length, DocParser.tag(tag), DocParser.attribs(tag),
+                         dict())
+                        for tag in after_tags]
+                    after_tags.clear()
+                
                 continue
 
+            if mode == ParseMode.DifficultWords:
+                text = DocParser.get_text(p).strip()
+                if not text:
+                    continue
+                parts = DIFFICULT_WORD_SPLIT_REGEX.split(text)
+                if len(parts) < 2:
+                    print(f'Invalid difficult word format, expected "word - definition": "{text}"')
+                    continue
+                
+                word, definition = parts
+                difficult_words.append((word, definition))
+                continue
+            
             if mode == ParseMode.Questions:
                 if skip_questions:
                     continue
@@ -360,7 +378,7 @@ class DocParser:
         content = ''.join(content)
         if content_length > 0:
             content = content[:-1]
-    
+        
         if list_index != -1:
             content_tags.append((len(content), '/ul'))
 
