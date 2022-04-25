@@ -386,7 +386,7 @@ class DocParser:
             content = content[:-1]
         
         if list_index != -1:
-            content_tags.append((len(content), '/ul'))
+            content_tags.append((len(content), '/ul', '', {}))
 
         words_text = props['description'] + '\n' + content
         props['word_count'] = self.word_count(words_text)
