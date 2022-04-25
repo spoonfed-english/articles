@@ -280,7 +280,7 @@ class DocParser:
                             # Trim trailing whitespace before other elements
                             if text:
                                 text[-1] = text[-1].rstrip()
-                            inner_tags.append([(text_length, ('br', ''))])
+                            inner_tags.append([text_length, ('br', '')])
                             pass
                         elif child.name == 'rPr':
                             for style in child.contents:
