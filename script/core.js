@@ -111,6 +111,12 @@ class WordHighlighter
 	
 	constructor($content, onTooltipShow)
 	{
+		window.CUSTOM_DICT = window.CUSTOM_DICT || {};
+		for(const word in window.CUSTOM_DICT)
+		{
+			DICT[word] = window.CUSTOM_DICT[word];
+		}
+		
 		this.onWordListButtonClick = this.onWordListButtonClick.bind(this);
 		this.onWordTooltipShow = this.onWordTooltipShow.bind(this);
 		
@@ -182,7 +188,7 @@ class WordHighlighter
 		
 		const $word = instance.reference;
 		
-		if(!$word.classList.contains(this.wordList) && !$word.classList.contains('extra'))
+		if(!$word.classList.contains(this.wordList) && !$word.classList.contains('extra') && !$word.classList.contains('def'))
 			return false;
 		
 		const word = $word.innerText;

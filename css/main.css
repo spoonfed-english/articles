@@ -270,7 +270,7 @@ section.content p:last-child {
 section.content .word:focus, section.content .word:active {
   outline: none;
 }
-section.content .word.extra, section.content.cet6 .word.cet6, section.content.ielts .word.ielts {
+section.content .word.extra, section.content .word.def, section.content.cet6 .word.cet6, section.content.ielts .word.ielts {
   border-radius: 2px;
   color: #888;
   cursor: pointer;

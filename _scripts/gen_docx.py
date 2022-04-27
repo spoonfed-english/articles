@@ -27,6 +27,7 @@ WORDS_CLEAN_REGEX = (
 WORDS_REGEX = re.compile(r'[-\w.\'’]+')
 TOKEN_PROPERTY_REGEX = re.compile(r'//((?:[a-zA-Z0-9]+,)*)([-–\w]+)')
 DIFFICULT_WORD_SPLIT_REGEX = re.compile(r'\s*[-–:]\s*')
+DICT_MEANING_SPLIT_REGEX = re.compile(r'\t+')
 
 
 def to_bool(value):
@@ -42,7 +43,8 @@ class ParseMode(Enum):
     Content = 2
     DifficultWords = 3
     Questions = 4
-    End = 5
+    Dictionary = 5
+    End = 6
 
 
 class DocParser:
@@ -149,6 +151,8 @@ class DocParser:
             return ParseMode.Questions
         if heading == 'Difficult Words':
             return ParseMode.DifficultWords
+        if heading == 'Dictionary':
+            return ParseMode.Dictionary
         return ParseMode.End
     
     def parse(self, path, export_images: Path = None):
@@ -183,6 +187,7 @@ class DocParser:
             questions=questions,
             difficult_words=difficult_words,
             word_count=0,
+            dictionary=dict(),
         )
         content = []
         content_tags = []
@@ -377,7 +382,29 @@ class DocParser:
                     questions.append((question, text))
                     question = None
                 continue
+
+            if mode == ParseMode.Dictionary:
+                text = DocParser.get_text(p).strip()
+                if not text:
+                    continue
                 
+                parts = [t.strip() for t in text.split(':')]
+                if len(parts) != 2:
+                    print(f'Invalid dictionary entry: "{text}", '
+                          f'Must have format "WORD:POS TAB MEANING"')
+                    continue
+                word, meaning = parts
+                word = word.lower()
+                parts = [t.strip() for t in DICT_MEANING_SPLIT_REGEX.split(meaning)]
+                if len(parts) != 2:
+                    print(f'Invalid dictionary meaning: "{meaning}", '
+                          f'Must have format "POS TAB MEANING"')
+                    continue
+
+                pos, meaning = parts
+                props['dictionary'][word] = f'{pos}\t{meaning}'
+                continue
+            
             if mode == ParseMode.End:
                 break
     
@@ -396,7 +423,6 @@ class DocParser:
 
         self.zip_file.close()
         
-        # pprint(props)
         return props, self.token_properties
 
     @staticmethod
@@ -417,6 +443,8 @@ class DocParser:
                     output.append(str(child.string))
                 elif child.name == 'br':
                     output.append('\n')
+                elif child.name == 'tab':
+                    output.append('\t')
         
         return ''.join(output)
     

@@ -29,8 +29,8 @@ from titlecase import titlecase
 from difficulty_checker import DifficultyChecker
 from gen_docx import DocParser
 
-DO_NLP = True
-CACHE_TOKENS = False
+DO_NLP = False
+CACHE_TOKENS = True
 if DO_NLP:
     import spacy
 
@@ -336,6 +336,7 @@ class ArticleGenerator:
             # Read data
             props, token_properties = doc_parse.parse(data_file)
             content_tags = props['content_tags']
+            dictionary = props['dictionary']
             questions = props['questions']
             difficult_words = props['difficult_words']
             del props['content_tags']
@@ -482,12 +483,19 @@ class ArticleGenerator:
                         elif lemma in word_list:
                             word_freq = word_list[lemma]
                             data_lemma = lemma
+                        
+                        if word_text in dictionary or lemma in dictionary:
+                            if not word_freq:
+                                word_freq = []
+                            word_freq.append(('def', ''))
+                            if not data_lemma and word_text not in dictionary:
+                                data_lemma = lemma
                     
                     if word_freq:
                         data = dict(
                             word_lists=set(
                                 [list_type for list_type, freq in word_freq] +
-                                [f'{list_type}-{freq}' for list_type, freq in word_freq])
+                                [f'{list_type}-{freq}' for list_type, freq in word_freq if freq])
                         )
                         
                         if data_lemma is not None:
@@ -528,6 +536,13 @@ class ArticleGenerator:
             content_text = self.add_tags(content_text, content_tags)
             
             props['content'] = content_text
+            
+            output_dict = []
+            for key, val in props['dictionary'].items():
+                key = key.replace('"', '\\"')
+                val = val.replace('"', '\\"')
+                output_dict.append(f'"{key}":"{val}"')
+            props['custom_dictionary'] = ','.join(output_dict)
     
             props['img_width'] = str(img_width)
             props['img_height'] = str(img_height)
@@ -580,6 +595,7 @@ class ArticleGenerator:
             grade=float(props['grade']),
             rating=float(props['score']),
             content=self.json_output,
+            dictionary=props['dictionary'],
         )
         
         if not props['is_new']:
