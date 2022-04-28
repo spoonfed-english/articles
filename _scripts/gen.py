@@ -29,8 +29,8 @@ from titlecase import titlecase
 from difficulty_checker import DifficultyChecker
 from gen_docx import DocParser
 
-DO_NLP = False
-CACHE_TOKENS = True
+DO_NLP = True
+CACHE_TOKENS = False
 if DO_NLP:
     import spacy
 
